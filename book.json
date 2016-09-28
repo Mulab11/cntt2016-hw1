@@ -1,0 +1,31 @@
+{
+
+	"output": null,
+
+	"generator": "site",
+
+	"description": null,
+	"extension": null,
+
+	"plugins": ["mathjax"],
+
+	"pdf": {
+	
+		"toc": false,
+	
+		"pageNumbers": true,
+	
+		"fontSize": 12,
+	
+	
+		"paperSize": "a4",
+	
+	
+		"margin": {
+			"right": 62,
+			"left": 62,
+			"top": 36,
+			"bottom": 36
+		}
+	}
+}
