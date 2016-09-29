@@ -71,6 +71,15 @@
 我们主要有两种方式编辑这个工程：
 
 ### 在线编辑
-你可以在gitbook.com网站上编辑。当你成为这个工程的成员之后，你就可以在线进行编辑（这个比较好玩的是还可以多个人编辑同一个文档）。这是最简单的方式。
+你可以在gitbook.com网站上编辑。当你成为这个工程的成员之后，你就可以在线进行编辑（这个比较好玩的是还可以多个人同时编辑同一个文档）。这是最简单的方式。
+
+### 本地编辑
+你可以使用git将[`https://github.com/Mulab11/cntt2016-hw1`](https://github.com/Mulab11/cntt2016-hw1)这个工程克隆（`git clone`）到本地，修改完成后推送（`git push`）回工程中。
+
+为了用git维护和提交，你至少需要学会clone、add、commit、pull、push几种操作。
+
+在本地，你可以直接把markdown当文本处理，也就是说可以用记事本等基本工具进行编辑。可以使用markdown的小工具预览或编辑（例如Windows、Mac下可以用Typora，注意不同工具的显示可能略有不同）。
+
+此外，在本地你还可以把这这个项目部署成一个网站或是输出成一个PDF。具体需要先安装node.js、npm、gitbook，然后用`gitbook serve`就能部署。
 
 注意gitbook这个工具和gitbook这个网站并不是相等的，前者是一套基于node.js的写书工具，后者是托管和展示由gitbook写成的书的网站。
