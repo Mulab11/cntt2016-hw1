@@ -14,3 +14,4 @@
 |邢健开|akashic|xingjiankai|jkxing|jkxing1210@gmail.com|973289085|
 |闵梓轩|mzx|fhxb520630|fhxb520630|fhxb520630@163.com|380431426|
 |翁文涛|wwt|philipsweng|philipsweng|philipsweng@gmail.com|815939360|
+|欧阳思琦|oysq|owaski|owaski|owaski123@gmail.com|1294683923|
