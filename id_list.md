@@ -9,3 +9,4 @@
 |周子鑫|zzx|AcrossTheSky|AcrossTheSky|across_the_sky@163.com|1282434506|
 |孙耀峰|syf|s1451900|sunyaofeng8|sunyaofeng8@yeah.net|841249284|
 |陈俊锟|immortalco|immortalCO|immortalCO|1261954105@qq.com|1261954105|
+|王聿中|wangyurzee|wangyurzee7|wangyurzee7|wang_yuzhong@126.com|741862050|
