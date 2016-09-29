@@ -11,3 +11,4 @@
 |陈俊锟|immortalco|immortalCO|immortalCO|1261954105@qq.com|1261954105|
 |吕欣|lx|visit_world|visitworld|745350128@qq.com|745350128|
 |徐懿|bx2k|BillXu2000|BillXu2000|BillXu2000@126.com|1052320786|
+|邢健开|jkxing|xingjiankai|jkxing|jkxing1210@gmail.com|973289085|
