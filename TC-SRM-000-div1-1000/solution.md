@@ -38,5 +38,15 @@ int main(){
 ![如果图片加载失败会显示这段文字](1.jpg)
 其中圆括号内可以是相对路径如`1.jpg`，绝对路径如`/TC-SRM-000-div1-1000/1.jpg`，或是完整的URL如`http://uoj.ac/pictures/UOJ.png`。虽然有一些markdown的方言支持修改图片的大小，但是我们建议尽量少使用。
 
+如果要画表格，markdown支持如下语法的表格：
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+很遗憾，目前这个表格没法合并单元格，设置对齐也只能每一列使用同样的方向。
+
 markdown在很多情况下支持直接插入html标签，但是似乎不是很能用上，而且有些渲染工具不是很支持，所以建议大家尽量也不要使用。
 
