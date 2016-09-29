@@ -16,3 +16,4 @@
 |翁文涛|wwt|philipsweng|philipsweng|philipsweng@gmail.com|815939360|
 |欧阳思琦|oysq|owaski|owaski|owaski123@gmail.com|1294683923|
 |尤艺霖|youyl|Youyyl|youyl|1078307713@qq.com|1078307713|
+|汪乐平|JOHNKRAM|JOHNKRAM|JOHNKRAM|xuehao14@126.com|575725084|
