@@ -1,5 +1,7 @@
-# 这是这份题解的标题
-作者：陈许旻（这里注明一下你的名字，方便读者知道你是谁）
+# AB（用原题目的名称）
+作者：陈许旻（这里注明一下你的名字，方便读者知道你是谁） 余林韵（所有有过修改的同学按照第一次修改的时间顺序列举名字）
+
+关键词：一元二次方程 准多项式复杂度 排序 前缀和
 ## 题目简述
 输入两个整数$$a, b$$，输出它们的和。保证$$\left|a\right|,\left|b\right|\le 10^{9}$$。:smile:
 
@@ -25,12 +27,20 @@ $$
 如果我们需要插入代码，我们用一对三个反引号括起来，还可以指定语言，例如：
 
 ```C++
-#include <iostream>
-int main(){
-  int a, b;
-  std::cin >> a >> b;
-  std::cout << a + b << std::endl;
-  return 0;
+#include <algorithm>
+#include <vector>
+class AB{
+public:
+  int solve(int a, int b){
+    std::vector<int> vec;
+    vec.push_back(a);
+    vec.push_back(b);
+    std::sort(vec, vec + 2);
+    int sum = 0;
+    for(auto i : vec)
+      sum += i;
+    return sum;
+  }
 }
 ```
 
