@@ -1,13 +1,17 @@
 {
 
-	"output": null,
-
 	"generator": "site",
-
-	"description": null,
-	"extension": null,
-
-	"plugins": ["mathjax"],
+	"plugins": ["katex", "advanced-emoji", "emphasize"],
+	
+	"pluginsConfig": {
+		"search-pro": {
+		    "cutWordLib": "nodejieba",
+		    "defineWord" : ["Gitbook Use"]
+		},
+		"advanced-emoji": {
+			"embedEmojis" : true
+		}
+	},
 
 	"pdf": {
 	
