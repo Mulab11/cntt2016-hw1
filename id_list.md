@@ -23,3 +23,4 @@
 |徐海珂|xhk|xhk|xhk6|1945623890@qq.com|1945623890|
 |王聿中|wyz|wangyurzee7|wangyurzee7|wang_yuzhong@126.com|741862050|
 |叶芃|isdkfj|isdkfj|isdkfj|isdkfj@qq.com|461829684|
+|高睿泉|grq|rqgao2014|rqgao2014|rqgao2014@126.com|2396634385|
