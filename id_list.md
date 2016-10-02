@@ -32,3 +32,4 @@
 |翁伊嘉|HalfSummer11|HalfSummer11|HalfSummer11|halfsummer11@gmail.com|451397253|
 |穆皓远|mhy|unknown_shadow|unshadow|unknown_shadow@163.com|2358332659|
 |丁力煌|dlh|shanquan2|shanquan2|js48182@126.com|3068417638|
+|叶昊星|131131yhx|131131yhx|131131yhx|2321227258@qq.com|2321227258|
