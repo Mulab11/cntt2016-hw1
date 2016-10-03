@@ -38,3 +38,4 @@
 |陆宇暄|613|613|Proteus-613|lyx13958187360@126.com|2543829136
 |闫书弈|fateice|fateice|fateicee|244685407@qq.com|244685407
 |马龙|linkct|linkct|linkct|linkct1999@163.com|1420713625
+|徐明宽|xumingkuan|xumingkuan|xumingkuan|xumingkuan0721@126.com|1766808897
