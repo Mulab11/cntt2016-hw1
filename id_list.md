@@ -40,3 +40,4 @@
 |马龙|linkct|linkct|linkct|linkct1999@163.com|1420713625
 |徐明宽|xumingkuan|xumingkuan|xumingkuan|xumingkuan0721@126.com|1766808897
 |赵晟宇|zsyzzsoft|zsyzzsoft|zsyzzsoft|zsy19981012@126.com|2559043384|
+|徐泽涛|NiroBC|?|NiroBC|2360596325@qq.com|2360596325
