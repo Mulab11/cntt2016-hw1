@@ -49,3 +49,4 @@
 |沈睿|SR|ShineRain|BlackRockCoder|447288941@qq.com|447288941|
 |黄励新|Fuxey|Fuxey|FuxeyHuang|812483101@qq.com||
 |聂恺辰|nkc|NationalNight|NationalNight|904095866@qq.com|904095866 
+|辜俊儒|gjr|GentleSmile|GentleSmile|478691929@qq.com|478691929|
