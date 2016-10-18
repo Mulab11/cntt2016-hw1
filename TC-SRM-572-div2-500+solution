@@ -4,25 +4,41 @@
 #include<cstdlib>
 #include<algorithm>
 using namespace std;
-
-class EllysBulls
-{
-	public:
+	char tt[33][33]={};
+	struct ff{int m,cnt;}f[111]={};
 	string a[111]={};
 	int b[111]={};
-	int n;
+	int n;int maxx=0;
+	int c[111]={};
 	int sum=0;
 	string t;
 	string ans;
 	bool err=0,err2=0;
+	bool cmpp(ff m,ff n){return m.cnt>n.cnt;}
+	void update()
+	{
+		for(int i=0;i<a[0].size();i++)
+		{
+			for(int j=0;j<100;j++)
+				f[j].m=f[j].cnt=0;
+			for(int j=0;j<n;j++)
+				f[a[j][i]-'0'].cnt++;
+			for(int j=0;j<=9;j++)
+				f[j].m=j+'0';
+			sort(f,f+10,cmpp);
+			for(int j=0;j<=9;j++)
+				tt[i][j]=f[j].m;
+		}
+	}
 	void check(int s)
 	{
-		int c[111]={};
+		for(int i=0;i<n;i++)
+			c[i]=0;
 		for(int i=0;i<n;i++)
 			for(int j=0;j<s;j++)
 				if(t[j]==a[i][j])
 					c[i]++;
-		int tem=a[1].size()-s;
+		int tem=a[0].size()-s;
 		for(int i=0;i<n;i++)
 			if(c[i]>b[i]||b[i]-c[i]>tem)
 				err=1;
@@ -33,14 +49,15 @@ class EllysBulls
 				else
 					ans=t,sum=1;
 		}
+		
 	}
 	void dfs(int s)
 	{
 		if(s==a[0].size())
 			return;
-		for(char i='0';i<='9';i++)
+		for(char i=0;i<=9;i++)
 		{
-			t[s]=i;
+			t[s]=tt[s][i];
 			check(s+1);
 			if(err2)//存在多个字符串满足条件
 				return;
@@ -52,6 +69,9 @@ class EllysBulls
 				dfs(s+1);
 		}
 	}
+class EllysBulls
+{
+	public:
 	string getNumber(vector <string> guesses,vector <int> bulls)
 	{
 		n=guesses.size();
@@ -59,7 +79,10 @@ class EllysBulls
 		for(int i=0;i<n;i++)
 			b[i]=bulls[i],a[i]=guesses[i];
 		t=a[0];
+		update();
 		dfs(0);
+		if(n==1&&bulls[0]==0)
+			return "Ambiguity";
 		if(err2)
 		return "Ambiguity";
 		else if(sum==0)
@@ -73,4 +96,5 @@ class EllysBulls
 剪枝是这样的：
 如果当前已经确定的部分超出了一些字符串的符合个数，则说明这个字符串一定不是结果，就直接return，停止下一层递归。
 如果在假定后面没搜到的字符都符合的情况下依然不够，也可以说明这不是结果，直接return，停止下一次递归。
+排序，先枚举出现多的，再枚举出现少的。
 */
