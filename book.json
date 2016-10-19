@@ -1,35 +1,24 @@
 {
-
-	"generator": "site",
-	"plugins": ["katex", "advanced-emoji", "emphasize"],
-	
-	"pluginsConfig": {
-		"search-pro": {
-		    "cutWordLib": "nodejieba",
-		    "defineWord" : ["Gitbook Use"]
-		},
-		"advanced-emoji": {
-			"embedEmojis" : true
-		}
-	},
-
-	"pdf": {
-	
-		"toc": false,
-	
-		"pageNumbers": true,
-	
-		"fontSize": 12,
-	
-	
-		"paperSize": "a4",
-	
-	
-		"margin": {
-			"right": 62,
-			"left": 62,
-			"top": 36,
-			"bottom": 36
-		}
-	}
+    "generator": "site",
+    "plugins": [
+        "advanced-emoji",
+        "emphasize"
+    ],
+    "pluginsConfig": {
+        "advanced-emoji": {
+            "embedEmojis": true
+        }
+    },
+    "pdf": {
+        "toc": false,
+        "pageNumbers": true,
+        "fontSize": 12,
+        "paperSize": "a4",
+        "margin": {
+            "right": 62,
+            "left": 62,
+            "top": 36,
+            "bottom": 36
+        }
+    }
 }
