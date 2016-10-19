@@ -9,5 +9,5 @@
 * [567-250](TC-SRM-567-div1-250/solution.md)
 * [567-500](TC-SRM-567-div1-500/solution.md)
 * [567-1000](TC-SRM-567-div1-1000/solution.md)
-* 565-250
+* [565-250](TC-SRM-564-div1-250\solution.md)
 
