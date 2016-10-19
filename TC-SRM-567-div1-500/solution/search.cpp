@@ -36,53 +36,53 @@ class StringGame
 {
 	private:
 	int n;
-    Str s[MAXN];
-    bool used[ALPHA];
-    bool search(int x, vector <int> str)
-    {
-    	if(str.empty())
-    		return true;
-    	for(int ch = 0; ch < ALPHA; ch++)
-    	{
-    		if(used[ch] || !s[x].v[ch])
-    			continue;
-    		bool flag = true, flag2 = false;//flag2 == false: all strings have same ch, so choosing ch is useless
-    		vector <int> tmp;
-    		for(vector <int> :: iterator st = str.begin(); st != str.end(); st++)
-    			if(s[*st].v[ch] > s[x].v[ch])
-    			{
-    				flag = false;//lose if choose ch
-    				break;
-    			}
-    			else if(s[*st].v[ch] == s[x].v[ch])
-    				tmp.push_back(*st);
-    			else
-    				flag2 = true;
-    		if(flag && flag2)
-    		{
-    			used[ch] = true;
-    			if(search(x, tmp))
-    				return true;
-    			used[ch] = false;
-    		}
-    	}
-    	return false;
-    }
-    bool winstr(int x)
-    {
-    	memset(used, false, sizeof(used));
-    	vector <int> tmp;
-    	for(int i = 0; i < n; i++)
-    		if(i != x)
-    		{
+	Str s[MAXN];
+	bool used[ALPHA];
+	bool search(int x, vector <int> str)
+	{
+		if(str.empty())
+			return true;
+		for(int ch = 0; ch < ALPHA; ch++)
+		{
+			if(used[ch] || !s[x].v[ch])
+				continue;
+			bool flag = true, flag2 = false;//flag2 == false: all strings have same ch, so choosing ch is useless
+			vector <int> tmp;
+			for(vector <int> :: iterator st = str.begin(); st != str.end(); st++)
+				if(s[*st].v[ch] > s[x].v[ch])
+				{
+					flag = false;//lose if choose ch
+					break;
+				}
+				else if(s[*st].v[ch] == s[x].v[ch])
+					tmp.push_back(*st);
+				else
+					flag2 = true;
+			if(flag && flag2)
+			{
+				used[ch] = true;
+				if(search(x, tmp))
+					return true;
+				used[ch] = false;
+			}
+		}
+		return false;
+	}
+	bool winstr(int x)
+	{
+		memset(used, false, sizeof(used));
+		vector <int> tmp;
+		for(int i = 0; i < n; i++)
+			if(i != x)
+			{
 				if(s[i] == s[x])
-    				return false;
-    			tmp.push_back(i);
-    		}
-    	return search(x, tmp);
-    }
-    public:
-    vector<int> getWinningStrings(vector<string> S)
+					return false;
+				tmp.push_back(i);
+			}
+		return search(x, tmp);
+	}
+	public:
+	vector<int> getWinningStrings(vector<string> S)
 	{
 		n = S.size();
 		for(int i = 0; i < n; i++)
@@ -91,7 +91,7 @@ class StringGame
 		for(int i = 0; i < n; i++)
 			if(winstr(i))
 				ret.push_back(i);
-        return ret;
-    }
+		return ret;
+	}
 };
 
