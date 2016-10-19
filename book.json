@@ -2,7 +2,8 @@
     "generator": "site",
     "plugins": [
         "advanced-emoji",
-        "emphasize"
+        "emphasize",
+        "mathjax"
     ],
     "pluginsConfig": {
         "advanced-emoji": {
