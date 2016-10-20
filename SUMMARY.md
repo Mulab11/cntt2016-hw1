@@ -16,7 +16,7 @@
 * 583-500
   * [Solution](TC-SRM-583-div1-500/solution.md)
   * [Code](TC-SRM-583-div1-500/code.md)
-* 583-900
-  * [Solution](TC-SRM-583-div1-900/solution.md)
-  * [Code](TC-SRM-583-div1-900/code.md)
+* 583-950
+  * [Solution](TC-SRM-583-div1-950/solution.md)
+  * [Code](TC-SRM-583-div1-950/code.md)
 
