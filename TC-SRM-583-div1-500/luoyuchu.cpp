@@ -1,4 +1,3 @@
-```c++
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -59,5 +58,3 @@ class TurnOnLamps {
         return Ans;//返回答案
     }
 };
-
-```
