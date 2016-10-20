@@ -9,11 +9,11 @@ public:
 	int f[1000005];
 	int theMinCars(int treeHeight) {
 		f[0]=1;
-		f[1]=1;//³õÊ¼»¯ 
+		f[1]=1;//åˆå§‹åŒ– 
 		for(int i=2;i<=treeHeight;++i){
 			f[i]=f[i-1];
 			if((f[i]+=f[i-2])>=mo)f[i]-=mo;
-			if((f[i]+=f[i-2])>=mo)f[i]-=mo;//µİÍÆ£¬f[i]=f[i-1]+2*f[i-2]
+			if((f[i]+=f[i-2])>=mo)f[i]-=mo;//é€’æ¨f[i]=f[i-1]+2*f[i-2]
 		}
 		return f[treeHeight];
 	}
