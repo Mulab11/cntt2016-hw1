@@ -1,4 +1,3 @@
-```c++
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -51,5 +50,3 @@ class TravelOnMars {
         return dist[T];//返回答案
     }
 };
-
-```
