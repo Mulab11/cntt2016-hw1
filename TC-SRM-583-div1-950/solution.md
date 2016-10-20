@@ -3,7 +3,7 @@
 
 关键词：数学 概率 期望 枚举 状态压缩 动态规划
 ## 题目简述
-给出一个$$n\times m$$的棋盘，每个格子上有一个为0到9的数字，所有的数字之和为S，现在玩一个游戏，一开始所有的格子都是白色的，每一回合你要不等概率随机地选择一个格子，并将这个格子染黑（已经被染黑的格子可能贝重复染色），如果一个格子上的数字为x，那么这个格子被选择的概率是$$\frac{x}{S}$$，当在某一回合之后，如果发现这个棋盘的每一行每一列都至少有一个格子是黑色的，那么游戏结束，请求出游戏结束的期望回合数。
+给出一个$$n\times m$$的棋盘，每个格子上有一个0到9的数字，所有的数字之和为S，现在玩一个游戏，一开始所有的格子都是白色的，每一回合你要按一定的概率选择一个格子，并将这个格子染黑（已经被染黑的格子可能被重复染色），如果一个格子上的数字为$$x$$，那么这个格子被选择的概率是$$\frac{x}{S}$$，当在某一回合之后，如果发现这个棋盘的每一行每一列都至少有一个格子是黑色的，那么游戏结束，请求出游戏结束的期望回合数。
 
 $$1 \leqslant n,m \leqslant 21$$
 
@@ -28,7 +28,7 @@ P\left(\text{i steps are needed}\right) = P\left(\text{Not done after i-1 steps}
 $$
 所以可以推出
 $$
-\begin{align} E\left(\text{number of steps}\right) &= \sum_{i=0}^\infty {i P\left(\text{Not done after i-1 steps}\right)} &- \sum_{i=0}^\infty {i P\left(\text{Not done after i steps}\right)} \\ E\left(\text{number of steps}\right) &= 0 * P\left(\text{Not done after -1 steps}\right) + \sum_{i=1}^\infty {i P\left(\text{Not done after i-1 steps}\right)} \\ &- \sum_{i=1}^\infty {\left(i - 1\right) P\left(\text{Not done after i-1 steps}\right)} \\ E\left(\text{number of steps}\right) &= \sum_{i=1}^\infty {\left(i P\left(\text{Not done after i-1 steps}\right) - \left(i-1\right) P\left(\text{Not done after i-1 steps}\right) \right)} \\ E\left(\text{number of steps}\right) &= \sum_{i=1}^\infty {P\left(\text{Not done after i-1 steps}\right)} \end{align}
+\begin{align} E\left(\text{number of steps}\right) &= \sum_{i=0}^\infty {i P\left(\text{Not done after i-1 steps}\right)} - \sum_{i=0}^\infty {i P\left(\text{Not done after i steps}\right)} \\ E\left(\text{number of steps}\right) &= 0 * P\left(\text{Not done after -1 steps}\right) + \sum_{i=1}^\infty {i P\left(\text{Not done after i-1 steps}\right)} \\ &- \sum_{i=1}^\infty {\left(i - 1\right) P\left(\text{Not done after i-1 steps}\right)} \\ E\left(\text{number of steps}\right) &= \sum_{i=1}^\infty {\left(i P\left(\text{Not done after i-1 steps}\right) - \left(i-1\right) P\left(\text{Not done after i-1 steps}\right) \right)} \\ E\left(\text{number of steps}\right) &= \sum_{i=1}^\infty {P\left(\text{Not done after i-1 steps}\right)} \end{align}
 $$
 所以我们就只需要算出经过i回合之后游戏没有结束的概率了，这就很好解决了。由于游戏没有结束，那么一定是有一些行或列之中一个格子都没有被选中，这就是一个简单的容斥原理的应用
 $$
@@ -46,14 +46,14 @@ $$
 $$
 \begin{align} E\left(\text{number of steps}\right) &= \sum_{i=0}^\infty { \left( \sum_{\text{odd }s } {\left( 1 - P\left(s\right) \right) ^ i} - \sum_{\text{even }s}{\left( 1 - P\left(s\right) \right) ^ i} \right)} \\ E\left(\text{number of steps}\right) &= \sum_{\text{odd }s } {\left( \sum_{i=0}^\infty \left( 1 - P\left(s\right) \right) ^ i \right) } - \sum_{\text{even }s}{\left( \sum_{i=0}^\infty \left( 1 - P\left(s\right) \right) ^ i \right)} \end{align}
 $$
-对于$$\sum_{i=0}^\infty (1-P(s))^i$$可以使用等比数列求和求出等于1+$$\frac{1-P(s)}{1-(1-P(s))}$$，但是要注意$$P(s)=1$$的特殊情况。
+对于$$\sum_{i=0}^\infty (1-P(s))^i$$可以使用等比数列求和求出等于1+$$\frac{1-P(s)}{1-(1-P(s))}$$，这里不会有$$P(s)=0$$的情况，但是要注意$$P(s)=1$$的特殊情况。
 
-此时我们又发现一个问题，在枚举不被选中行/列的集合s是，$$2^{n+m}$$可能非常大，但是我们注意到n的范围只有12，是非常小的，而且格子上的数字都是0~9的小数字，格子上的数字和也不大，于是我们就可以发现这样一种做法。
+此时我们又发现一个问题，在枚举不被选中行/列的集合s时，复杂度为$$2^{n+m}$$可能非常大，但是我们注意到n的范围只有12，是非常小的，而且格子上的数字都是0~9的小数字，格子上的数字和也不大，于是我们就可以用Dp来解决。
 
-首先由于n很小，所以我们可以枚举s集合的行是那一些，我们把这些行的概率求和，然后对于每一列，我们算出如果选择这一列，概率和还会增加多少，我们用$$res[i]$$记录在第i列但不在选择的行中的格子上的数字和是多少，我们按列Dp，Dp状态$$f[i][j][0/1]$$表示当前考虑了前i列，当前的选择了的列的$$res$$之和是多少，0/1表示选择了的列的集合大小为奇数还是偶数，d的不同集合的个数。
+首先由于n很小，所以我们可以枚举s集合中的行是那一些，我们把这些行的概率求和，然后对于每一列，我们算出如果选择这一列，概率和还会增加多少，我们用$$res[i]$$记录在第i列但不在选择的行中的格子上的数字和是多少，我们按列Dp，Dp状态$$f[i][j][0/1]$$表示当前考虑了前i列，当前的选择了的列的$$res$$之和是多少，0/1表示选择了的列的集合大小为奇数还是偶数，d的不同集合的个数。
 
 转移方程：
 $$
 f[i][j][k] = f[i-1][j][k] + f[i-1][j-res[j]][k \oplus 1]  
 $$
-求出了集合的个数，我们就可以直接带入之前的公式计算即可，于是我们就在$$O(2^{n} \times m \times S)$$(S为数字之和)的时间里解决了这道题。
+求出了概率为一特定值的集合的个数，我们就可以直接带入之前的公式计算即可，于是我们就在$$O(2^{n} \times m \times S)$$的时间里解决了这道题。
