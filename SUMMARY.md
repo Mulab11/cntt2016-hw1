@@ -10,4 +10,13 @@
 * [567-250](TC-SRM-567-div1-250/solution.md)
 * [567-500](TC-SRM-567-div1-500/solution.md)
 * [567-1000](TC-SRM-567-div1-1000/solution.md)
+* 583-250
+  * [Solution](TC-SRM-583-div1-250/solution.md)
+  * [Code](TC-SRM-583-div1-250/code.md)
+* 583-500
+  * [Solution](TC-SRM-583-div1-500/solution.md)
+  * [Code](TC-SRM-583-div1-500/code.md)
+* 583-900
+  * [Solution](TC-SRM-583-div1-900/solution.md)
+  * [Code](TC-SRM-583-div1-900/code.md)
 
