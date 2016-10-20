@@ -18,6 +18,5 @@
 * [583-950](TC-SRM-583-div1-950/solution.md)
 * [585-250](TC-SRM-585-div1-250/solution.md)
 * [585-500](TC-SRM-585-div1-500/solution.md)
-   * [575-250](TC-SRM-575-div1-250/solution.md)
 * [585-1000](TC-SRM-585-div1-1000/solution.md)
 
