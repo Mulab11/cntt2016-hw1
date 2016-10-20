@@ -29,6 +29,6 @@ $$f_i=\prod_{j=0}^{n-1}{i\choose cnt_j} -\sum_{k=1}^{i-1}f_k\times {s+i-k\choose
 
 对于每个数可以存在多个的情况，转移的情况会变得复杂一些，因为会有相同的数连在一起的情况。考虑一个$$f_{i,j}$$，我们枚举有$$k$$个数会加到那些段的末尾，对于剩下的$$x=cnt_{i-1}-k$$个数，由于放到没有被我们选到的那$$j-k$$个段的末尾(否则就不会改变答案)，它们能插入的位置有$$s=1+\sum_{j=0}^{i-1}cnt_j-(j-k)$$个，还需要乘上将$$$$个元素x分成$$s$$段(可以为空)的方案数，于是有：
 
-​			$$f_{i,j}\times {j \choose k}\times {s+x-1\choose s-1} \rightarrow f_{i,j+x}$$
+​			$$f_{i,j}\times {j \choose k}\times {s+x-1\choose s-1} \rightarrow f_{i+1,j+x}$$
 
 组合数同样可以预处理，时间复杂度$$O(36nK)​$$
