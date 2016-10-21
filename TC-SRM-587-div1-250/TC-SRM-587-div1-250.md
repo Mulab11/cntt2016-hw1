@@ -1,8 +1,3 @@
----
-date: 2016-10-11 16:23
-status: public
-title: TC-SRM-587-div1-250
----
 
 #250 JumpFurther
 作者：jkxing
