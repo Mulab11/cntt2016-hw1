@@ -9,7 +9,7 @@
 这$$4m$$个点围成的正方形。正方形内部有若干个点(不超过20个，不在边界上，点的坐标都是整数)，要求在正方形上选取三个点并且给定的点都在这三个点围成的三角形内部或边上，求选取这三个点的方案数。($$2\le m \le 58585$$)
 
 
-## 算法一
+## 算法
 
 先考虑如何判断一个点在$$\Delta ABC$$内部或边上。设该点为$$ P $$，则根据叉积的知识，只需判断$$\overrightarrow{AB}\times \overrightarrow{AP}\ge0$$且$$\overrightarrow{BC}\times \overrightarrow{BP}\ge0$$且$$\overrightarrow{CA}\times \overrightarrow{CP}\ge0$$即可，也就是$$P$$在$$\overrightarrow{AB},\overrightarrow{BC},\overrightarrow{CA}$$的左侧。
 
