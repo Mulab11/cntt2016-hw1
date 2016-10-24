@@ -11,9 +11,9 @@ class PastingPaintingDivOne
             ll a1=0,a2=0,a3=0;
             vector<string> a(n,string(m,'.'));
             vector<string> b;
-            for(i=0;i<T;i++)//ÒÀ´Î·ÅÏÂÃ¿Ò»¸ö¾ØÐÎ 
+            for(i=0;i<T;i++)//ä¾æ¬¡æ”¾ä¸‹æ¯ä¸€ä¸ªçŸ©å½¢
             {
-                if(a==b)//ÅÐ¶Ï×´Ì¬ÊÇ·ñ·¢Éú±ä»¯ 
+                if(a==b)//åˆ¤æ–­çŠ¶æ€æ˜¯å¦å‘ç”Ÿå˜åŒ–
                 {
                     j=T-i;
                     ans[0]+=a1*j;
@@ -26,7 +26,7 @@ class PastingPaintingDivOne
                 for(j=0;j+1<n;j++)for(k=0;k+1<m;k++)a[j][k]=a[j+1][k+1];
                 for(j=0;j<n;j++)a[j][m-1]='.';
                 for(k=0;k<m;k++)a[n-1][k]='.';
-                for(j=0;j<n;j++)for(k=0;k<m;k++)//·ÅÏÂÒ»¸ö¾ØÐÎ 
+                for(j=0;j<n;j++)for(k=0;k<m;k++)//æ”¾ä¸‹ä¸€ä¸ªçŸ©å½¢
                 {
                     a1-=a[j][k]=='R';
                     a2-=a[j][k]=='G';
