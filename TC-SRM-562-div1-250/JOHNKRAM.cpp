@@ -11,7 +11,7 @@ class PastingPaintingDivOne
             ll a1=0,a2=0,a3=0;
             vector<string> a(n,string(m,'.'));
             vector<string> b;
-            for(i=0;i<T;i++)//依次放下每一个矩形
+            for(i=0;i<T;i++)//依次进行操作
             {
                 if(a==b)//判断状态是否发生变化
                 {
@@ -26,7 +26,7 @@ class PastingPaintingDivOne
                 for(j=0;j+1<n;j++)for(k=0;k+1<m;k++)a[j][k]=a[j+1][k+1];
                 for(j=0;j<n;j++)a[j][m-1]='.';
                 for(k=0;k<m;k++)a[n-1][k]='.';
-                for(j=0;j<n;j++)for(k=0;k<m;k++)//放下一个矩形
+                for(j=0;j<n;j++)for(k=0;k<m;k++)//按下一次板
                 {
                     a1-=a[j][k]=='R';
                     a2-=a[j][k]=='G';
