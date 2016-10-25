@@ -14,4 +14,4 @@
 ## 算法二
 
 换一种方法判断是否是凸四边形。选出一个黑点和两个白点，那么另一个黑点在下图所示的深色区域时这个四边形才是凸的：
-![](pic=https://apps.topcoder.com/wiki/download/attachments/93652627/d15002.png)
+![](https://apps.topcoder.com/wiki/download/attachments/93652627/d15002.png)
