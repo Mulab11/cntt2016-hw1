@@ -45,7 +45,7 @@ class CheckerFreeness
             }
             for(i=0;i<n;i++)for(j=i+1;j<N;j++)for(k=0;k<m;k++)if(j!=k+n)if(check(bx[k],by[k],x[i],y[i],x[j],y[j])>0)b[i][j][k]=1;
             else b[j][i][k]=1;
-            for(i=0;i<n;i++)for(j=i+1;j<n;j++)for(k=0;k<m;k++)if(((b[i][k+n]^b[j][k+n])&(check(bx[k],by[k],x[i],y[i],x[j],y[j])>0?(~b[i][j]):b[i][j])).any())return "NO";
+            for(i=0;i<n;i++)for(j=i+1;j<n;j++)for(k=0;k<m;k++)if(((b[i][k+n]^b[j][k+n])&(b[i][j][k]?(~b[i][j]):b[i][j])).any())return "NO";
             return "YES";
         }
 };
