@@ -19,7 +19,7 @@
 |汪乐平|JOHNKRAM|JOHNKRAM|JOHNKRAM|xuehao14@126.com|575725084|
 |叶珈宁|Remilia|Ric_shooter|Remilia-sky|9963y@163.com|451696454|
 |袁伟强|ywq|SanSiroWaltz|sansirowaltz|sansirowaltz@outlook.com|1837147294|
-|罗哲正|c_sunshine|C_SUNSHINE|C-SUNSHINE|lzz0116@126.com|768073863|
+|罗哲正|c_sunshine|C_SUNSHINE|C-SUNSHINE|768073863@qq.com|768073863|
 |徐海珂|xhk|xhk|xhk6|1945623890@qq.com|1945623890|
 |王聿中|wyz|wangyurzee7|wangyurzee7|wang_yuzhong@126.com|741862050|
 |叶芃|isdkfj|isdkfj|isdkfj|isdkfj@qq.com|461829684|
