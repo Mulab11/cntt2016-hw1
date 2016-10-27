@@ -1,7 +1,7 @@
-# CheckerFreeness
+# InducedSubgraphs
 作者：汪乐平
 
-关键词：凸四边形判定 压位
+关键词：计数 分情况讨论 动态规划
 
 ## 题目简述
 
