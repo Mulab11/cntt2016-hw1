@@ -76,9 +76,9 @@ class Mountains
 		for(int i = 0; i < n; i++)
 		{
 			//------XXXXXXXXX-----
-			//	  ^	   ^	 
-			//	  |	   |	 
-			//	  |	   |	 
+			//      ^       ^     
+			//      |       |     
+			//      |       |     
 			// vis[i][0] vis[i][1]
 			vis[i][0] = vis[i][1] = -1;
 			for(int j = 0; j < w; j++)
