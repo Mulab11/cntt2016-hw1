@@ -4,7 +4,7 @@ using namespace std;
 #define P 1000000009
 int ans,n,m,i,j,x,y,l,h[50],ne[100],p[100],I[50],f[50],F[50][50][50][50],d[50][50],s[50][50],a[50][50],t[50][50];
 bool b[50][50];
-void dfs(int x,int fa)
+void dfs(int x,int fa)//计算父亲编号比孩子小（大）的编号方式数量
 {
     if(a[fa][x])return;
     a[fa][x]=s[fa][x]=1;
@@ -16,7 +16,7 @@ void dfs(int x,int fa)
     }
     a[fa][x]=(ll)a[fa][x]*f[s[fa][x]-1]%P;
 }
-void work(int x,int fa)
+void work(int x,int fa)//情况2计算F数组
 {
     if(b[fa][x])return;
     b[fa][x]=1;
@@ -26,7 +26,7 @@ void work(int x,int fa)
         work(p[i],x);
         int a,b,c,d;
         memset(t,0,sizeof(t));
-        for(a=0;a<=s[x][p[i]];a++)for(b=0;b<=s[x][p[i]];b++)for(c=0;c<=j;c++)for(d=0;d<=j;d++)t[a+c][b+d]=(t[a+c][b+d]+(ll)F[x][p[i]][a][b]*F[fa][x][c][d]*I[a]%P*I[b])%P;
+        for(a=0;a<=s[x][p[i]];a++)for(b=0;b<=s[x][p[i]];b++)for(c=0;c<=j;c++)for(d=0;d<=j;d++)t[a+c][b+d]=(t[a+c][b+d]+(ll)F[x][p[i]][a][b]*F[fa][x][c][d]*I[a]%P*I[b])%P;//多项式乘法
         j+=s[x][p[i]];
         for(a=0;a<=j;a++)for(b=0;b<=j;b++)F[fa][x][a][b]=t[a][b];
     }
@@ -43,7 +43,7 @@ class InducedSubgraphs
             for(i=f[0]=1;i<50;i++)f[i]=(ll)f[i-1]*i%P;
             for(i=I[0]=1;i<50;i++)I[i]=(ll)I[i]*I[i-1]%P;
             n=edge1.size()+1;
-            if(k==1)return f[n];
+            if(k==1)return f[n];//k=1需要特判
             for(i=0;i<n;i++)for(j=i+1;j<n;j++)d[i][j]=d[j][i]=1000000000;
             for(i=0;i+1<n;i++)
             {
@@ -56,8 +56,8 @@ class InducedSubgraphs
                 h[edge2[i]]=m;
             }
             for(i=0;i<n;i++)dfs(i,n);
-            for(l=0;l<n;l++)for(i=0;i<n;i++)for(j=0;j<n;j++)d[i][j]=min(d[i][j],d[i][l]+d[l][j]);
-            if(k*2<=n)
+            for(l=0;l<n;l++)for(i=0;i<n;i++)for(j=0;j<n;j++)d[i][j]=min(d[i][j],d[i][l]+d[l][j]);//使用Floyd计算路径长度，时间复杂度是O(n^3)的，可以降至O(n^2)，但瓶颈不在这里，故选择较好写的方法
+            if(k*2<=n)//情况1
             {
                 for(i=0;i<n;i++)for(j=0;j<n;j++)if(d[i][j]==n-2*k+1)
                 {
@@ -69,6 +69,7 @@ class InducedSubgraphs
                 }
                 return ans;
             }
+            //情况2
             for(i=0;i<n;i++)work(i,n);
             for(i=0;i<n;i++)ans=(ans+F[n][i][n-k][n-k])%P;
             ans=(ll)ans*f[2*k-n-1]%P;
