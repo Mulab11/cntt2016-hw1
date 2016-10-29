@@ -47,4 +47,4 @@ class BoundedOptimization
 			}
 		return ans;
 	}
-} calc;
+};
