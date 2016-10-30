@@ -44,6 +44,7 @@
 * [585-500](TC-SRM-585-div1-500/solution.md)
 * [585-1000](TC-SRM-585-div1-1000/solution.md)
 * [586-250](TC-SRM-586-div1-250/solution.md)
+* [586-500](TC-SRM-586-div1-500/solution.md)
 * [588-250](TC-SRM-588-div1-250/solution.md)
 * [588-450](TC-SRM-588-div1-450/solution.md)
 * [588-1100](TC-SRM-588-div1-1100/solution.md)
