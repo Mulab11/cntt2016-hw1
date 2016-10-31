@@ -7,7 +7,7 @@ class PiecewiseLinearFunction
 		{
 			map<int,int>S;
 			int n=y.size(),i,t,s=0,r=0;
-			for(i=0;i<n;i++)
+			for(i=0;i<n;i++)//通过比较大小关系计算贡献
 			{
 				t=0;
 				if(i>0)
@@ -19,7 +19,7 @@ class PiecewiseLinearFunction
 				if(t>0)S[2*y[i]]++,S[2*y[i]+1]+=(t>1);
 				if(t<0)S[2*y[i]+1]--,S[2*y[i]]-=(t<-1);
 			}
-			for(map<int,int>::iterator x=S.begin();x!=S.end();x++)
+			for(map<int,int>::iterator x=S.begin();x!=S.end();x++)//从下往上扫描
 			{
 				r+=x->second;
 				s=max(s,r);
