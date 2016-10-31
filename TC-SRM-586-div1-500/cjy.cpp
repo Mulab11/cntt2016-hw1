@@ -3,7 +3,7 @@
 using namespace std;
 class History
 {
-	int G(string s,int&j)
+	int G(string s,int&j)//从字符串中读取一个数
 	{
 		int r=0;
 		while(s[j]>47&&s[j]<58)r=r*10+s[j]-48,j++;
@@ -14,7 +14,7 @@ class History
 		{
 			string s="";
 			int n=a.size(),i,l,j,c[50][50],t[50],d[50][50],Q=q.size(),k,m=b.size();
-			for(i=0;i<n;i++)
+			for(i=0;i<n;i++)//得到每个王朝的年代表
 			{
 				for(j=0;j<n;j++)d[i][j]=-1<<29;
 				l=a[i].size();
@@ -23,15 +23,15 @@ class History
 			}
 			for(i=1;i<m;i++)b[0]=b[0]+b[i];
 			m=b[0].size();
-			for(i=0;i<m;i++)
+			for(i=0;i<m;i++)//处理已给出的限制关系
 			{
 				int x=b[0][i]-'A',u=i+1,e=G(b[0],u),y=b[0][++u]-'A',v=u+1,f=G(b[0],v);
 				i=v;
 				d[x][y]=max(d[x][y],c[y][f]+1-c[x][e+1]);
 				d[y][x]=max(d[y][x],c[x][e]+1-c[y][f+1]);
 			}
-			for(k=0;k<n;k++)for(i=0;i<n;i++)for(j=0;j<n;j++)d[i][j]=max(d[i][j],d[i][k]+d[k][j]);
-			for(i=0;i<Q;i++)
+			for(k=0;k<n;k++)for(i=0;i<n;i++)for(j=0;j<n;j++)d[i][j]=max(d[i][j],d[i][k]+d[k][j]);//floyd
+			for(i=0;i<Q;i++)//判断要询问的限制关系
 			{
 				int x=q[i][0]-'A',u=1,e=G(q[i],u),y=q[i][++u]-'A',v=u+1,f=G(q[i],v);
 				if(d[x][y]>c[y][f+1]-1-c[x][e]||d[y][x]>c[x][e+1]-1-c[y][f])s=s+'N';else s=s+'Y';
