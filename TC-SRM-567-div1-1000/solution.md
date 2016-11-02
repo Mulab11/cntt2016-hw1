@@ -40,13 +40,13 @@
 这种情况下黄色的*山* 有两种*位置* 可以选择。
 
 如果可见列的区间的左端点`left`不为0（或右端点不为W-1，左右对称，同理），那么由于左端点可见，（记当前的*山* 的*高度* 为`height`，每一列的*高度* 为`maxheight`）
-```
+```C++
 位置
 <= left + (height - (maxheight[left] + 1))
  = left + height - maxheight[left] - 1
 ```
 由于左端点左侧的列不可见，
-```
+```C++
 位置
 >= (left - 1) + (height - maxheight[left - 1]) 
  = left + height - maxheight[left - 1] - 1
