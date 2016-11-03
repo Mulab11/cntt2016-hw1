@@ -22,7 +22,7 @@ const int mod=1000000007;
 
 int fac[1000010],inv[1000010];
 
-int power(int x,int y) //x^y
+int power(int x,int y) //x^y 
 {
 	int t=1;
 	while (y)
