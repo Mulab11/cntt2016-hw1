@@ -18,7 +18,7 @@ const int mod=1000000007;
 class EqualSums {
     public:
         struct Edge{int t,next,v;} G[105*105];int head[105],e;
-        inline void add_edge(int x,int y,int z){
+        inline void add_edge(int x,int y,int z){//双向边
             G[++e].t=y,G[e].next=head[x],head[x]=e;G[e].v=z;
             G[++e].t=x,G[e].next=head[y],head[y]=e;G[e].v=-z;
         }
@@ -27,7 +27,7 @@ class EqualSums {
             //这里是算法二
             memset(head,0,sizeof(head)),e=1;
             int n=board.size();
-            for (int i=0;i<n;i++) for (int j=0;j<n;j++) if (board[i][j]!='-') add_edge(j+n,i,board[i][j]-'0');
+            for (int i=0;i<n;i++) for (int j=0;j<n;j++) if (board[i][j]!='-') add_edge(j+n,i,board[i][j]-'0');//此处使用-c_j+k=b_i
             memset(vis,0,sizeof(vis));
             int ans=1,zeroans=1;
             for (int root=0;root<n<<1;root++) if (!vis[root]){//枚举连通块
@@ -37,7 +37,7 @@ class EqualSums {
                     vis[queue[++r]=G[i].t]=1,delta[G[i].t]=delta[x]+G[i].v;
                 else if (delta[G[i].t]!=delta[x]+G[i].v) return 0;//条件矛盾
                 L=-0x3f3f3f3f,R=0x3f3f3f3f;
-                for (int x,l=1;l<=q;l++) if ((x=queue[l])<n) relax(L,-delta[x]); else tension(R,-delta[x]);//解方程
+                for (int x,l=1;l<=q;l++) if ((x=queue[l])<n) relax(L,-delta[x]); else tension(R,-delta[x]);//解方程，注意此处使用的是-c_j
                 if (L>R) return 0;
                 ans=1ll*ans*(R-L+1)%mod;
                 L=-0x3f3f3f3f,R=0x3f3f3f3f;
