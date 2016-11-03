@@ -34,7 +34,7 @@ class ArcadeManao
 			for (int i = 0; i < n; i++)
 				for (int j = 1; j < m; j++)
 					if (A[i][j] == 'X' && A[i][j - 1] == 'X')
-						p[E++] = (edge) { id(i, j), id(i, j - 1), 0 };
+						p[E++] = (edge) { id(i, j), id(i, j - 1), 0 }; // 左右相邻的两个可停留的格子之间连权值为0的边
 			for (int i = 0; i < m; i++)
 			{
 				int fir = 0;
@@ -42,8 +42,10 @@ class ArcadeManao
 					fir++;
 				for (int j = fir + 1; j < n; j++)
 					if (A[j][i] == 'X')
-						p[E++] = (edge) { id(fir, i), id(j, i), j - fir }, fir = j;
+						p[E++] = (edge) { id(fir, i), id(j, i), j - fir }, fir = j; // 在同一条竖直线上的两个可停留的点之间连以纵坐标差绝对值为权值的边
 			}
+            /*如此水题真的不知道有什么注释可加，那就加这行注释吐槽一番*/
+            /*以下并查集维护最小生成树*/
 			std::sort(p, p + E);
 			if (F(u) == F(v))
 				return 0;
