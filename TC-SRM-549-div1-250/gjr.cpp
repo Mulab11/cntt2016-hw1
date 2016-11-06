@@ -15,8 +15,6 @@ using namespace std;
 template<typename T> inline bool MIN(T &a,const T &b) {return a>b? a=b,1:0;}
 template<typename T> inline bool MAX(T &a,const T &b) {return a<b? a=b,1:0;}
 
-//inline inc(int &a,int/ {return a-b<0? a-b+mod:a-b;}
-
 typedef vector<int> vi;
 typedef pair<int,int> pii;
 
