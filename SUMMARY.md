@@ -65,8 +65,6 @@
 * [599-250](TC-SRM-599-div1-250/solution.md)
 * [599-500](TC-SRM-599-div1-500/solution.md)
 * [599-950](TC-SRM-599-div1-950/solution.md)
-* [555-255](TC-SRM-555-div1-255/solution.md)
-   * 570-250
 * [555-555](TC-SRM-555-div1-555/solution.md)
 * [555-1055](TC-SRM-555-div1-1055/solution.md)
 * [566-250](TC-SRM-566-div1-250/solution.md)
