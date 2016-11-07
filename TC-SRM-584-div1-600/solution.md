@@ -20,7 +20,7 @@
 ##算法一
 考虑一个 $$K$$ 元组合法的条件,用 $$mindep_u$$ 表示这个 $$K$$ 元组中第 $$u$$ 种建筑的最浅的深度.那么合法的条件就是:
 
-$$\forall{u\in found}~~~{mindep_u} \leq \min_{w\notin found}{mindep_w}$$
+$$\forall{u\in found}~~~{mindep_u} < \min_{w\notin found}{mindep_w}$$
 
 于是可以枚举这个 $$K$$ 元组然后暴搜.
 
