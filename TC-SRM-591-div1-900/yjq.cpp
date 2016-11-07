@@ -23,11 +23,11 @@ class StringPath {
 						if (A[0] != B[0]) return 0 ; 
 						dp[p][3] = 1; 
 						memset(pos, -1, sizeof pos) ; 	
-						pos[1][1] = 0 ; //pos������¼�ø����ǵ�ǰ�������ϵĵڼ������� 
+						pos[1][1] = 0 ; //pos数组记录该格子是当前轮廓线上的第几个格子 
 						int now = 1 ; 
-						seq[0] = make_pair(1, 1) ; //seq������¼��ǰ�������ϵĸ��ӡ�
+						seq[0] = make_pair(1, 1) ; //seq数组记录当前轮廓线上的格子。
 
-						for (int tot = 3; tot <= n + m; tot ++) { // tot��ʾ��ǰö�ٵĸ�����(1,1)�ľ���
+						for (int tot = 3; tot <= n + m; tot ++) { // tot表示当前枚举的格子于(1,1)的距离
 								int ca = A[tot - 2], cb = B[tot - 2] ; 
 								for (int i = 1; i <= tot;i ++) {
 										int j = tot - i ; 
@@ -35,10 +35,10 @@ class StringPath {
 										memset(dp[p ^ 1], 0, sizeof dp[p ^ 1]) ; 
 										for (int S = 0; S < (1 << (now << 1)); S ++) { 
 												if (dp[p][S]) { 
-														if (ca == cb) { //���������ַ����ĵ�ǰ�ַ���ͬ
-																// trans��ʾת�Ƶ���״̬�� to����trans�ĸ�������
+														if (ca == cb) { //如果两个字符串的当前字符相同
+																// trans表示转移到的状态， to是求trans的辅助变量
 																int trans = S , to = 0 ; 
-																//ö������������ �����ַ�����Ҫ���ַ��� ���߲���
+																//枚举两种情况， 填的字符是需要的字符， 或者不是
 																if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 3) ; 
 																if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 3) ; 
 																if (pos[i - 1][j] >= 0) 
@@ -53,7 +53,7 @@ class StringPath {
 														else {
 																int trans = S, to = 0 ;
 
-																//�����������ַ�����ǰλ���ַ���ͬ������һ���� ֻ������Ҫ��ö��һ�������������ַ������ǵ�һ���ַ����Ļ��ǵڶ����ַ�����
+																//基本与两个字符串当前位置字符相同的情况一样。 只不过需要多枚举一种情况（填的字符到底是第一个字符串的还是第二个字符串的
 																if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 1) ; 
 																if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 1) ; 
 																if (pos[i - 1][j] >= 0) 
