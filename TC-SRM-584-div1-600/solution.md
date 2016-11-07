@@ -34,7 +34,7 @@ $$\forall{u\in found}~~~{mindep_u} < \min_{w\notin found}{mindep_w}$$
 时间复杂度 $$O(N^4)$$. 
 
 ##算法三
-考虑上一个算法的转移过程,我们依然在最外面枚举$$notmin$$.
+我们依然在最外面枚举$$notmin$$,考虑上一个算法的转移过程.
 
 设$$F_i(x) = \sum_{j\ge0}{f_{i,j}x^j}$$.
 
