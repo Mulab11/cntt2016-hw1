@@ -24,7 +24,7 @@ $$\forall{u\in found}~~~{mindep_u} < \min_{w\notin found}{mindep_w}$$
 
 于是可以枚举这个 $$K$$ 元组然后暴搜.
 
-时间复杂度 $O(\binom{n}{K} \times K)$ .
+时间复杂度 $$O(\binom{n}{K} \times K)$$ .
 
 ##算法二
 一个很直观的想法就是枚举 $$mindep$$ ,然后对于第 $$i$$ 种建筑,其深度超过 $$mindep_i$$ 的部分是可以随便选的,我们只需记录这一部分的数量然后用组合数计算答案就好了。
