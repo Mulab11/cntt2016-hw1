@@ -33,6 +33,8 @@ $$\forall{u\in found}~~~{mindep_u} < \min_{w\notin found}{mindep_w}$$
 
 时间复杂度 $$O(N^4)$$. 
 
-
+##算法三
+考虑上一个算法的转移过程,设 $$F_i(x) = \sum_{j \ge 0}{f_{i,j}x^j}$$ ,会发现每次转移的时候乘的多项式都是形如 $$\sum_{j = a}^{b}{x^j}$$
+的形式,我们把乘上去的多项式写成
 
 
