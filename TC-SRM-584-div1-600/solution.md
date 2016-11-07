@@ -38,7 +38,7 @@ $$\forall{u\in found}~~~{mindep_u} < \min_{w\notin found}{mindep_w}$$
 
 设$$F_i(x) = \sum_{j\ge0}{f_{i,j}x^j}$$.
 
-会发现每次转移的是一个后缀,根据$$DP$$方程有
+会发现算法一中转移时的$$k$$值是一个后缀,根据$$DP$$方程，有：
 
 $$F_i(x)=F_{i-1}(x)\times (\sum_{j=a_i}^{b_i}{x^j})$$
 
