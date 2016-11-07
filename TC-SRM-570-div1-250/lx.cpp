@@ -22,7 +22,7 @@ inline point operator + (const point & a, const point & b)		//位移向量相加
 	return point(a.x + b.x, a.y + b.y);
 }
 
-inline point rotate(point x, int d)			//逆时针旋转移动向量 90*d 度
+inline point rotate(point x, int d)			//顺时针旋转移动向量 90*d 度
 {
 	if (!d)
 		return x;
