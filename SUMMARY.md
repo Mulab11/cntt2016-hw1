@@ -8,7 +8,6 @@
 * [555-1055](TC-SRM-555-div1-1055/solution.md)
 * [559-250](TC-SRM-559-div1-250/solution.md)
 * [559-500](TC-SRM-559-div1-500/solution.md)
-   * 552-250
 * [559-900](TC-SRM-559-div1-900/solution.md)
 * [560-250](TC-SRM-560-div1-250/solution.md)
 * [560-500](TC-SRM-560-div1-500/solution.md)
