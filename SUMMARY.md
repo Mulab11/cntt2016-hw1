@@ -82,5 +82,5 @@
 * [599-950](TC-SRM-599-div1-950/solution.md)
 * [576-900](TC-SRM-576-div1-900/solution.md)
 * [552-250](TC-SRM-552-div1-250/README.md)
-* [552-500](552-500.md)
+* [552-500](TC-SRM-552-500-div1-500/README.md)
 
