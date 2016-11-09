@@ -16,9 +16,7 @@ Rabbit 的目标是最小化花费, 而 Eel 的目标是最大化 Rabbit 的花�
 
 ## 限制与约定
 
-$$
-1 \le n, m \le 50, 0 \le a_{ij} \le 9
-$$
+$$1 \le n, m \le 50, 0 \le a_{ij} \le 9$$.
 
 ## 算法
 
