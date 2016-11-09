@@ -26,7 +26,7 @@ class TheExperiment
 			::B = B;
 			h[0][0] = 1;
 			for (int i = 1; i <= N; i++)
-				for (int j = 0; j <= M; j++)
+				for (int j = 0; j <= M; j++) // 这个程序总不需要注释了吧...状态转移方程都写在题解里了！
 				{
 					f[i][j] = 0;
 					g[i][j] = 0;
