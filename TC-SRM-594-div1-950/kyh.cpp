@@ -20,8 +20,8 @@ int dfs(int t,int n,int x)
 	if (t==2) return ret;
 	for (int i=1;i<=(x-1)/w;i++)
 		for (int j=1;j<=w;j++)
-			ret=min(ret,dfs(t+1,n-i*j,x-i*j));
-	if (n/w!=x/w) ret=min(ret,dfs(t+1,((x-1)/w+1)*w,x));
+			ret=min(ret,dfs(t+1,n-i*j,x-i*j)); //去掉x所在这一行上面矩形的子矩形
+	if (n/w!=x/w) ret=min(ret,dfs(t+1,((x-1)/w+1)*w,x));//如果x不是最后一行，去掉x所在这一行下面整个矩形
 	for (int i=1;i<=(x-1)/w+1;i++)
 		for (int j=1;j<=(x-1)%w;j++)
 			ret=min(ret,dfs(t+1,n-(i+(n-1)/w-(x-1)/w-1)*j-min(j,(n-1)%w+1),x-i*j));
