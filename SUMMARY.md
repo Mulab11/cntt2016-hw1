@@ -6,7 +6,7 @@
 * [549-250](549-250.md)
 * [549-600](549-600.md)
 * [550-300](TC-SRM-550-div1-300/solution.md)
-* 550-500
+* [550-500](TC-SRM-550-div1-500\solution.md)
 * [552-250](TC-SRM-552-div1-250/README.md)
 * [552-500](TC-SRM-552-div1-500/README.md)
 * [552-900](TC-SRM-552-div1-900/README.md)
