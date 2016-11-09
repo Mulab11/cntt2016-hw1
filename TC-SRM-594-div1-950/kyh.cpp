@@ -13,7 +13,7 @@ int onestep(int n,int x)
 	return 0;
 }
 
-int dfs(int t,int n,int x)
+int dfs(int t,int n,int x)//t：已经用了几步。 n：现在所剩的数字总数。 x：题目所给的x现在在n个数中大小排名。
 {
 	int ret=inf;
 	if (onestep(n,x)) return 1;
