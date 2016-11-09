@@ -17,10 +17,10 @@ int dfs(int t,int n,int x)
 {
 	int ret=inf;
 	if (onestep(n,x)) return 1;
-	if (t==2) return ret;
+	if (t==2) return ret; //这样下去至少需要4步，没有搜索的必要了。
 	for (int i=1;i<=(x-1)/w;i++)
-		for (int j=1;j<=w;j++)
-			ret=min(ret,dfs(t+1,n-i*j,x-i*j)); //去掉x所在这一行上面矩形的子矩形
+		for (int j=1;j<=w;j++)  //枚举x所在这一行上面矩形的子矩形
+			ret=min(ret,dfs(t+1,n-i*j,x-i*j));
 	if (n/w!=x/w) ret=min(ret,dfs(t+1,((x-1)/w+1)*w,x));//如果x不是最后一行，去掉x所在这一行下面整个矩形
 	for (int i=1;i<=(x-1)/w+1;i++)
 		for (int j=1;j<=(x-1)%w;j++)
