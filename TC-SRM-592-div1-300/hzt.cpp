@@ -18,7 +18,7 @@ public:
 		Rep(i, 0, n - 1) {
 			ans += k;
 			num[ s[i] ] ++;
-			k += (num[ s[i] ] <= 2);
+			k += (num[ s[i] ] <= 2); // k代表当前加入小球可获得的分数
 		}
 		return ans;
 	}
