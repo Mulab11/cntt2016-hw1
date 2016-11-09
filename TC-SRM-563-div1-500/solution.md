@@ -18,7 +18,7 @@
 
 ## 数据范围
 
-$$1\le n\le50, 1\le level\le50, 1\le damage\le10000$$
+$$1\le n\le 50, 1\le level\le 50, 1\le damage\le 10000$$
 
 ## 算法一
 
