@@ -105,7 +105,7 @@
 * [593-250](TC-SRM-593-div1-250/solution.md)
 * [593-450](TC-SRM-593-div1-450/solution.md)
 * [593-1000](TC-SRM-593-div1-1000/solution.md)
-* [594-250](594-250.md)
+* [594-250](TC-SRM-594-div1-250/solution.md)
 * [594-550](TC-SRM-594-div1-550/solution.md)
 * [594-950](TC-SRM-594-div1-950/solution.md)
 * [595-500](TC-SRM-595-div1-500/solution.md)
