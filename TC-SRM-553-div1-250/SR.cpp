@@ -30,33 +30,34 @@ class Suminator
         public:  
         int findMissing(vector <int> program, int wantedResult)  
         {  
-        	reverse(program.begin(), program.end());
+            reverse(program.begin(), program.end());
 
-			int cnt, found = 0; LL tot;
-			
-			cnt = 1, tot = 0;        	
-        	RUN(i, program){
-				if (*i == 0 || *i == -1) ++cnt;
-				else if (--cnt >= 0) tot += *i;
-				if (cnt == 0) break;
-			}
-			if (tot == wantedResult) return 0;
-			
-			//Î´ÖªÊýÎª0µÄÇé¿ö 
-			
-			cnt = 1, tot = 0;
-        	RUN(i, program){
-				if (*i == 0) ++cnt;
-				else if (--cnt >= 0) if (*i > 0) tot += *i; else found = 1;
-				if (cnt == 0) break;
-			}
-			LL x = wantedResult - tot;
-			if (!found)//Î´ÖªÊýÏµÊýÎª0 
-				if (x) return -1;
-				else return 1;
-			else//Î´ÖªÊýÏµÊýÎª1 
-				if (x >= 1 && x <= 1000000000) return x;
-				else return -1;
-			//Î´ÖªÊý²»Îª0µÄÇé¿ö
+            int cnt, found = 0; LL tot;
+            
+            cnt = 1, tot = 0;            
+            RUN(i, program){
+                if (*i == 0 || *i == -1) ++cnt;
+                else if (--cnt >= 0) tot += *i;
+                if (cnt == 0) break;
+            }
+            if (tot == wantedResult) return 0;
+            
+            //unknown number = 0 
+            cnt = 1, tot = 0;
+            RUN(i, program){
+                if (*i == 0) ++cnt;
+                else if (--cnt >= 0) if (*i > 0) tot += *i; else found = 1;
+                if (cnt == 0) break;
+            }
+            
+            //unknown number != 0
+            LL x = wantedResult - tot;
+            if (!found)//the coefficient of unknown number = 0 
+                if (x) return -1;
+                else return 1;
+            else//the coefficient of unknown number = 1
+                if (x >= 1 && x <= 1000000000) return x;
+                else return -1;
         }  
 };  
+
