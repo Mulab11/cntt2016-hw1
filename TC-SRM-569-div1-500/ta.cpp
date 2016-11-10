@@ -7,21 +7,21 @@ class TheJediTest
 		int minimumSupervisors(vector <int> students,int k)
 		{
 			int a[N]={0};
-			//a[i]±íÊ¾µÚi²ãÓĞ¶àÉÙÊÇÀ´×ÔµÚi-1²ãµÄ 
+			//a[i]è¡¨ç¤ºç¬¬iå±‚æœ‰å¤šå°‘æ˜¯æ¥è‡ªç¬¬i-1å±‚çš„ 
 			int ans=0;
 			for(int i=0,tmp;i<students.size();++i)
 			{
 				ans+=(a[i]+students[i])/k;
 				
-				if(tmp=(a[i]+students[i])%k)//Èç¹ûµ±Ç°µÚi²ãµÄÈËÊı²»ÊÇkµÄ±¶Êı 
-					if(i+1<students.size())//Èç¹ûËü»¹ÓĞËüµÄµÚi+1²ã 
-						if(tmp<=students[i])a[i+1]=tmp;//Èç¹ûµÚi²ãµÄÈËÊı¿ÉÒÔ°Ñ¶à³öÀ´µÄÕâ²¿·ÖÈÓµ½ÏÂÒ»²ãµÄ»° 
-						else//ÓÃµÚi+1²ãµÄÈË¾¡Á¿ÌîÂúµÚi²ã 
+				if(tmp=(a[i]+students[i])%k)//å¦‚æœå½“å‰ç¬¬iå±‚çš„äººæ•°ä¸æ˜¯kçš„å€æ•° 
+					if(i+1<students.size())//å¦‚æœå®ƒè¿˜æœ‰å®ƒçš„ç¬¬i+1å±‚ 
+						if(tmp<=students[i])a[i+1]=tmp;//å¦‚æœç¬¬iå±‚çš„äººæ•°å¯ä»¥æŠŠå¤šå‡ºæ¥çš„è¿™éƒ¨åˆ†æ‰”åˆ°ä¸‹ä¸€å±‚çš„è¯ 
+						else//ç”¨ç¬¬i+1å±‚çš„äººå°½é‡å¡«æ»¡ç¬¬iå±‚ 
 						{
 							students[i+1]-=min(students[i+1],k-tmp);
 							++ans;
 						}
-					else ++ans;//Èç¹ûÒÑ¾­Ã»ÓĞi+1²ãµÄ»°£¬¶à³öÀ´µÄÕâ²¿·Ö¾ÍÖ»ÄÜ×ÔÁ¦¸üÉúÁË£¡ 
+					else ++ans;//å¦‚æœå·²ç»æ²¡æœ‰i+1å±‚çš„è¯ï¼Œå¤šå‡ºæ¥çš„è¿™éƒ¨åˆ†å°±åªèƒ½è‡ªåŠ›æ›´ç”Ÿäº†ï¼ 
 			}
 			
 			return ans;
