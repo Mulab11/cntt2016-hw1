@@ -78,8 +78,6 @@
 * [576-256](TC-SRM-576-div1-256/solution.md)
 * [576-576](TC-SRM-576-div1-576/solution2.md)
 * [576-900](TC-SRM-576-div1-900/solution.md)
-* [578-250](TC-SRM-578-div1-250/solution.md)
-   * 587-250
 * [578-500](TC-SRM-578-div1-500/solution.md)
 * [578-1000](TC-SRM-578-div1-1000/solution.md)
 * [580-250](TC-SRM-580-div1-250/solution.md)
