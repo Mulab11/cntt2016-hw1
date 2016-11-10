@@ -14,6 +14,7 @@ n <= 25
 ## 算法
 
 DFT(A) = DFT(P) * DFT(P)
+
 p = inverseDFT ( sqrt(DFT(A)) )
 
 在sqrt的时候，每一项都有正负两种取值，如果2^n暴力枚举直接超时。
