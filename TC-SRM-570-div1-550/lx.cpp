@@ -40,9 +40,9 @@ void Dfs(int x, int fa)
 		{
 			memset(g, 0, sizeof(g));
 			int cnt = 0;
-			if (a)
+			if (a)				//若 x 不选，则不必考虑连通块数量的变化
 				g[0][D] = 1;
-			else
+			else				//否则，根据 x 的父亲是否选择，考虑对 (连通块数*2-点数) 的影响
 				g[0][D + (col ? 1 : -1)] = 1;
 			for (edge *p = head[x]; p; p = p->n)
 			{
