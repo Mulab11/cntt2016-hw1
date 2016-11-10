@@ -12,14 +12,6 @@ typedef long long LL;
 template<typename T> inline void upmax(T & x, T y) { x < y ? x = y : 0; }
 template<typename T> inline void upmin(T & x, T y) { x > y ? x = y : 0; }
 
-template<typename T>
-inline void read(T & x)
-{
-	char c;
-	while ((c = getchar()) < '0' || c > '9');
-	for (x = c - '0'; (c = getchar()) >= '0' && c <= '9'; x = x * 10 + c - '0');
-}
-
 const int inf = 0x3f3f3f3f;
 const int N = 2111;
 const int dx[] = {1, 0, -1, 0};
@@ -32,7 +24,7 @@ struct edge				//费用流的边表
 
 int head[N], tot;
 
-inline void addEdge(int x, int y, int c, int w)
+inline void addEdge(int x, int y, int c, int w)			//加边
 {
 	e[++tot] = (edge) {y, c, w, head[x]}, head[x] = tot;
 	e[++tot] = (edge) {x, 0, -w, head[y]}, head[y] = tot;
