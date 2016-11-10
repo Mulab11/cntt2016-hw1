@@ -134,5 +134,5 @@
 * [596-250](TC-SRM-596-div1-250/solution.md)
 * [596-500](TC-SRM-596-div1-500/solution.md)
 * [596-1000](TC-SRM-596-div1-1000/solution.md)
-* 598-250
+* [598-250](598-250.md)
 
