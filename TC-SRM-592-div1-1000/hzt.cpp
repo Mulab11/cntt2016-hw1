@@ -24,7 +24,7 @@ comp operator* (comp a, comp b) {
 comp operator+ (comp a, comp b) {
 	return comp(a.r + b.r, a.i + b.i);
 }
-comp sqrt(comp z){
+comp sqrt(comp z){ // 复数开平方
 	db arg = atan2(z.i, z.r);
 	arg /= 2.0;
 	db l = sqrt(z.r * z.r + z.i * z.i);
@@ -32,7 +32,7 @@ comp sqrt(comp z){
 	comp res = {l * cos(arg), l * sin(arg)};
 	return res;
 }
-vector<comp> dft(vector<comp> a) {
+vector<comp> dft(vector<comp> a) { // 暴力O(n^2)完成dft
 	vector<comp> res;
 	Rep(i, 0, n - 1) {
 		comp sum(0, 0);
@@ -43,7 +43,7 @@ vector<comp> dft(vector<comp> a) {
 }
 class SplittingFoxes2{
 public:
-	bool check(vector<int> v, vector<int> a) {
+	bool check(vector<int> v, vector<int> a) { // 检验
 		Rep(i, 0, n - 1) {
 			if (v[i] < 0) return 0;
 			int s = 0;
@@ -52,7 +52,7 @@ public:
 		}
 		return 1;
 	}
-	bool cmp(vector<int> v, vector<int> a) {
+	bool cmp(vector<int> v, vector<int> a) { // 比较字典序
 		Rep(i, 0, n - 1) {
 			if (v[i] < a[i]) return 1;
 			else if (v[i] > a[i]) return 0;
@@ -70,7 +70,7 @@ public:
 		Rep(i, 0, n - 1) b[i] = sqrt(b[i]);
 		Rep(i, 0, n - 1) w[i].i = -w[i].i;
 		int m = n / 2 + 1;
-		Rep(k, 0, (1 << m) - 1) {
+		Rep(k, 0, (1 << m) - 1) { //  sqrt一项有两种取值，枚举
 			vector<comp> d;
 			Rep(j, 0, n - 1) d.push_back(b[j]);
 			Rep(j, 0, n - 1) {
@@ -79,9 +79,9 @@ public:
 			d = dft(d);
 			vector<int> v;
 			Rep(j, 0, n - 1) {
-				v.push_back( int(d[j].r / n + 0.45865856387657545) ); //
+				v.push_back( int(d[j].r / n + 0.45865856387657545) ); //  官方题解说直接取 0.5 被人hack了，所以这里用一个随机数。
 			}
-			if (check(v, a) && (ans.empty() || cmp(v, ans))) ans = v;
+			if (check(v, a) && (ans.empty() || cmp(v, ans))) ans = v;  // 检验，比较字典序
 		}
 		if (ans.empty()) ans.push_back(-1);
 		return ans;
