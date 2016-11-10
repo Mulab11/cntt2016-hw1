@@ -49,13 +49,13 @@ public:
 		int cnt = T / 4;		//把 T 次命令分为 (T/4)*4 次和零散部分
 		T %= 4;
 
-		rep (i, 0, 3)
+		rep (i, 0, 3)		//算出每 4 次命令执行产生的位移
 		{
 			p = p + q;
 			q = rotate(q, dir);
 		}
 
-		ans = point(p.x * cnt, p.y * cnt);
+		ans = point(p.x * cnt, p.y * cnt);		// 计算 (T/4)*4 次执行产生的位移
 
 		rep (i, 1, T)			//计算零散部分  
 		{
