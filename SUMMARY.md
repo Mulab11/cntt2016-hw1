@@ -65,7 +65,7 @@
 * [570-900](TC-SRM-570-div1-900/solution.md)
 * [571-250](TC-SRM-571-div1-250/solution.md)
 * [571-500](TC-SRM-571-div1-500/solution.md)
-* [571-1000](TC-SRM-571-div1-1000/solution.md)
+* [571-1000](TC-SRM-572-div1-1000/solution.md)
 * [572-250](TC-SRM-572-div1-250/solution.md)
 * [572-500](TC-SRM-572-div1-500/solution.md)
 * [572-1000](TC-SRM-571-div1-1000/solution.md)
