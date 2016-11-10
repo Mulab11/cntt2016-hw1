@@ -32,6 +32,7 @@ inline point rotate(point x, int d)			//顺时针旋转移动向量 90*d 度
 class RobotHerb
 {
 public:
+	//模拟，找规律
 	LL getdist(int T, vector<int> a)
 	{
 		point ans(0, 0);
