@@ -129,10 +129,10 @@ public:
 					++cnt;
 					sum += 2;
 					int o = id(i, j);
-					addEdge(S, o, 2, 0);
-					addEdge(o, o + nm, 1, 0);
+					addEdge(S, o, 2, 0);				//代表黑格需要和周围的两个白格匹配
+					addEdge(o, o + nm, 1, 0);			//横/纵向各有一点匹配
 					addEdge(o, o + nm * 2, 1, 0);
-					addEdge(o, o + nm, 1, field[i][j] == 'C');
+					addEdge(o, o + nm, 1, field[i][j] == 'C');	//根据(i,j)是否为关键点，决定横/纵的额外匹配的费用
 					addEdge(o, o + nm * 2, 1, field[i][j] == 'C');
 					rep (d, 0, 3)			//黑格向白格连可以匹配的边
 					{
@@ -151,8 +151,8 @@ public:
 				{
 					--cnt;
 					int o = id(i, j);
-					addEdge(o, T, 2, 0);
-					addEdge(o + nm, o, 1, 0);
+					addEdge(o, T, 2, 0);				//代表白格需要和周围的两个黑格匹配
+					addEdge(o + nm, o, 1, 0);			//这里的连边和黑格类似，只是方向反过来
 					addEdge(o + nm * 2, o, 1, 0);
 					addEdge(o + nm, o, 1, field[i][j] == 'C');
 					addEdge(o + nm * 2, o, 1, field[i][j] == 'C');
