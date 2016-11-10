@@ -15,7 +15,7 @@ const int N = 1e5 + 10;
 const int dx[] = {1, 0, -1, 0};
 const int dy[] = {0, -1, 0, 1};
 
-typedef pair<LL, LL> point;
+typedef pair<LL, LL> point;		//位移向量
 
 inline point operator + (const point & a, const point & b)		//位移向量相加
 {
