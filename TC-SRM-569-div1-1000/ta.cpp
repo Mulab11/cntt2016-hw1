@@ -5,8 +5,8 @@ LL Mod=1e9+9;
 const LL inf=(1ULL<<63)-1;
 const int K=16+3,B=10+3;
 LL coe1[K][K],coe2[K][K],coe3[K][K],tmp[K][K];
-//coe1ÊÇÓÃÀ´±¶ÔöµÄ¾ØÕó£¬ coe2ÊÇÓÃÀ´ÓÉp^t×ªÒÆµ½p^{t+1}£¬coe3ÊÇ´ğ°¸¾ØÕó¡£ 
-inline void merge(LL a[K][K],LL b[K][K],int k)//¾ØÕó³Ë 
+//coe1æ˜¯ç”¨æ¥å€å¢çš„çŸ©é˜µï¼Œ coe2æ˜¯ç”¨æ¥ç”±p^tè½¬ç§»åˆ°p^{t+1}ï¼Œcoe3æ˜¯ç­”æ¡ˆçŸ©é˜µã€‚ 
+inline void merge(LL a[K][K],LL b[K][K],int k)//çŸ©é˜µä¹˜ 
 {
 	memset(tmp,0,sizeof(tmp));
 	for(int i=0;i<=k;++i)
@@ -17,7 +17,7 @@ inline void merge(LL a[K][K],LL b[K][K],int k)//¾ØÕó³Ë
 						(tmp[i][o]+=a[i][j]*b[j][o])%=Mod;
 	memcpy(b,tmp,sizeof(tmp));
 }
-inline void init(LL a[K][K],int k)//¹¹½¨Ò»¸öµ¥Î»¾ØÕó 
+inline void init(LL a[K][K],int k)//æ„å»ºä¸€ä¸ªå•ä½çŸ©é˜µ 
 {
 	memset(a,0,sizeof(tmp));
 	for(int i=k;i>=0;--i)a[i][i]=1;
@@ -27,7 +27,7 @@ class MegaFactorial
 	public:
 		inline int countTrailingZeros(int n,int k,int b)
 		{
-			//ÕÒµ½bÖĞ×î´óµÄÖÊÒò×Ódvs£¬ÒÔ¼°ËüµÄÖ¸Êıind 
+			//æ‰¾åˆ°bä¸­æœ€å¤§çš„è´¨å› å­dvsï¼Œä»¥åŠå®ƒçš„æŒ‡æ•°ind 
 			int prm[4]={2,3,5,7};
 			int dvs,ind=0;
 			for(int i=4;i--;)
@@ -39,7 +39,7 @@ class MegaFactorial
 				}
 			Mod*=ind;
 			
-			//³õÊ¼»¯¾ØÕó 
+			//åˆå§‹åŒ–çŸ©é˜µ 
 			coe1[0][0]=1;
 			for(int i=1;i<=k;++i)
 				for(int j=i;j<=k;++j)
@@ -47,7 +47,7 @@ class MegaFactorial
 			init(coe3,k);
 			for(;n;n/=dvs)
 			{
-				//±¶Ôö 
+				//å€å¢ 
 				int dx=dvs,dn=n%dvs;
 				init(coe2,k);
 				for(;dn||dx;dn>>=1,dx>>=1)
@@ -57,7 +57,7 @@ class MegaFactorial
 					merge(coe1,coe1,k);
 				}
 				memcpy(coe1,coe2,sizeof(coe1));
-				for(int i=k;i;--i)(++coe1[0][i])%=Mod;//½«ÏßĞÔ±íÊ¾µÄ³£ÊıÏî+1 
+				for(int i=k;i;--i)(++coe1[0][i])%=Mod;//å°†çº¿æ€§è¡¨ç¤ºçš„å¸¸æ•°é¡¹+1 
 			}
 			LL ans=(coe3[0][k]+Mod)%Mod/ind;
 			return ans;
