@@ -132,7 +132,7 @@
 * [599-250](TC-SRM-599-div1-250/solution.md)
 * [599-500](TC-SRM-599-div1-500/solution.md)
 * [599-950](TC-SRM-599-div1-950/solution.md)
-* [587-550](587-550.md)
+* [587-550](TC-SRM-587-div1-550/solution.md)
 * [587-900](587-900.md)
 * [587-250](TC-SRM-587-div1-250/solution.md)
 * [596-250](TC-SRM-596-div1-250/solution.md)
