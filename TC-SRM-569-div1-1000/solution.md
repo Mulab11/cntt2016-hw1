@@ -69,7 +69,7 @@ $$C_{n-jp^i+k-1}^{k-1}={\prod_{i=1}^{k-1}(n-jp^i+i) \over (k-1)!}$$，也就是�
 
 最后我们再来处理逆元的问题，实际上有这样的式子：
 
-$${ax \over x } \ mod \ m ={x\over x}(a \ mod \ m) ={{ax \ mod \ mx} \over x}$$
+$${ax \over x } \ mod \ m ={x\over x}(a \ mod \ m) = { { ax \ mod \ mx} \over x}$$
 
 所以我们可以把$$(k-1)!$$中的x都乘到模数里，需要的时候再除下来。$$(k-1)!$$中的x并不会很大，当x=2时只有$$2^{10}$$，当x=3时只有$$3^6$$。
 
