@@ -58,14 +58,14 @@ struct FoxAndFlowerShopDivOne {
 		rep(i,0,m+1) rep(j,0,1999) f[i][j]=-inf;
 		rep(i,0,m+1) rep(j,0,1999) g[i][j]=-inf;
 		rep(i,1,m) {
-			rep(j,1,n) rep(x,1,i) rep(y,1,j) {
+			rep(j,1,n) rep(x,1,j) rep(y,1,i) {
 				int t=sum(x,y,j,i)+1000;
 				f[i][t]=max(f[i][t],calc(x,y,j,i)); 
 			}
 			rep(j,0,1999) f[i][j]=max(f[i][j],f[i-1][j]);
 		}
 		dwn(i,m,1) {
-			rep(j,1,n) rep(x,i,n) rep(y,j,m) {
+			rep(j,1,n) rep(x,j,n) rep(y,i,m) {
 				int t=sum(j,i,x,y)+1000;
 				g[i][t]=max(g[i][t],calc(j,i,x,y)); 
 			}
