@@ -87,11 +87,11 @@ value_t solve(key_t n, key_t m)
 }
 class TheSquareRootDilemma
 {
-    public:
-    int countPairs(int N, int M)
+	public:
+	int countPairs(int N, int M)
 	{
-    	init((int)(pow(max(N, M), 1.0 / 3.0) * pow(min(N, M), 2.0 / 9.0)) + 1);
-        return solve(N, M);
-    }
+		init((int)(pow(max(N, M), 1.0 / 3.0) * pow(min(N, M), 2.0 / 9.0)) + 1);
+		return solve(N, M);
+	}
 };
 
