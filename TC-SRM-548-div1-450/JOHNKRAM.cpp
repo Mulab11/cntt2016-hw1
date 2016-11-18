@@ -8,19 +8,19 @@ class KingdomAndDice
         double newFairness(vector <int> firstDie, vector <int> secondDie, int X)
         {
             int n=firstDie.size(),N=0,A=0,i,j,k,l;
-            sort(secondDie.begin(),secondDie.end());//ÅÅĞò 
+            sort(secondDie.begin(),secondDie.end());//æ’åº 
             for(i=0;i<n;i++)if(firstDie[i])
             {
-                a[j=secondDie.end()-upper_bound(secondDie.begin(),secondDie.end(),firstDie[i])]--;//Í³¼ÆËùÓĞ·Ç0Êı¶ÔpµÄ¹±Ï× 
+                a[j=secondDie.end()-upper_bound(secondDie.begin(),secondDie.end(),firstDie[i])]--;//ç»Ÿè®¡æ‰€æœ‰é0æ•°å¯¹pçš„è´¡çŒ® 
                 A+=j;
             }
-            else N++;//Í³¼Æ0µÄ¸öÊı 
-            for(i=0;i+1<n;i++)a[n-i-1]=min(N,max(min(secondDie[i+1],X+1)-secondDie[i]-1+a[n-i-1],0));//Í³¼ÆÃ¿ÖÖ¸ÅÂÊ¿ÉÒÔÌîµÄÊı×Ö¸öÊı 
+            else N++;//ç»Ÿè®¡0çš„ä¸ªæ•° 
+            for(i=0;i+1<n;i++)a[n-i-1]=min(N,max(min(secondDie[i+1],X+1)-secondDie[i]-1+a[n-i-1],0));//ç»Ÿè®¡æ¯ç§æ¦‚ç‡å¯ä»¥å¡«çš„æ•°å­—ä¸ªæ•° 
             a[0]=min(N,max(X-secondDie[i]+a[n-i-1],0));
             f[0][A]=1;
-            for(i=0;i<n;i++)for(j=1;a[i];j=min(j<<1,a[i]-=j))for(k=N;k>=j;k--)for(l=n*n;l>=i*j;l--)f[k][l]|=f[k-j][l-i*j];//¶àÖØ±³°ü 
+            for(i=0;i<n;i++)for(j=1;a[i];j=min(j<<1,a[i]-=j))for(k=N;k>=j;k--)for(l=n*n;l>=i*j;l--)f[k][l]|=f[k-j][l-i*j];//å¤šé‡èƒŒåŒ… 
             for(i=1;i<=N;i++)for(j=n;j<=n*n;j++)f[i][j]|=f[i-1][j-n];
-            for(i=0,j=A;i<=n*n;i++)if(f[N][i]&&max(i*2-n*n,n*n-i*2)<=max(j*2-n*n,n*n-j*2))j=i;//¼ÆËã´ğ°¸ 
+            for(i=0,j=A;i<=n*n;i++)if(f[N][i]&&max(i*2-n*n,n*n-i*2)<=max(j*2-n*n,n*n-j*2))j=i;//è®¡ç®—ç­”æ¡ˆ 
             return 1-(double)j/n/n;
         }
 };
