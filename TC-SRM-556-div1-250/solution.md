@@ -1,6 +1,6 @@
 # XorTravelingSalesman
 
-作者：陈通
+作者：陈通 徐明宽
 
 关键词：异或 记忆化搜索
 
