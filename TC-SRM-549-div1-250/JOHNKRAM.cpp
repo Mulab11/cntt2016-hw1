@@ -2,7 +2,7 @@
 using namespace std;
 int n,m,i,j,ans,a[55];
 bool g[55][55],b[55];
-bool work(int x)//Ñ°ÕÒÔö¹ãÂ· 
+bool work(int x)//å¯»æ‰¾å¢žå¹¿è·¯ 
 {
     b[x]=1;
     for(int i=1;i<=m;i++)if(g[x][i]&&(!a[i]||!b[a[i]]&&work(a[i])))
@@ -19,8 +19,8 @@ class PointyWizardHats
         {
             n=topHeight.size();
             m=bottomHeight.size();
-            for(i=0;i<n;i++)for(j=0;j<m;j++)if(topRadius[i]<bottomRadius[j]&&topHeight[i]*bottomRadius[j]>topRadius[i]*bottomHeight[j])g[i+1][j+1]=1;//½¨Í¼ 
-            for(i=1;i<=n;i++)//¶þ·ÖÍ¼×î´óÆ¥Åä 
+            for(i=0;i<n;i++)for(j=0;j<m;j++)if(topRadius[i]<bottomRadius[j]&&topHeight[i]*bottomRadius[j]>topRadius[i]*bottomHeight[j])g[i+1][j+1]=1;//å»ºå›¾ 
+            for(i=1;i<=n;i++)//äºŒåˆ†å›¾æœ€å¤§åŒ¹é… 
             {
                 memset(b,0,sizeof(b));
                 ans+=work(i);
