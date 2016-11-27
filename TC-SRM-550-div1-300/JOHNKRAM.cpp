@@ -10,22 +10,22 @@ class RotatingBot
         int minArea(vector <int> moves)
         {
             n=moves.size();
-            for(v[N][N]=1;i<n;i++)//Ä£ÄâÃ¿Ò»´ÎÇ°½ø 
+            for(v[N][N]=1;i<n;i++)//æ¨¡æ‹Ÿæ¯ä¸€æ¬¡å‰è¿› 
             {
-                for(j=0;j<moves[i];j++)//Ä£ÄâÃ¿Ò»²½ 
+                for(j=0;j<moves[i];j++)//æ¨¡æ‹Ÿæ¯ä¸€æ­¥ 
                 {
-                    if(v[x+dx[z]+N][y+dy[z]+N])return -1;//ÅÐ¶ÏÊÇ·ñÖØ¸´¾­¹ý¸ñ×Ó 
+                    if(v[x+dx[z]+N][y+dy[z]+N])return -1;//åˆ¤æ–­æ˜¯å¦é‡å¤ç»è¿‡æ ¼å­ 
                     x+=dx[z];
                     y+=dy[z];
                     v[x+N][y+N]=1;
                 }
-                if(!a&&x<0)a=x;//È·¶¨xÏÂ½ç 
-                if(!b&&x>0)b=x;//È·¶¨xÉÏ½ç 
-                if(!c&&y<0)c=y;//È·¶¨yÏÂ½ç 
-                if(!d&&y>0)d=y;//È·¶¨yÉÏ½ç 
-                if(x<a||x>b||y<c||y>d||i+1<n&&x+dx[z]>=a&&x+dx[z]<=b&&y+dy[z]>=c&&y+dy[z]<=d&&!v[x+dx[z]+N][y+dy[z]+N])return -1;//ÅÐ¶ÏÊÇ·ñÔ½½ç»ò·Ç·¨×ªÍä 
-                z=z+1&3;//×ªÍä 
+                if(!a&&x<0)a=x;//ç¡®å®šxä¸‹ç•Œ 
+                if(!b&&x>0)b=x;//ç¡®å®šxä¸Šç•Œ 
+                if(!c&&y<0)c=y;//ç¡®å®šyä¸‹ç•Œ 
+                if(!d&&y>0)d=y;//ç¡®å®šyä¸Šç•Œ 
+                if(x<a||x>b||y<c||y>d||i+1<n&&x+dx[z]>=a&&x+dx[z]<=b&&y+dy[z]>=c&&y+dy[z]<=d&&!v[x+dx[z]+N][y+dy[z]+N])return -1;//åˆ¤æ–­æ˜¯å¦è¶Šç•Œæˆ–éžæ³•è½¬å¼¯ 
+                z=z+1&3;//è½¬å¼¯ 
             }
-            return (b-a+1)*(d-c+1);//¼ÆËã´ð°¸ 
+            return (b-a+1)*(d-c+1);//è®¡ç®—ç­”æ¡ˆ 
         }
 };
