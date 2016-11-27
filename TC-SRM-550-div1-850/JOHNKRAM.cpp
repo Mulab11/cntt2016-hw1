@@ -6,7 +6,7 @@ ll t[80][80];
 struct node
 {
     int r,c,a[80][80];
-    inline void operator*=(const node& y)//¾ØÕó³Ë·¨ 
+    inline void operator*=(const node& y)//çŸ©é˜µä¹˜æ³• 
     {
         int i,j,k;
         for(i=0;i<r;i++)for(j=0;j<y.c;j++)t[i][j]=0;
@@ -32,28 +32,28 @@ class ConversionMachine
                 y[i]=word2[i]-'a';
                 for(j=x[i],k=0;j!=y[i];j=(j+1)%3)
                 {
-                    maxCost-=costs[j];//¿Û³ý±ØÒª´ú¼Û 
+                    maxCost-=costs[j];//æ‰£é™¤å¿…è¦ä»£ä»· 
                     k++;
                     m++;
                 }
-                if(k==1)b++;//¼ÆËãÓÐ¶àÉÙ¸öÎ»ÖÃ¾àÀëÎª1 
-                if(k==2)a++;//¼ÆËãÓÐ¶àÉÙ¸öÎ»ÖÃ¾àÀëÎª2 
+                if(k==1)b++;//è®¡ç®—æœ‰å¤šå°‘ä¸ªä½ç½®è·ç¦»ä¸º1 
+                if(k==2)a++;//è®¡ç®—æœ‰å¤šå°‘ä¸ªä½ç½®è·ç¦»ä¸º2 
             }
             if(maxCost<0)return 0;
-            m+=maxCost/(costs[0]+costs[1]+costs[2])*3;//¼ÆËã×î¶à²Ù×÷´ÎÊý 
+            m+=maxCost/(costs[0]+costs[1]+costs[2])*3;//è®¡ç®—æœ€å¤šæ“ä½œæ¬¡æ•° 
             for(i=0;i<=n;i++)for(j=0;i+j<=n;j++)z[i][j]=N++;
-            for(i=0;i<=n;i++)for(j=0;i+j<=n;j++)//¼ÆËã×ªÒÆ¾ØÕó 
+            for(i=0;i<=n;i++)for(j=0;i+j<=n;j++)//è®¡ç®—è½¬ç§»çŸ©é˜µ 
             {
                 k=n-i-j;
-                if(i)A.a[z[i][j]][z[i-1][j+1]]=i;//²Ù×÷µÄÎ»ÖÃ¾àÀëÎª2 
-                if(j)A.a[z[i][j]][z[i][j-1]]=j;//²Ù×÷µÄÎ»ÖÃ¾àÀëÎª1 
-                if(k)A.a[z[i][j]][z[i+1][j]]=k;//²Ù×÷µÄÎ»ÖÃ¾àÀëÎª0 
+                if(i)A.a[z[i][j]][z[i-1][j+1]]=i;//æ“ä½œçš„ä½ç½®è·ç¦»ä¸º2 
+                if(j)A.a[z[i][j]][z[i][j-1]]=j;//æ“ä½œçš„ä½ç½®è·ç¦»ä¸º1 
+                if(k)A.a[z[i][j]][z[i+1][j]]=k;//æ“ä½œçš„ä½ç½®è·ç¦»ä¸º0 
             }
-            A.a[z[0][0]][N]=A.a[N][N]=1;//Í³¼ÆºÍ 
+            A.a[z[0][0]][N]=A.a[N][N]=1;//ç»Ÿè®¡å’Œ 
             N++;
             A.r=A.c=S.c=N;
             S.r=1;
-            S.a[0][z[a][b]]=1;//³õÊ¼×´Ì¬ 
+            S.a[0][z[a][b]]=1;//åˆå§‹çŠ¶æ€ 
             for(m++;m;m>>=1,A*=A)if(m&1)S*=A;
             return S.a[0][N-1];
         }
