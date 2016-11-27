@@ -8,8 +8,8 @@ class CheckerExpansion
         {
             string s;
             int i,j;
-            for(j=h-1;~j;j--,ans.push_back(s))for(i=0,s="";i<w;i++)if(x0+i+y0+j>=(t<<1)||((x0^i^y0^j)&1)||((x0+i+y0+j>>1)&y0+j)!=y0+j)s+='.';//判断有没有检验器 
-            else if((x0+i+y0+j)&3)s+='B';//判断是不是B检验器 
+            for(j=h-1;~j;j--,ans.push_back(s))for(i=0,s="";i<w;i++)if(x0+i+y0+j>=(t<<1)||((x0^i^y0^j)&1)||((x0+i+y0+j>>1)&y0+j)!=y0+j)s+='.';//鍒ゆ柇鏈夋病鏈夋楠屽櫒 
+            else if((x0+i+y0+j)&3)s+='B';//鍒ゆ柇鏄笉鏄疊妫�楠屽櫒 
             else s+='A';
             return ans;
         }
