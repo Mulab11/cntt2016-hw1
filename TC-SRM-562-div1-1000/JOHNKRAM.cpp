@@ -12,7 +12,7 @@ void dfs(int x,int fa)//计算父亲编号比孩子小（大）的编号方式�
     {
         dfs(p[i],x);
         s[fa][x]+=s[x][p[i]];
-        a[fa][x]=(ll)a[fa][x]*a[x][p[i]]*I[s[x][p[i]]]%P;
+        a[fa][x]=(ll)a[fa][x]*a[x][p[i]]%P*I[s[x][p[i]]]%P;
     }
     a[fa][x]=(ll)a[fa][x]*f[s[fa][x]-1]%P;
 }
@@ -26,7 +26,7 @@ void work(int x,int fa)//情况2计算F数组
         work(p[i],x);
         int a,b,c,d;
         memset(t,0,sizeof(t));
-        for(a=0;a<=s[x][p[i]];a++)for(b=0;b<=s[x][p[i]];b++)for(c=0;c<=j;c++)for(d=0;d<=j;d++)t[a+c][b+d]=(t[a+c][b+d]+(ll)F[x][p[i]][a][b]*F[fa][x][c][d]*I[a]%P*I[b])%P;//多项式乘法
+        for(a=0;a<=s[x][p[i]];a++)for(b=0;b<=s[x][p[i]];b++)for(c=0;c<=j;c++)for(d=0;d<=j;d++)t[a+c][b+d]=(t[a+c][b+d]+(ll)F[x][p[i]][a][b]*F[fa][x][c][d]%P*I[a]%P*I[b])%P;//多项式乘法
         j+=s[x][p[i]];
         for(a=0;a<=j;a++)for(b=0;b<=j;b++)F[fa][x][a][b]=t[a][b];
     }
