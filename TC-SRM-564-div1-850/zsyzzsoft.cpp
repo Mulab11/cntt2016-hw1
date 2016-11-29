@@ -45,10 +45,6 @@ public:
 					Add(ans, (long long)f[n][i] * j % mod);
 			}
 		}
-		for(int i = 0; i < n; i++)
-			m ^= a[i] - 1;
-		if(!m) //判断所有数均达到上边界是否满足要求 
-			ans++;
 		return ans;
 	}
 };
