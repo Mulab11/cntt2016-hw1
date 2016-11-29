@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <memory.h>
 using namespace std;
-const int inf = 2147483647;
+const int inf = 1000000000;
 class OldBridges
 {
 public:
