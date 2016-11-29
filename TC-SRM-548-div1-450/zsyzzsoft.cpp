@@ -43,10 +43,10 @@ public:
 					f[i][j] = min(f[i][j], f[i - 1][j - k * i] + k);
 			}
 		}
-		double ans = 0.0;
+		double ans = -1.0;
 		for(int i = tot; i <= n * n; i++)
 		{
-			if(f[n][i - tot] <= m && Abs((double)i / (n * n) - 0.5) < Abs(ans - 0.5))
+			if(f[n][i - tot] <= m && Abs((double)i / (n * n) - 0.5) < Abs(ans - 0.5) - 1.0e-9)
 				ans = (double)i / (n * n);
 		}
 		return ans;
