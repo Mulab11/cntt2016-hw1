@@ -24,7 +24,7 @@ public:
 			{
 				for(int _y = 0; _y <= ty; _y++)
 				{
-					for(int _z = 0; _x + _y + _z < tx + ty + tz; _z++)
+					for(int _z = 0; _z <= tz && _x + _y + _z < tx + ty + tz; _z++)
 					{
 						int cx = _x + x - tx, cy = _y + y - ty, cz = _z + z - tz, cn = cx + cy * 2 + cz * 3;
 						ret = (ret + p - (long long)f[k][cx][cy][cz] * c[tx][_x] % p * c[ty][_y] % p * c[tz][_z] % p *
