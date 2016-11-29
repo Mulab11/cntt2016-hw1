@@ -11,7 +11,7 @@ public:
 		long long ans = 0;
 		for(long long t = 1LL << 62; t; t >>= 1) //高斯消元
 		{
-			for(j = i; j < n && !(j & t); j++);
+			for(j = i; j < n && !(a[j] & t); j++);
 			if(j == n)
 				continue;
 			swap(a[i], a[j]);
@@ -26,6 +26,6 @@ public:
 			a[0] ^= a[i];
 		for(i = 1; i < n; i++)
 			ans += a[i] ^= a[0];
-		return ans;
+		return ans + a[0];
 	}
 };
