@@ -15,33 +15,20 @@ public:
 				b[j] = a[j];
 			for(int j = 0; j < n && flag; j++)
 			{
-				int t = 0;
+				cnt -= (b[j] + k - 1) / k - (a[j] + k - 1) / k;
 				if((i >> j) & 1)
 				{
-					if(!a[j])
+					if(!b[j])
 						flag = false;
-					t = b[j] - (a[j] - 1) / k * k;
+					int t = b[j] - (b[j] - 1) / k * k;
+					if(j + 1 == n || t > a[j])
+						flag = false;
+					else
+						b[j + 1] += t; //往后放 
 					cnt++;
 				}
-				cnt -= (b[j] + k - 1) / k - (a[j] + k - 1) / k;
-				if(!t)
-					continue;
-				if(t > a[j]) //剩下的人不足 
-					flag = false;
-				else
-				{
-					if(j) //往前放 
-					{
-						int p = min(t, (b[j - 1] + k - 1) / k * k - b[j - 1]);
-						b[j] -= p;
-						t -= p;
-					}
-					if(t && j == n - 1)
-						flag = false;
-					else //往后放 
-						b[j + 1] += t;
-					b[j] -= t;
-				}
+				else if(j + 1 < n)
+					b[j + 1] -= min(b[j + 1], (b[j] + k - 1) / k * k - b[j]); //尽量把当前层填满 
 			}
 			if(flag)
 				ans = max(ans, cnt);
