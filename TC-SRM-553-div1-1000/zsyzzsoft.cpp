@@ -32,32 +32,38 @@ class YamanoteLine
 {
 public:
 	int n;
-	Pair d[51];
 	bool positive, negative;
 	vector<Edge> edge;
 	void Work(long long x)
 	{
 		positive = negative = false;
-		d[0] = Pair(0);
-		for(int i = 1; i < n; i++)
-			d[i] = Pair(inf);
-		for(int i = n - 1; i >= 0; i--) //求负环 
+		Pair dis[51][51] = {0};
+		for(int i = 0; i < n; i++)
 		{
-			for(int j = 0; j < edge.size(); j++)
+			for(int j = 0; j < n; j++)
+				dis[i][j] = Pair(inf * 1000);
+		}
+		for(int i = 0; i < edge.size(); i++)
+			dis[edge[i].u][edge[i].v] = min(dis[edge[i].u][edge[i].v], Pair(edge[i].w.a + x * edge[i].w.b, edge[i].w.b));
+		for(int k = 0; k < n; k++)
+		{
+			for(int i = 0; i < n; i++)
 			{
-				int u = edge[j].u, v = edge[j].v;
-				Pair w(edge[j].w.a + x * edge[j].w.b, edge[j].w.b);
-				if(d[u] + w < d[v])
+				for(int j = 0; j < n; j++)
 				{
-					if(!i)
-					{
-						Pair cycle = d[u] + w - d[v];
-						if(cycle.b > 0)
-							positive = true;
-						if(cycle.b < 0)
-							negative = true;
-					}
-					d[v] = d[u] + w;
+					if(dis[i][k] + dis[k][j] < dis[i][j])
+						dis[i][j] = dis[i][k] + dis[k][j];
+				}
+			}
+			for(int i = 0; i < n; i++)
+			{
+				if(dis[i][i].a < 0) //有负环 
+				{
+					if(dis[i][i].b >= 0)
+						positive = true;
+					if(dis[i][i].b <= 0)
+						negative = true;
+					return;
 				}
 			}
 		}
