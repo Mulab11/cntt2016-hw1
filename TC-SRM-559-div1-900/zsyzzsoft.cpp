@@ -82,7 +82,7 @@ public:
 		n = _x.size();
 		for(int i = 0; i < n; i++)
 			x[i] = _x[i], y[i] = _y[i], r[i] = _r[i];
-		double l = 0.0, r = 1.0e4;
+		double l = 0.0, r = 1.0e5;
 		while(r - l >= 1e-10) //二分答案 
 		{
 			double mid = (l + r) / 2.0;
