@@ -20,7 +20,7 @@ public:
 	}
 	long long Dfs(int node, int last, int id)
 	{
-		max_id = id; //存储最大节点标号 
+		max_id = max(max_id, id); //存储最大节点标号 
 		vector<int> child;
 		for(int v = 0; v < n; v++)
 		{
@@ -36,7 +36,7 @@ public:
 		long long ret = 1;
 		for(int i = 0; i < child.size(); i++)
 			ret *= Dfs(child[i], node, id * 2 + i);
-		if(sz[child[0]] == sz[child[1]]) //若子树大小相同答案加倍 
+		if(child.size() > 1 && sz[child[0]] == sz[child[1]]) //若子树大小相同答案加倍 
 			ret *= 2;
 		return ret;
 	}
