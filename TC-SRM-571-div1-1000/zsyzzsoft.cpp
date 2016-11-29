@@ -1,7 +1,7 @@
 #include <algorithm>
 #include <queue>
 using namespace std;
-const double eps = 1.0e-4;
+const double eps = 1.0e-6;
 class CandyOnDisk
 {
 public:
@@ -39,8 +39,14 @@ public:
 				double d = Dist(x[cur], y[cur], x[i], y[i]);
 				if(d > h[cur] + r[i])
 					continue;
-				double lo = max(d - h[cur], 0.0), hi = min(d + h[cur], (double)r[i]); //走到下一个圆的半径区间 
-				if(lo <= l[i] - eps || hi >= r[i] + eps)
+				if(l[cur] > d + r[i] || r[cur] < d - r[i])
+					continue;
+				double lo = max(d - r[cur], 0.0), hi = min(d + r[cur], (double)r[i]); //走到下一个圆的半径区间 
+				if(x[cur] == x[i] && y[cur] == y[i])
+					lo = l[cur], hi = min(h[cur], (double)r[i]);
+				if(lo > hi)
+					continue;
+				if(lo <= l[i] - eps || hi >= h[i] + eps)
 				{
 					l[i] = min(l[i], lo), h[i] = max(h[i], hi); //更新半径区间 
 					if(!vis[i])
@@ -52,7 +58,12 @@ public:
 		for(int i = 0; i < n; i++)
 		{
 			double d = Dist(tx, ty, x[i], y[i]);
-			if(d >= l[i] - eps && d <= r[i] + eps)
+			if(l[i] == h[i])
+			{
+				if(abs(sx - x[i]) == abs(tx - x[i]) && abs(sy - y[i]) == abs(ty - y[i]))
+					return "YES";
+			}
+			else if(d >= l[i] && d <= h[i])
 				return "YES";
 		}
 		return "NO";
