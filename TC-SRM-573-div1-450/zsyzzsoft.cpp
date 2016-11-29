@@ -15,30 +15,34 @@ public:
 			for(int j = 0; j < n; j++)
 				dis[i][j] = inf;
 		}
-		dis[0][0] = 0;
-		vis[0][0] = true;
-		for(int l = 0, r = 1; l < r; l++)
+		int l = 0, r = 1;
+		for(int i = 0; i < n; i++)
+		{
+			if(h[i] >= h[0]) //可以提升起点的高度 
+			{
+				dis[0][i] = h[i] - h[0];
+				vis[0][i] = true;
+				que[r++] = make_pair(0, i);
+			}
+		}
+		for(; l < r; l++)
 		{
 			int p = que[l].first, q = que[l].second;
-			for(int i = 0; i < n; i++)
-			{
-				if(h[i] > h[q] && dis[p][q] + h[i] - h[q] < dis[p][i])
-				{
-					dis[p][i] = dis[p][q] + h[i] - h[q];
-					if(!vis[p][i])
-						vis[p][i] = true, que[r++] = make_pair(p, i);
-				}
-			}
-			for(int i = 0; i < n; i++)
+			for(int i = 0; i < n; i++) //以当前高度往后走 
 			{
 				if(road[p][i] == 'Y')
 				{
-					int nq = h[q] < h[i] ? q : i, nw = h[i] - h[nq];
-					if(dis[p][q] + nw < dis[i][nq])
+					for(int j = 0; j < n; j++)
 					{
-						dis[i][nq] = dis[p][q] + nw;
-						if(!vis[i][nq])
-							vis[i][nq] = true, que[r++] = make_pair(i, nq);
+						if(h[j] > h[q])
+							continue;
+						int w = abs(h[i] - h[j]); //修改目标点高度 
+						if(dis[p][q] + w < dis[i][j])
+						{
+							dis[i][j] = dis[p][q] + w;
+							if(!vis[i][j])
+								vis[i][j] = true, que[r++] = make_pair(i, j);
+						}
 					}
 				}
 			}
