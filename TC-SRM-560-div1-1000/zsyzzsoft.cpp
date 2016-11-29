@@ -38,7 +38,7 @@ public:
 				else
 					tmp -= val[i];
 			}
-			if(!tot)
+			if(!tot && tmp < 0)
 				return;
 			for(int i = 0; i < n; i++)
 			{
