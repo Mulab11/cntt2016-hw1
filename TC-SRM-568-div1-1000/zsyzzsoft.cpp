@@ -71,6 +71,19 @@ public:
 			}
 		}
 	}
+	void Color(int node)
+	{
+		for(int i = 0; i < 25; i++)
+		{
+			if(r[i] && apart[node][i])
+			{
+				if(col[i] < 0)
+					col[i] = !col[node], Color(i);
+				else if(col[i] != !col[node])
+					flag = true;
+			}
+		}
+	}
 	string getPossibility(vector<int> labels)
 	{
 		for(int i = 0; i < labels.size(); i++)
@@ -84,6 +97,43 @@ public:
 				else
 					l[labels[i]] = i;
 			}
+		}
+		int cnt = 0;
+		for(int i = 0; i < 25; i++)
+			cnt += r[i] > 0;
+		if(n <= 2) //特判所有配对均已确定的情况 
+		{
+			int label = 0;
+			while(label < 25 && r[label])
+				label++;
+			for(int i = labels.size() - 1; i >= 0; i--)
+			{
+				if(labels[i] < 0)
+				{
+					if(!r[label])
+						r[label] = i;
+					else
+						l[label] = i;
+				}
+			}
+			for(int i = 0; i < 25; i++)
+			{
+				for(int j = 0; j < 25; j++)
+					apart[i][j] = (r[j] > l[i] && r[j] < r[i]) ^ (l[j] > l[i] && l[j] < r[i]);
+			}
+			for(int i = 0; i < 25; i++)
+				col[i] = -1;
+			for(int i = 0; i < 25; i++)
+			{
+				if(r[i] && col[i] == -1)
+				{
+					flag = false;
+					Color(i);
+					if(flag)
+						return "IMPOSSIBLE";
+				}
+			}
+			return "POSSIBLE";
 		}
 		for(int i = 0; i < 25; i++) //判断交叉关系 
 		{
