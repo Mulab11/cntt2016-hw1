@@ -34,7 +34,7 @@ public:
 		for(int i = 0; i < n; i++) //移动 
 		{
 			for(int j = 0; j < m; j++)
-				col[i][j] = i < n && j < m ? col[i + 1][j + 1] : 0;
+				col[i][j] = i + 1 < n && j + 1 < m ? col[i + 1][j + 1] : 0;
 		}
 	}
 	vector<long long> countColors(vector<string> clipboard, int t)
