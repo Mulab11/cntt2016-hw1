@@ -4,7 +4,7 @@ int n,i,j,k,d[55][55];
 class ColorfulWolves
 {
     public:
-        int getmin(vector <string> colormap
+        int getmin(vector <string> colormap)
         {
             n=colormap.size();
             memset(d,1,sizeof(d));
