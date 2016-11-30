@@ -4,14 +4,14 @@ int n,i,j,k,d[55][55];
 class ColorfulWolves
 {
     public:
-        int getmin(vector <string> colormap)
+        int getmin(vector <string> colormap
         {
             n=colormap.size();
             memset(d,1,sizeof(d));
             for(i=0;i<n;i++)d[i][i]=0;
-            for(i=0;i<n;i++)for(j=k=0;j<n;j++)if(colormap[i][j]=='Y')d[i][j]=k++;//¼ÆËãiµÄºó¼ÌÊÇjµÄ´ú¼Û 
-            for(k=0;k<n;k++)for(i=0;i<n;i++)for(j=0;j<n;j++)d[i][j]=min(d[i][j],d[i][k]+d[k][j]);//FloydÇó×îÐ¡´ú¼Û 
-            if(d[0][n-1]==d[n][n])d[0][n-1]=-1;//ÅÐ¶ÏÊÇ·ñÎÞ½â 
+            for(i=0;i<n;i++)for(j=k=0;j<n;j++)if(colormap[i][j]=='Y')d[i][j]=k++;//è®¡ç®—içš„åŽç»§æ˜¯jçš„ä»£ä»· 
+            for(k=0;k<n;k++)for(i=0;i<n;i++)for(j=0;j<n;j++)d[i][j]=min(d[i][j],d[i][k]+d[k][j]);//Floydæ±‚æœ€å°ä»£ä»· 
+            if(d[0][n-1]==d[n][n])d[0][n-1]=-1;//åˆ¤æ–­æ˜¯å¦æ— è§£ 
             return d[0][n-1];
         }
 };
