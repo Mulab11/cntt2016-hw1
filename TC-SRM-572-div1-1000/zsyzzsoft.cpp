@@ -15,7 +15,7 @@ public:
 			int k = j / 26 * 26 + dest[i];
 			if(k < j) //目标位置必须满足单调性 
 				k += 26;
-			if(k >= dest[0] + 26)
+			if(k >= dest[0] + 26) //不能再转一圈 
 				return inf;
 			if(k != j)
 				ans += k < i ? (i - k) * prev_cost : (k - i) * next_cost;
@@ -43,15 +43,23 @@ public:
 		if(start == goal)
 			return 0;
 		int tot = 0;
+		int goal_cnt[26] = {0};
+		for(int i = 0; i < goal.length(); i++)
+			goal_cnt[(int)goal[i] - 'a'] = 1;
 		for(int i = 0; i < 26; i++)
-			tot += dest[i] >= 0;
+			tot += goal_cnt[i];
 		if(tot == 26)
 			return -1;
 		int ans = inf;
 		for(int i = 0; i < 26; i++)
 		{
-			if(dest[0] >= 0) //枚举某一个字符的转移 
+			if(dest[0] >= 0) //枚举某一个字母的转移 
+			{
 				ans = min(ans, Work(next_cost, prev_cost));
+				dest[0] += 26; //最多转过一圈 
+				ans = min(ans, Work(next_cost, prev_cost));
+				dest[0] -= 26;
+			}
 			for(int j = 1; j < 26; j++)
 				swap(dest[j - 1], dest[j]);
 			for(int j = 0; j < 26; j++)
@@ -64,7 +72,12 @@ public:
 		for(int i = 0; i < 26; i++)
 		{
 			if(dest[0] >= 0)
+			{
 				ans = min(ans, Work(prev_cost, next_cost));
+				dest[0] += 26;
+				ans = min(ans, Work(prev_cost, next_cost));
+				dest[0] -= 26;
+			}
 			for(int j = 1; j < 26; j++)
 				swap(dest[j - 1], dest[j]);
 			for(int j = 0; j < 26; j++)
