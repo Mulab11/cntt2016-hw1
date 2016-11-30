@@ -11,7 +11,7 @@ struct node
     }
 }x[1048576],y[1048576];
 int n,m,N,M,i,j,k,l,o,p,ans,a[50],s[50],a1[50],a2[50],c[50][50],d[50][50];
-void dfs(node *A,int &n,int N,int r,int x,int y,int z)//ËÑË÷Ã¿ÖÖ¿ÉÄÜµÄÑ¡È¡Çé¿ö 
+void dfs(node *A,int &n,int N,int r,int x,int y,int z)//æœç´¢æ¯ç§å¯èƒ½çš„é€‰å–æƒ…å†µ 
 {
     if(y>N)return;
     if(x==r)
@@ -23,7 +23,7 @@ void dfs(node *A,int &n,int N,int r,int x,int y,int z)//ËÑË÷Ã¿ÖÖ¿ÉÄÜµÄÑ¡È¡Çé¿ö
     dfs(A,n,N,r,x+1,y,z);
     if(~a[x])dfs(A,n,N,r,x+1,y+a[x],z+1);
 }
-int Pow(int x,int y)//¿ìËÙÃİ 
+int Pow(int x,int y)//å¿«é€Ÿå¹‚ 
 {
     int s=1;
     for(;y;y>>=1,x=(ll)x*x%P)if(y&1)s=(ll)s*x%P;
@@ -36,47 +36,47 @@ class SweetFruits
         {
             n=sweetness.size();
             for(i=0;i<n;i++)a[i]=sweetness[i];
-            dfs(x,N,maxSweetness,n>>1,0,0,0);//ËÑË÷Ç°°ë²¿·Ö 
-            dfs(y,M,maxSweetness,n,n>>1,0,0);//ËÑË÷ºó°ë²¿·Ö 
+            dfs(x,N,maxSweetness,n>>1,0,0,0);//æœç´¢å‰åŠéƒ¨åˆ† 
+            dfs(y,M,maxSweetness,n,n>>1,0,0);//æœç´¢ååŠéƒ¨åˆ† 
             sort(x,x+N);
             sort(y,y+M);
             for(i=0;i<M;i++)s[y[i].b]++;
-            for(i=0,j=M-1;i<N&&~j;i++)//meet in the middle¼ÆËãµÚÒ»²¿·Ö´ğ°¸ 
+            for(i=0,j=M-1;i<N&&~j;i++)//meet in the middleè®¡ç®—ç¬¬ä¸€éƒ¨åˆ†ç­”æ¡ˆ 
             {
                 for(;~j&&x[i].a+y[j].a>maxSweetness;--s[y[j--].b]);
-                for(k=0;k<=n+1>>1;k++)//Ã¶¾Ùºó°ë²¿·ÖÑ¡È¡µÄÌğË®¹û¸öÊı 
+                for(k=0;k<=n+1>>1;k++)//æšä¸¾ååŠéƒ¨åˆ†é€‰å–çš„ç”œæ°´æœä¸ªæ•° 
                 {
                     a1[x[i].b+k]+=s[k];
                     if(a1[x[i].b+k]>=P)a1[x[i].b+k]-=P;
                 }
             }
             for(i=0;i<n;i++)if(~a[i])m++;
-            for(i=c[0][0]=1;i<=m;i++)for(j=c[i][0]=1;j<=i;j++)//Ô¤´¦Àí×éºÏÊı 
+            for(i=c[0][0]=1;i<=m;i++)for(j=c[i][0]=1;j<=i;j++)//é¢„å¤„ç†ç»„åˆæ•° 
             {
                 c[i][j]=c[i-1][j]+c[i-1][j-1];
                 if(c[i][j]>=P)c[i][j]-=P;
             }
-            for(i=0;i<=m;i++)//¼ÆËãµÚ¶ş²¿·Ö´ğ°¸ 
+            for(i=0;i<=m;i++)//è®¡ç®—ç¬¬äºŒéƒ¨åˆ†ç­”æ¡ˆ 
             {
                 for(j=0;j<n;j++)for(k=0;k<n;k++)if(j==k)d[j][k]=n-1;
                 else d[j][k]=P-1;
-                for(j=0;j<m;j++)for(k=max(i,j+1);k<m;k++)//Ô¤´¦Àí¾ØÕó 
+                for(j=0;j<m;j++)for(k=max(i,j+1);k<m;k++)//é¢„å¤„ç†çŸ©é˜µ 
                 {
                     d[j][k]=d[k][j]=0;
                     d[j][j]--;
                     d[k][k]--;
                 }
-                for(a2[i]=1,j=0;j+2<n;j++)//¸ßË¹ÏûÔª 
+                for(a2[i]=1,j=0;j+2<n;j++)//é«˜æ–¯æ¶ˆå…ƒ 
                 {
                     for(k=j;k+1<n;k++)if(d[k][j])break;
                     if(k+1==n)break;
                     if(j!=k)for(a2[i]=P-a2[i],l=j;l+1<n;l++)swap(d[j][l],d[k][l]);
                     for(o=Pow(d[j][j],P-2),k=j+1;k+1<n;k++)for(p=(ll)d[k][j]*o%P,l=j;l+1<n;l++)d[k][l]=(d[k][l]-(ll)d[j][l]*p%P+P)%P;
                 }
-                for(j=0;j+1<n;j++)a2[i]=(ll)a2[i]*d[j][j]%P;//¼ÆËãĞĞÁĞÊ½ 
-                for(j=0;j<i;j++)a2[i]=(a2[i]-(ll)c[i][j]*a2[j]%P+P)%P;//ÏûÈ¥²»ºÏ·¨²¿·Ö 
+                for(j=0;j+1<n;j++)a2[i]=(ll)a2[i]*d[j][j]%P;//è®¡ç®—è¡Œåˆ—å¼ 
+                for(j=0;j<i;j++)a2[i]=(a2[i]-(ll)c[i][j]*a2[j]%P+P)%P;//æ¶ˆå»ä¸åˆæ³•éƒ¨åˆ† 
             }
-            for(i=0;i<=m;i++)ans=(ans+(ll)a1[i]*a2[i])%P;//¼ÆËã´ğ°¸ 
+            for(i=0;i<=m;i++)ans=(ans+(ll)a1[i]*a2[i])%P;//è®¡ç®—ç­”æ¡ˆ 
             return ans;
         }
 };
