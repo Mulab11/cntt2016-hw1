@@ -5,9 +5,9 @@ class FoxPaintingBalls
     public:
         long long theMax(long long R, long long G, long long B, int N)
         {
-            if(N==1)return R+G+B;//N=1ÌØÅĞ 
-            long long X=(long long)N*(N+1)/6,S=min(min(R,G),B)/X;//XµÈÓÚÃ¿¸öÈı½ÇĞÎÃ¿ÖÖÑÕÉ«×îÉÙ¸öÊı 
-            if(N%3==1)S=min(S,(R+G+B)/(3*X+1));//N%3==1Ê±Ã¿¸öÈı½ÇĞÎÓĞÒ»ÖÖÑÕÉ«¶àÒ»¸ö£¬ÍÆÒ»ÍÆÊ½×Ó¿ÉÒÔµÃ³öÒ»¸öĞÂµÄ²»µÈÊ½ 
+            if(N==1)return R+G+B;//N=1ç‰¹åˆ¤ 
+            long long X=(long long)N*(N+1)/6,S=min(min(R,G),B)/X;//Xç­‰äºæ¯ä¸ªä¸‰è§’å½¢æ¯ç§é¢œè‰²æœ€å°‘ä¸ªæ•° 
+            if(N%3==1)S=min(S,(R+G+B)/(3*X+1));//N%3==1æ—¶æ¯ä¸ªä¸‰è§’å½¢æœ‰ä¸€ç§é¢œè‰²å¤šä¸€ä¸ªï¼Œæ¨ä¸€æ¨å¼å­å¯ä»¥å¾—å‡ºä¸€ä¸ªæ–°çš„ä¸ç­‰å¼ 
             return S;
         }
 };
