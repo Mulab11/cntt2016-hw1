@@ -4,12 +4,12 @@ using namespace std;
 ll N;
 int n,m,i,j,p[100005];
 bool b[1000005];
-ll work(ll X,int x)//¼ÆËã[1,X]ÄÚÓĞ¶àÉÙ¸öÊı¿ÉÒÔÓÃµÚ[x+1,m]¸öÖÊÊıµÄÆæÊı´Î·½Ïà³Ë±íÊ¾ 
+ll work(ll X,int x)//è®¡ç®—[1,X]å†…æœ‰å¤šå°‘ä¸ªæ•°å¯ä»¥ç”¨ç¬¬[x+1,m]ä¸ªè´¨æ•°çš„å¥‡æ•°æ¬¡æ–¹ç›¸ä¹˜è¡¨ç¤º 
 {
-    if(x==m||p[x]>X)return 1;//±ß½çÇé¿ö 
-    if((ll)p[x]*p[x+1]>X)return upper_bound(p+x,p+m,X)-p-x+1;//¼ôÖ¦ 
-    ll s=work(X,x+1);//µÚx+1¸öÖÊÊıÃ»ÓĞ³öÏÖ 
-    for(X/=p[x];X;X=X/p[x]/p[x])s+=work(X,x+1);//µÚx+1¸öÖÊÊı³öÏÖÁË 
+    if(x==m||p[x]>X)return 1;//è¾¹ç•Œæƒ…å†µ 
+    if((ll)p[x]*p[x+1]>X)return upper_bound(p+x,p+m,X)-p-x+1;//å‰ªæ 
+    ll s=work(X,x+1);//ç¬¬x+1ä¸ªè´¨æ•°æ²¡æœ‰å‡ºç° 
+    for(X/=p[x];X;X=X/p[x]/p[x])s+=work(X,x+1);//ç¬¬x+1ä¸ªè´¨æ•°å‡ºç°äº† 
     return s;
 }
 class HolyNumbers
@@ -19,7 +19,7 @@ class HolyNumbers
         {
             N=upTo;
             n=maximalPrime;
-            for(i=2;i*i<=n;i++)if(!b[i])for(p[m++]=i,j=i*i;j<=n;j+=i)b[j]=1;//°£À­ÍĞÉ«ÄáÉ¸·¨Ô¤´¦ÀíÖÊÊı 
+            for(i=2;i*i<=n;i++)if(!b[i])for(p[m++]=i,j=i*i;j<=n;j+=i)b[j]=1;//åŸƒæ‹‰æ‰˜è‰²å°¼ç­›æ³•é¢„å¤„ç†è´¨æ•° 
             for(;i<=n;i++)if(!b[i])p[m++]=i;
             return work(N,0);
         }
