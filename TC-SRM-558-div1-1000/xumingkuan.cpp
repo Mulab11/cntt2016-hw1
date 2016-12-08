@@ -84,16 +84,16 @@ int dinic()
 	return allflow;
 }
 /*
-          cost         benefit
-  +-----------------+ +-------+
- /  benefit    inf  V/ benefit \
-+ +-------->O------>O---------+ +
+          cost
+  +-----------------+
+ /  benefit    inf  V  benefit
++ +-------->O------>O---------+
 |/          |       |          \V
 S           |inf    |inf        T
-|\  benefit V  inf  V  benefit /^
-+ +-------->O------>O---------+ +
- \  benefit ^\      cost       /
-  +---------+ +---------------+
+ \  benefit V  inf  V  benefit /^
+  +-------->O------>O---------+ +
+             \      cost       /
+              +---------------+
 
 ans = \sum{benefit * 2} - mincut.
 */
