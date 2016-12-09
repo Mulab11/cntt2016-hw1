@@ -9,7 +9,7 @@ class GUMIAndSongsDiv1
 		{
 			for(i=0;i<a.size();i++)c[i]=make_pair(b[i],a[i]);
 			sort(c,c+a.size());
-			for(i=0;i<a.size();i++)
+			for(i=0;i<a.size();i++)//f[i][j]表示唱了以i结尾的j首歌最小时间		
 			{
 				f[i][0]=c[i].second;
 				if(f[i][0]<=T)ans=max(ans,1);
