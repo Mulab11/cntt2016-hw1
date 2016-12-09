@@ -10,7 +10,7 @@ class KeyDungeonDiv1
 			int n=dr.size(),i,j,k,l,s,t;
 			memset(f,-1,sizeof(f));
 			f[0][ks[0]]=ks[2];
-			for(i=0;i<(1<<n);i++)
+			for(i=0;i<(1<<n);i++)//f[i][j]表示开门状态i，剩j把红时最多有多少白			
 			{
 				for(j=s=0;j<n;j++)if(i>>j&1)s+=rr[j]+rg[j]+rw[j]-dr[j]-dg[j];
 				for(j=0;j<131;j++)if(~f[i][j])
