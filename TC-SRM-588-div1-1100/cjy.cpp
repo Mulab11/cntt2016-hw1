@@ -3,7 +3,7 @@
 using namespace std;
 int n,m,h[3000],e[6000],l[6000],i,j,d[3000],g[3000],s[3000],t,A,B;
 void add(int x,int y){e[++t]=y,l[t]=h[x],h[x]=t,e[++t]=x,l[t]=h[y],h[y]=t;}
-int dfs(int x,int f)
+int dfs(int x,int f)//判断子树信息是否满足条件
 {
 	d[x]=d[f]+1;
 	g[x]=1;
@@ -22,7 +22,7 @@ class GameInDarknessDiv1
 		string check(vector<string> s)
 		{
 			n=s.size();m=s[0].size();
-			for(i=0;i<n;i++)for(j=0;j<m;j++)
+			for(i=0;i<n;i++)for(j=0;j<m;j++)//建图			
 			{
 				if(s[i][j]=='A')A=ID(i,j);
 				if(s[i][j]=='B')B=ID(i,j);
