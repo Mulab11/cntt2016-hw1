@@ -1,4 +1,4 @@
-﻿# Suminator
+#Suminator
 
 作者：沈睿
 
