@@ -1,4 +1,4 @@
-﻿#YamanoteLine
+#YamanoteLine
 
 作者：沈睿
 
