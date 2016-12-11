@@ -8,7 +8,7 @@ class AstronomicalRecords
 		int minimalPlanets(vector<int>A,vector<int>B)
 		{
 			n=A.size();m=B.size();
-			for(i=0;i<n;i++)for(j=0;j<m;j++)
+			for(i=0;i<n;i++)for(j=0;j<m;j++)//枚举对应后求最长公共子序列			
 			{
 				for(x=1;x<=n;x++)a[x]=1ll*A[x-1]*B[j];
 				for(x=1;x<=m;x++)b[x]=1ll*B[x-1]*A[i];
