@@ -7,7 +7,7 @@ class LittleElephantAndIntervalsDiv1
 	public:
 		long long getNumber(int n,vector<int>L,vector<int>R)
 		{
-			for(i=1;i<=n;i++)for(j=L.size()-1;~j;--j)if(i>=L[j]&&i<=R[j])
+			for(i=1;i<=n;i++)for(j=L.size()-1;~j;--j)if(i>=L[j]&&i<=R[j])//考虑哪些操作不等价			
 			{
 				s<<=!v[j];
 				v[j]=1;
