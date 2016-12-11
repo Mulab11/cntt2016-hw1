@@ -10,7 +10,7 @@ class LittleElephantAndRGB
 		{
 			for(i=0;i<S.size();i++)s+=S[i];
 			x=n=s.size();
-			for(i=n-1;~i;i--)
+			for(i=n-1;~i;i--)//f[i]表示i后有多少区间有连续至少m个，g[i][j]表示i后有多少区间开头有连续至少j个			
 			{
 				s[i]=='G'?k++:k=0;
 				if(k>=m)x=i+m-1,k=m;else if(k)g[i][k]=x+1-i-k;else g[i][k]=g[i+1][k]+n-i;
