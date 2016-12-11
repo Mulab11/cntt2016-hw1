@@ -10,7 +10,7 @@ class FlippingBitsDiv1
 			for(i=0;i<s.size();i++)S+=s[i];
 			n=S.size();
 			k=n/m;
-			if(k<m)for(t=0;t<(1<<k);t++)
+			if(k<m)for(t=0;t<(1<<k);t++)//Meet in the middle
 			{
 				T=S;
 				for(i=r=0;i<k;i++)if(t>>i&1)for(r++,j=0;j<i*m+m;j++)T[j]^=1;
