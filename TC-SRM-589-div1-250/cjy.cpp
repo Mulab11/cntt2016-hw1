@@ -9,7 +9,7 @@ class GooseTattarrattatDiv1
 		{
 			for(i=0;i<26;i++)f[i]=i;
 			for(i=0;i<S.size();i++)c[S[i]-'a']++,f[F(S[i]-'a')]=F(S[S.size()-i-1]-'a');
-			for(i=0;i<26;i++)g[F(i)]=max(g[F(i)],c[i]);
+			for(i=0;i<26;i++)g[F(i)]=max(g[F(i)],c[i]);//每个集合最大的值需要被减去			
 			for(i=0;i<26;i++)if(F(i)==i)s-=g[i];
 			return s+S.size();
 		}
