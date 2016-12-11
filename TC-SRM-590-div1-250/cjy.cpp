@@ -9,7 +9,7 @@ class FoxAndChess
 		string ableToMove(string a,string b)
 		{
 			n=a.size();
-			while(i<n&&j<n)
+			while(i<n&&j<n)//暴力判断是否可以匹配			
 			{
 				XQJ
 				if(a[i]!=b[j]||i!=j&&((a[i]=='L')^(i>j)))GG
