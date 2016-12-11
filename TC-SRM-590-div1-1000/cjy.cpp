@@ -7,7 +7,7 @@ int S(int x,int F){if(x==T)return F;int r=0,t,i;for(i=h[x];i;i=l[i])if(c[i]&&f[x
 class FoxAndCity
 {
 	public:
-		int minimalCost(vector<string>a,vector<int>b)
+		int minimalCost(vector<string>a,vector<int>b)//分层网络流		
 		{
 			n=a.size();T=n*n+n+1;
 			for(A(0,1,0),A(n+1,T,O),j=1;j<=n;j++)A(j,j+1,O);
