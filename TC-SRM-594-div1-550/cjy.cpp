@@ -11,7 +11,7 @@ class FoxAndGo3
 		{
 			n=a.size();T=n*n+1;
 			for(i=0;i<n;i++)for(j=0;j<n;j++)if(a[i][j]=='.'||a[i][j]=='o')d[i][j]=++s;
-			for(i=0;i<n;i++)for(j=0;j<n;j++)if(a[i][j]=='o')A(d[i][j],T);else if(a[i][j]=='.')
+			for(i=0;i<n;i++)for(j=0;j<n;j++)if(a[i][j]=='o')A(d[i][j],T);else if(a[i][j]=='.')//最小割			
 			{
 				A(0,d[i][j]);
 				if(i&&a[i-1][j]=='o')A(d[i][j],d[i-1][j]);
