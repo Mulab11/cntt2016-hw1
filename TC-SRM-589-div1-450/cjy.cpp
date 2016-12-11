@@ -24,7 +24,7 @@ class GearsDiv1
 				memset(p,0,sizeof(p));
 				memset(f,-1,sizeof(f));
 				for(i=0;i<n;i++)for(j=0;j<n;j++)if(c[i]<c[j]&&c[i]!=a[t]&&c[j]!=a[t]&&s[i][j]=='Y')p[i][j]=1;
-				for(i=r=0;i<n;i++)if(memset(v,0,sizeof(v)),dfs(i))r++;
+				for(i=r=0;i<n;i++)if(memset(v,0,sizeof(v)),dfs(i))r++;//考虑最大匹配数				
 				S=min(S,r);
 			}
 			return S;
