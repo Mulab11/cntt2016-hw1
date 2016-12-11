@@ -9,7 +9,7 @@ class XorCards
 		ll numberOfWays(vector<ll>a,ll m)
 		{
 			n=a.size();
-			for(i=49;~i;i--)
+			for(i=49;~i;i--)//线性基			
 			{
 				r=-1;
 				for(j=k;j<n;j++)if(a[j]>>i&1)r=j;
