@@ -7,7 +7,7 @@ int _D(int x,int y){if(y&&(x>>(y-1)&1))x|=1<<y;return x;}
 class StringPath
 {
 	public:
-	int countBoards(int n,int m,string A,string B)
+	int countBoards(int n,int m,string A,string B)//状态压缩DP	
 	{
 		if (A[0]!=B[0]||A[n+m-2]!=B[n+m-2])return 0;
 		f[0][0][1][1]=1;
