@@ -3,7 +3,7 @@
 #define W(a,b) work(a,b,dep+1);
 using namespace std;
 int w,ans=4;
-void  work(int n,int x,int dep)
+void  work(int n,int x,int dep)//玄学讨论
 {
 	if(n==x&&x==1)ans=min(ans,dep);
 	if(dep>=ans-1)return;
