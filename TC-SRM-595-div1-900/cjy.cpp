@@ -16,7 +16,7 @@ class Constellation
 		{
 			n=x.size();
 			for(;i<n;i++)a[i]=P{x[i],y[i]};
-			for(i=0;i<n;i++)for(j=0;j<n;j++)if(i!=j)
+			for(i=0;i<n;i++)for(j=0;j<n;j++)if(i!=j)//考虑每组原点三角形的贡献			
 			{
 				r=1;b=a[j]-a[i];
 				for(k=0;k<n;k++)if(i!=k&&j!=k)if(t=b*(a[k]-a[i]),t>0||!t&&C(x[i],x[k],x[j])&&C(y[i],y[k],y[j]))r*=1-.001*p[k];
