@@ -15,7 +15,7 @@ class TPS
 		{
 			g=G;r=n=G.size();
 			if(n<2)return 0;
-			for(;i<n;i++)dp(i,n),r=min(r,f[i]+1);
+			for(;i<n;i++)dp(i,n),r=min(r,f[i]+1);//枚举根进行DP
 			return r;
 		}
 };
