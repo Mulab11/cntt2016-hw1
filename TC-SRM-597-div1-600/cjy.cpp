@@ -6,7 +6,7 @@ int D(long long x,int y){return(int)floor(1.*x/y);}
 class ConvexPolygonGame
 {
 	public:
-		string winner(vector<int>x,vector<int>y)
+		string winner(vector<int>x,vector<int>y)//结论：胜利条件只与第一步能否操作有关		
 		{
 			n=x.size();x.push_back(x[0]);y.push_back(y[0]);
 			for(i=0;i<n;i++)if(x[i]==x[i+1])m[x[i]+K]=min(y[i],y[i+1])+1,M[x[i]+K]=max(y[i],y[i+1]);
