@@ -19,7 +19,7 @@ class SplittingFoxes2
 			vector<int> f(n),s={-1},e(n),r;
 			vector<cd> b(a.begin(),a.end()),c;
 			for(b=dft(b,0),i=0;i<n;i++)b[i]=sqrt(b[i]);
-			for(i=0;i<(1<<n/2+1);i++)
+			for(i=0;i<(1<<n/2+1);i++)//枚举每一位是否反转			
 			{
 				for(c=b,j=0;j<n;j++)if(i>>min(j,n-j)&1)c[j]=-c[j];
 				for(c=dft(c,1),j=0;j<n;j++)if(f[j]=c[min(j,n-j)].real()/n+.5,f[j]<0)goto E;
