@@ -7,7 +7,7 @@ class BinPacking
 		int minBins(vector<int>a)
 		{
 			n=a.size();sort(a.begin(),a.end());
-			for(i=n-1;~i;i--)if(a[i]>100&&!v[i])
+			for(i=n-1;~i;i--)if(a[i]>100&&!v[i])//贪心配对			
 			{
 				v[i]=1;n--;s++;
 				for(j=i;~j;j--)if(!v[j]&&a[i]+a[j]<=300)
