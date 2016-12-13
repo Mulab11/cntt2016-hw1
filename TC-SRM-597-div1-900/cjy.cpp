@@ -23,7 +23,7 @@ struct LittleElephantAndBoard
 			x1=m-R; x2=m-G; x3=m-B;
 			if(x1>x2)swap(x1,x2);
 			if(x1==0)swap(x1,x3);
-			for(i=1;i<=x1;i++)
+			for(i=1;i<=x1;i++)//分情况累计			
 			{
 				if(i>1)ans=(1ll*C(x1-1,i-1)*C(x2-1,i-2)%P*C(2*i,x3-1-(x1-i)-(x2-i))%P+ans)%P;
 				if(i<x2)ans=(1ll*C(x1-1,i-1)*C(x2-1,i)%P*C(2*i+2,x3+1-(x1-i)-(x2-i))%P+ans)%P;
