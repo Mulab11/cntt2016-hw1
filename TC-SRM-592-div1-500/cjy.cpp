@@ -7,7 +7,7 @@ class LittleElephantAndPermutationDiv1
 	public:
 		int getNumber(int n,int K)
 		{
-			f[0][0][0]=1;
+			f[0][0][0]=1;//f[i][j][k]表示填了i个，有j个上下已对齐，答案为k方案数
 			for(i=0;i<n;i++)for(j=0;j<n;j++)for(e=n-i-i+j,h=i-j,k=0;k<=K;k++)
 			{
 				A(f[i+1][j][min(k+n+n-i-i,K)],e*(e-1));
