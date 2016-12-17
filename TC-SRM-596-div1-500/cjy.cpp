@@ -7,7 +7,7 @@ vector<LL> e,s;
 class BitwiseAnd
 {
 	public:
-		vector<LL> lexSmallest(vector<LL> a,int n)
+		vector<LL> lexSmallest(vector<LL> a,int n)//贪心构造
 		{
 			s=a;s.resize(n);m=a.size();
 			for(i=0;i<m;i++)for(j=0;j<60;j++)if(a[i]>>j&1)v[j]=1;
