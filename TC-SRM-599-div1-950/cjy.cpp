@@ -15,7 +15,7 @@ int dp(int x)
 class SimilarNames
 {
 	public:
-		int count(vector<string> a,vector<int> a1,vector<int> a2)
+		int count(vector<string> a,vector<int> a1,vector<int> a2)//虚树上按子集dp
 		{
 			for(n=a.size(),b[1]=n+1;i<n;b[k]=++i)for(k=1,j=0;j<a[i].size();k=c[k][w],j++)if(w=a[i][j]-'a',!c[k][w])c[k][w]=++t;
 			for(B(1,0),m=a1.size(),i=t=0;i<m;i++)p[++t]=a1[i],p[++t]=a2[i];
