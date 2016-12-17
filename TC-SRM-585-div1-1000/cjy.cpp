@@ -8,7 +8,7 @@ int ca(int x1,int Y1,int x2,int y2){for(int i=0;i<K;i++)if(1ll*(x2-x1)*(y[i]-Y1)
 class EnclosingTriangle
 {
 	public:
-		long long getNumber(int M,vector<int> X,vector<int> Y)
+		long long getNumber(int M,vector<int> X,vector<int> Y)//单调性计算		
 		{
 			for(K=X.size(),x=X,y=Y,m=M,n=4*m,x1=x2=m,t1=t2=m+1,i=1;i<n;ne(j,k),f[i]=t1,s[i]=s[i-1]+t1,g[i++]=t2)
 			{
