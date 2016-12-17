@@ -16,8 +16,8 @@ void dij(int*d)
 class FoxTheLinguist
 {
 	public:
-		int minimalHours(int n,vector<string> M)
-		{
+		int minimalHours(int n,vector<string> M)//最小树形图		
+{
 			T=n*10;memset(d,9,sizeof(d));o=d[0][0];
 			for(;i<M.size();i++)s+=M[i];
 			for(i=0;i<n;i++)d[1<<i][i*10+9]=0;
