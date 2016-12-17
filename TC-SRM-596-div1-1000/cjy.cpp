@@ -11,8 +11,8 @@ class SparseFactorial
 			for(L--,x=m;m>1;i++)if(m%i==0)
 			{
 				for(swap(o,e),s=1,fill(b,b+N,O),fill(c,c+N,r=0);m%i==0;m/=i)s*=i,r++;
-				for(u=0;u<i*r;u++)for(w=u*u,j=w%i;j<s;j+=i)if(b[j]==O)
-				{
+				for(u=0;u<i*r;u++)for(w=u*u,j=w%i;j<s;j+=i)if(b[j]==O)//计算每个素因子对应的答案				
+			{
 					for(v=(j+s-w%s)%s;v&&v%i==0;v/=i)c[j]++;
 					if(c[j]>=r||!v)b[j]=w+1;
 				}
