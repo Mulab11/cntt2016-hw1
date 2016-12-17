@@ -12,7 +12,7 @@ void dp(int p)
 	for(i=0;i<m;i++)for(j=0;j<=n;j++)for(k=0;k<c[_[i]].size();k++)if(no||c[_[i]][k]<c[0][p])f[i+1][j+c[_[i]].size()-1-k]+=f[i][j];
 	for(j=0;j<=n;j++)ans+=f[m][j]*C[j][K-m-!no];
 }
-class Excavations
+class Excavations//暴力DP
 {
 	public:
 		long long count(vi b,vi d,vi A,int k)
