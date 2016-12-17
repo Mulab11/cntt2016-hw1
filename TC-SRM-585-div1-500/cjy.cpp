@@ -9,7 +9,7 @@ class LISNumber
 		int count(vector<int> a,int K)
 		{
 			for(f[0]=v[0]=f[1]=v[1]=u[1]=1;i<N;i++)f[i]=1ll*f[i-1]*i%P,u[i]=1ll*(P-P/i)*u[P%i]%P,v[i]=1ll*v[i-1]*u[i]%P;
-			for(i=1;i<=K;i++)
+			for(i=1;i<=K;i++)//DP容斥			
 			{
 				g[i]=1;S=0;
 				for(auto x : a)g[i]=1ll*g[i]*C(i,x)%P,S+=x;
