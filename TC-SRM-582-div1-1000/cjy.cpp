@@ -5,7 +5,7 @@
 using namespace std;
 int u[N],p2[N],p3[N],i,j,k;
 vector<int> d[M],s[M];
-LL sqr2(LL x)
+LL sqr2(LL x)//辣鸡TC精度爆炸本机AC上面差一卡不进去只能手写(滑稽)
 {
 	LL m,l=1,r=x;
 	while(l<r)if(m=l+r+1>>1,x/m/m)l=m;else r=m-1;
@@ -25,7 +25,7 @@ LL C(LL n)
 		for(auto j : d[y])S+=u[j]*(s[j][z/j]-s[j][i/x/j]);
 	return S;
 }
-class SemiPerfectPower
+class SemiPerfectPower//式子题
 {
 	public:
 		LL count(LL l,LL r)
