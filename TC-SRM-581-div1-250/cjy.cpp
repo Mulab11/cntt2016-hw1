@@ -11,7 +11,7 @@ class SurveillanceSystem
 			for(n=s.size();i<n;i++)b[i+1]=b[i]+(s[i]=='X');
 			for(i=0;i+L<=n;i++)a[b[i+L]-b[i]].push_back(i);
 			for(auto x : c)t[x]++;
-			for(i=0;i<=n;i++)for(j=0;j<n;k=0,j++)
+			for(i=0;i<=n;i++)for(j=0;j<n;k=0,j++)//暴力判断
 			{
 				for(auto x : a[i])k+=(j>=x&&j<x+L);
 				if(k&&t[i])r[j]=max(r[j],1);
