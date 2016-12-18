@@ -13,7 +13,7 @@ class TreeUnion
 			for(i=1;i<=t1;i++)d1[i][a1[i]]=d1[a1[i]][i]=d2[i][a2[i]]=d2[a2[i]][i]=1;
 			for(k=0;k<=t1;k++)for(i=0;i<=t1;i++)for(j=0;j<=t1;j++)d1[i][j]=min(d1[i][j],d1[i][k]+d1[k][j]),d2[i][j]=min(d2[i][j],d2[i][k]+d2[k][j]);
 			for(i=0;i<=t1;i++)for(j=0;j<=t1;j++)f1[d1[i][j]]++,f2[d2[i][j]]++;
-			for(i=1;i<K;i++)s+=.5*f1[i]*f2[K-i];
+			for(i=1;i<K;i++)s+=.5*f1[i]*f2[K-i];//必定是两边各一段
 			return s/t1/(t1+1);
 		}
 };
