@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int a[15],c[8192],i,j,s=1e9,n,m;
-int dfs(int k,int now,int old,int has,int type)
+int dfs(int k,int now,int old,int has,int type)//搜索
 {
 	if(k==n)return now?1e9:0;
 	int tmp=has&now,s=1e9;
