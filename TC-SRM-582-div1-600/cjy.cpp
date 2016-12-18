@@ -12,7 +12,7 @@ class ColorfulBuilding
 			for(i=0;i<A.size();i++)a+=A[i];
 			for(i=0;i<B.size();i++)b+=B[i];
 			for(n=a.size(),i=0;i<n;i++)c[i+1]=(a[i]-'A')*60+b[i]-'A';
-			for(i=1;i<=n;i++)for(j=1;j<=i;j++)
+			for(i=1;i<=n;i++)for(j=1;j<=i;j++)//组合dp
 			{
 				F[i][j]=(j==1?(1ll*f[n-1]*v[n-i]+1ll*v[n-i]*S[c[i]][j])%P:(1ll*S[c[i]][j]-S[c[i]][j-1]+s[j-1]+P)*v[n-i]%P);
 				if(i<n)F[i][j]=1ll*F[i][j]*f[n-i-1]%P;
