@@ -11,7 +11,7 @@ double D(int x,int y,int z)
 class RockPaperScissors
 {
 	public:
-		double bestScore(vector<int> a,vector<int> b,vector<int> c)
+		double bestScore(vector<int> a,vector<int> b,vector<int> c)//概率相关dp
 		{
 			for(n=a.size(),i=f[0]=1;i<=n;i++)f[i]=f[i-1]*i;
 			for(p[0][0][0]=1,i=1;i<=n;i++)for(j=0;j<=i;j++)for(k=0;j+k<=i;k++)
