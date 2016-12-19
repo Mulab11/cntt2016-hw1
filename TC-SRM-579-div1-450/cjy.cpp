@@ -16,7 +16,7 @@ class TravellingPurchasingMan
 			for(memset(d,9,sizeof(d)),memset(f,9,sizeof(f)),n=a.size();i<n;i++)get(a[i],l[i],r[i],c[i]),d[i][i]=0;
 			for(auto x : e)get(x,i=0,j=0,k=0),d[i][j]=d[j][i]=k;
 			for(k=0;k<m;k++)for(i=0;i<m;i++)for(j=0;j<m;j++)d[i][j]=min(d[i][j],d[i][k]+d[k][j]);
-			for(i=0;i<(1<<n);i++)for(t[i]=t[i/2]+i%2,j=0;j<n;j++)if(i>>j&1)
+			for(i=0;i<(1<<n);i++)for(t[i]=t[i/2]+i%2,j=0;j<n;j++)if(i>>j&1)//状态压缩dp
 			{
 				if(i==(1<<j))f[i][j]=d[j][m-1];
 				for(k=0;k<n;k++)if((i>>k&1)&&k!=j)f[i][j]=min(f[i][j],f[i-(1<<j)][k]+d[j][k]);
