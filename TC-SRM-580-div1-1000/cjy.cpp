@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int f[55][55][55][2],v[55][55][55][2],a[55][55],n,m,s[55][55],i,j,O=1<<30,ans=O;
-int dfs(int x,int l,int r,int t)
+int dfs(int x,int l,int r,int t)//搜索
 {
 	if(x==n-1)return a[x][l];
 	if(v[x][l][r][t])return f[x][l][r][t];
