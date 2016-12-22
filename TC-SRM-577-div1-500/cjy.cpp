@@ -7,7 +7,7 @@ int Cost(int a,int b,int c,int d,int e,int f,int g,int h)
 	for(;x<=c;x++)for(y=b;y<=d;y++)if(A[x][y])r+=max(max(abs(x-e),abs(x-g)),max(abs(y-f),abs(y-h)));
 	return r;
 }
-int Work(int a,int b,int c,int d)
+int Work(int a,int b,int c,int d)//消完一个矩形的最小代价
 {
 	if(a==c&&b==d)return 0;
 	if(v[a][b][c][d])return f[a][b][c][d];
