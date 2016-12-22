@@ -9,7 +9,7 @@ LL Pow(LL x,int y){LL r=1;for(;y;x=x*x%P,y>>=1)if(y&1)r=r*x%P;return r;}
 class CharacterBoard
 {
 	public:
-		int countGenerators(vector<string> a,LL W,int _,int __)
+		int countGenerators(vector<string> a,LL W,int _,int __)//对序列长度讨论
 		{
 			for(n=a.size(),m=a[0].size();i<n;i++)for(j=1-m;j<m;j++)for(x=W*i+j,k=1;k*k<=x;k++)if(x%k==0)D.insert(k),D.insert(x/k);
 			if(W>=n*m)s=(Pow(26,W-n*m+1)+P-1)*Pow(25,P-2)%P;
