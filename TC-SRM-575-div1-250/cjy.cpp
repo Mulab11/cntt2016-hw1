@@ -4,7 +4,7 @@ int k;
 class TheNumberGameDivOne
 {
 	public:
-		string find(long long n)
+		string find(long long n)//结论
 		{
 			if(n&(n-1))return n%2?"Brus":"John";
 			while(n-1)n/=2,k++;
