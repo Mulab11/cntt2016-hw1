@@ -2,7 +2,7 @@
 using namespace std;
 int P=1e9+7,v[50][50],S[2],s,n,m,i=0,j,d,r=1;
 vector<string> a;
-void dfs(int x,int y)
+void dfs(int x,int y)//只跟大小奇偶性不同的联通块分别有多少个有关
 {
 	int i=0,j;
 	for(v[x][y]=1,s^=1;i<n;i++)for(j=0;j<m;j++)if(a[i][j]=='v'&&!v[i][j]&&abs(i-x)+abs(j-y)<=d)dfs(i,j);
