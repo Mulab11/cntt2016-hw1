@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #define A(x,y) x=(x+y)%P
 using namespace std;
-int P=1e9+9,n,s[333],f[333][333],g[333][333],h[333][333],i,j,k;
+int P=1e9+9,n,s[333],f[333][333],g[333][333],h[333][333],i,j,k;//f:有顶 g:无顶 h:空
 class TheExperiment
 {
 	public:
