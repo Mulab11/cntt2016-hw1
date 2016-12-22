@@ -11,7 +11,7 @@ int S(int x,int F)
 	if(!--v[f[x]])f[0]=T+1;++v[++f[x]];
 	return r;
 }
-class BoardPainting
+class BoardPainting//最大流
 {
 	public:
 		int minimalSteps(vector<string> a)
