@@ -12,7 +12,7 @@ int S(int x,int F)
 	return r;
 }
 int C(int x,int y){return(x+y)%2?2*(y%2):1;}
-class TheTilesDivOne
+class TheTilesDivOne//最大流
 {
 	public:
 		int find(vector<string> a)
