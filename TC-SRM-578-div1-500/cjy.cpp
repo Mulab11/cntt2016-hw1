@@ -1,6 +1,6 @@
 #include <algorithm>
 using namespace std;
-int P=1e9+7,i,n,m,l[333],r[333],f[333][333],S,k,x,j;
+int P=1e9+7,i,n,m,l[333],r[333],f[333][333],S,k,x,j;//f[i][j]表示最后两个在j和k
 string s,t;
 class WolfInZooDivOne
 {
