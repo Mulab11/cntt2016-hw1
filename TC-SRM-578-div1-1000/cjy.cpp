@@ -8,7 +8,7 @@ int link(int x)
 	for(int i=1;i<=n;i++)if(!vy[i])if(lx[x]+ly[i]!=a[x][i]) slack[i]=min(slack[i],lx[x]+ly[i]-a[x][i]);else if(vy[i]=1,!c[i]||link(c[i]))return c[i]=x;
 	return 0;
 }
-int solve(int x,int f,int _x,int _f,int G)
+int solve(int x,int f,int _x,int _f,int G)//KM
 {
 	for(auto y : E[x])for(auto z : E[_x])if(y!=f&&y!=G&&z!=_f)b[y][z]=solve(y,x,z,_x,G);
 	for(memset(a,i=0,sizeof(a)),memset(c,0,sizeof(c)),memset(ly,0,sizeof(ly));i<E[x].size();i++)for(j=0;j<E[_x].size();j++)if(E[x][i]!=f&&E[x][i]!=G&&E[_x][j]!=_f)a[i+1][j+1]=b[E[x][i]][E[_x][j]];
@@ -28,7 +28,7 @@ int solve(int x,int f,int _x,int _f,int G)
 	for(s=i=1;i<=n;i++)s+=lx[i]+ly[i];
 	return s;
 }
-void dfs2(int x,int f,int G,int F)
+void dfs2(int x,int f,int G,int F)//枚举根
 {
 	for(auto y : E[x])if(y!=f)dfs2(y,x,G,F);
 	ans=max(ans,solve(x,0,G,F,G));
