@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-class SkiResorts
+class SkiResorts//分层最短路
 {
 	public:
 		int n,v[2555],i,j,k;
