@@ -11,7 +11,7 @@ int Calc(vector<int> a)
 	}
 	return s;
 }
-class WolfPack
+class WolfPack//坐标变换后分开计算
 {
 	public:
 		int calc(vector<int> x,vector<int> y,int M)
