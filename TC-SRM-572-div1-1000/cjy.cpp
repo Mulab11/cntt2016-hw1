@@ -8,7 +8,7 @@ int Calc()
 	FA(i)if(g[i]){if(s+=(g[i]>gl)*(max(0,g[i]-i-97)*A+max(0,l+97-gl)*B),l=i,g[i]<gl)return O;gl=g[i];}
 	return s+max(0,l+97-gl)*B;
 }
-class NextAndPrev
+class NextAndPrev//分情况枚举
 {
 	public:
 		int getMinimum(int C,int D,string s,string t)
