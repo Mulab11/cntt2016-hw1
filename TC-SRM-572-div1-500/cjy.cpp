@@ -3,7 +3,7 @@ using namespace std;
 char S[10],s[10];
 vector<int> a,e[10][60];
 int n,m,i,j;
-class EllysBulls
+class EllysBulls//搜索，剪枝
 {
 	public:
 		void dfs(int x,int f)
