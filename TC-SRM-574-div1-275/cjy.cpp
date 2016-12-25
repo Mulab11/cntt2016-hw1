@@ -4,7 +4,7 @@ int a[20],b[20],n,m;
 class TheNumberGame
 {
 	public:
-		int Win()
+		int Win()//判断b是否是a的子串
 		{
 			for(int i=1;i+m-1<=n;i++)
 			{
