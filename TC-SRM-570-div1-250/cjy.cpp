@@ -5,7 +5,7 @@ long long x,y;
 class RobotHerb
 {
 	public:
-		long long getdist(int T,vector<int> a)
+		long long getdist(int T,vector<int> a)//模拟
 		{
 			for(n=a.size();i<4*n;i++)x+=dx[d]*a[i%n],y+=dy[d]*a[i%n],d=(d+a[i%n])%4;
 			for(x*=T/4,y*=T/4,T%=4,i=0;i<T*n;i++)x+=dx[d]*a[i%n],y+=dy[d]*a[i%n],d=(d+a[i%n])%4;
