@@ -5,7 +5,7 @@ using namespace std;
 int n,i,u,v[50];
 LD l[50],h[50],d,l1,h1;
 queue<int> Q;
-class CandyOnDisk
+class CandyOnDisk//SPFA
 {
 	public:
 		string ableToAchieve(vector<int> x,vector<int> y,vector<int> r,int sx,int sy,int tx,int ty)
