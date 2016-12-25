@@ -9,7 +9,7 @@ int dfs(int x,int y,int A=-1,int B=-1)
 	for(;~i;i--)if(ex=x+dx[i],ey=y+dy[i],(ex!=A||ey!=B)&&~ex&&~ey&&ex<n&&ey<m&&a[ex][ey]=='X')return dfs(ex,ey,x,y);
 	return x;
 }
-void calc(int x,int y,int*z)
+void calc(int x,int y,int*z)//判断可能的扩展方向
 {
 	for(i=0;i<n;i++)if(a[i][x]=='X')if(dfs(i,x)==i&&t==m)z[i]=-1;else
 	if(i&&a[i-1][x]!='X'&&dfs(i,x)>=i&&(i==n-1||a[i+1][x]!='X'||a[i][y]!='X'))z[i]=2;else
