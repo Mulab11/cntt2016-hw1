@@ -9,7 +9,7 @@ void dfs(int k,long long x)
 	if(k==n){s=j;return;}
 	if(x>>k&1)dfs(k+1,x&b[k]);else dfs(k+1,x);
 }
-class MagicMolecule
+class MagicMolecule//随机化
 {
 	public:
 		int maxMagicPower(vector<int> A,vector<string> E)
