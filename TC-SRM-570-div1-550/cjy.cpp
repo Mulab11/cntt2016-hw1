@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long LL;
 double s;
-long long f[80][80][2],g[2][80];
+long long f[80][80][2],g[2][80];//f[i][j][k]:点i，答案j，父亲是否选
 int i,j,a,b,o,e=1,n;
 vector<int> E[40];
 void dfs(int x,int F)
