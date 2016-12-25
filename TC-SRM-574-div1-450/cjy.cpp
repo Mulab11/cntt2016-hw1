@@ -2,7 +2,7 @@
 using namespace std;
 long long f[1<<18][18],S;
 int i,j,k,l,r,s[18];
-class PolygonTraversal
+class PolygonTraversal//状压DP
 {
 	public:
 		long long count(int n,vector<int> p)
