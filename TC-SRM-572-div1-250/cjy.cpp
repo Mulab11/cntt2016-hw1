@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int i,j,a[128],k,x,n,S;
-class NewArenaPassword
+class NewArenaPassword//暴力
 {
 	public:
 		int minChange(string s,int K)
