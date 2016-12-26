@@ -26,7 +26,7 @@ public:
 					dir = 1;
 				if(pl[i][0] == pl[j][0] && pl[i][1] > pl[j][1]) 
 					dir = 1;
-				double posi = ((double)(prob[i] * prob[j])) / 1000000;
+				double posi = ((double)(prob[i] * prob[j])) / 1.0e6;
 				double a, b, c;
 				if(pl[i][0] == pl[j][0]) 
 					a = 1, b = 0, c = -pl[i][0];
@@ -39,7 +39,7 @@ public:
 						continue;
 					double nowpl = a * pl[k][0] + b * pl[k][1] + c;
 					bool flag = true;
-					if(abs(nowpl) <= 0.0000000001) //判断能否有k 
+					if(abs(nowpl) <= 1.0e-10) //判断能否有k 
 					{
 						if(b != 0)
 						{
