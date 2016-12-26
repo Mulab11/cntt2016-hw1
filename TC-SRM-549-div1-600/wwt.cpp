@@ -30,9 +30,9 @@ public:
 		for(int i = 0,nsta = sta;i < cnt;i ++,nsta /= 3) 
 			if (!(nsta % 3))
 			{
-				int ret_1 = dfs(cur + 1,coi,sta + 2 * pw[i]);
+				int ret_1 = dfs(cur + 1,coi,sta + 2 * pw[i]); //不放硬币
 				rc[pos[i][0]] ++,cc[pos[i][1]] ++;
-				int ret_2 = dfs(cur + 1,coi + 1,sta + pw[i]) + (cur <= all);
+				int ret_2 = dfs(cur + 1,coi + 1,sta + pw[i]) + (cur <= all); //放了硬币
 				rc[pos[i][0]] --,cc[pos[i][1]] --;
 				if (cur > all)
 				{
