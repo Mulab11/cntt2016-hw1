@@ -20,7 +20,7 @@ public:
 			int cur = que[l];
 			for(int i = 0; i < n; i++)
 			{
-				if(d[i] < 0 && Dist(i, cur, n) <= range[cur])
+				if(d[i] < 0 && Dist(i, cur, n) <= range[cur]) //可以到达 
 					d[que[r++] = i] = d[cur] + 1;
 			}
 		}
