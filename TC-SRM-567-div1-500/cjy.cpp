@@ -2,7 +2,7 @@
 using namespace std;
 int t[50][26],f[50],n,m,i,j,k,x;
 vector<int> s;
-class StringGame
+class StringGame//每次挑选一个可用的元素来比较其他元素
 {
 	public:
 		vector<int> getWinningStrings(vector<string> a)
