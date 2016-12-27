@@ -16,7 +16,7 @@ MX PW(MX x,int y)
 	while(y--)z=CF(z,x);
 	return z;
 }
-class MegaFactorial
+class MegaFactorial//矩阵乘法
 {
 	public:
 		int countTrailingZeros(int N,int M,int B)
