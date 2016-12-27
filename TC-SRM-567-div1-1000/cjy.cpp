@@ -4,7 +4,7 @@ int n,m,P=1e9+9;
 map<int,int> S[11];
 vector<string> f;
 vector<int> a,e;
-int dfs(vector<int> x,int k)
+int dfs(vector<int> x,int k)//记忆化搜索
 {
 	if(!k)return 1;
 	int H=0,i=0,j;
