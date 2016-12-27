@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int i,j,d[99999],s;
-class TheSquareRootDilemma
+class TheSquareRootDilemma//考虑平方因子
 {
 	public:
 		int countPairs(int n,int m)
