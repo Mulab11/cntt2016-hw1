@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int i,j,s,t[2];
-class TheDevice
+class TheDevice//暴力
 {
 	public:
 		int minimumAdditional(vector<string> a)
