@@ -2,7 +2,7 @@
 using namespace std;
 int i,x,s;
 vector<int> b;
-class TheJediTest
+class TheJediTest//贪心
 {
 	public:
 		int minimumSupervisors(vector<int> a,int k)
