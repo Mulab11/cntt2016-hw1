@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 int f[55],s,i,j,n;
-class SpellCards
+class SpellCards//背包
 {
 	public:
 		int maxDamage(vector<int> v,vector<int> w)
