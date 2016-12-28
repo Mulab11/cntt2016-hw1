@@ -9,14 +9,14 @@ struct Point
 	{
 		return Point(x - _pt.x, y - _pt.y);
 	}
-	int operator * (const Point &_pt) const
+	long long operator * (const Point &_pt) const
 	{
-		return x * _pt.y - y * _pt.x;
+		return (long long)x * _pt.y - (long long)y * _pt.x;
 	}
 };
-int n, m, que[30000];
-long long sum[30000];
-Point bd[30000], pt[20];
+int n, m, que[300000];
+long long sum[300000];
+Point bd[300000], pt[20];
 class EnclosingTriangle
 {
 public:
@@ -56,7 +56,10 @@ public:
 			}
 			while(l < r && k >= que[l]) //在队列中找到对应区间 
 				l++;
+			l = max(l, i + 2);
 			ans += sum[r - 1] - sum[l - 1] - (long long)k * (r - l); //统计答案 
+			if(r - 1 == k + 1) //端点不能重合 
+				ans--;
 		}
 		return ans;
 	}
