@@ -5,7 +5,7 @@ using namespace std;
 int f[2][50][50],b[50][50],p[2500],P=1e9+9,t[2500],dx[4]={0,1,0,-1},dy[4]={1,0,-1,0},n,m,i,j,F=1,T,x,y,s,o,e=1;
 map<I4,int> S;
 int C(int k){if(x=i+dx[k],y=j+dy[k],~x&&~y&&x<n&&y<m)return b[x][y]?f[o][x][y]:f[o][i][j];return 0;} 
-class CoinsGame
+class CoinsGame//迭代
 {
 	public:
 		int ways(vector<string> a)
