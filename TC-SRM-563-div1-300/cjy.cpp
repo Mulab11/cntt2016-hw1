@@ -2,7 +2,7 @@
 using namespace std;
 string S;
 int i,j,k,l,x,t[55][128],p[128],n;
-class FoxAndHandle
+class FoxAndHandle//贪心
 {
 	public:
 		string lexSmallestName(string s)
