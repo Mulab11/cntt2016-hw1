@@ -1,16 +1,16 @@
 #include <algorithm>
 using namespace std;
 const int p = 1000000007;
-int c[2501][2501];
+int c[3001][3001];
 class LISNumber
 {
 public:
 	int count(vector<int> cnt, int k)
 	{
-		int n = 0, f[2501] = {0};
+		int n = 0, f[3001] = {0};
 		for(int i = 0; i < cnt.size(); i++)
 			n += cnt[i];
-		for(int i = 0; i <= 2500; i++)
+		for(int i = 0; i <= 3000; i++)
 		{
 			c[i][0] = c[i][i] = 1;
 			for(int j = 1; j < i; j++)
