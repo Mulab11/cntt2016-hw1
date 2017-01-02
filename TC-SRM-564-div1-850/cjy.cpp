@@ -2,7 +2,7 @@
 #define UP(x,y) (x+=1ll*f[j][k][l]*(y)%P)%=P
 using namespace std;
 int v[30],i,s,f[55][2][2],j,k,l,P=1e9+7,n;
-class DefectiveAddition
+class DefectiveAddition//分情况讨论，DP
 {
 	public:
 		int count(vector<int> a,int m)
