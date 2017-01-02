@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 long long s,i;
-class AlternateColors2
+class AlternateColors2//讨论，计数
 {
 	public:
 		long long countWays(int n,int k)
