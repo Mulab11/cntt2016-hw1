@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-class KnightCircuit2
+class KnightCircuit2//结论
 {
 	public:
 		int maxSize(int n,int m)
