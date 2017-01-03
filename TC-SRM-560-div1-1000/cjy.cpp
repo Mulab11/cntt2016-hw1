@@ -4,7 +4,7 @@ int e[13][13],i,j,t,n,N,f[13];
 double re,v[13],E,F;
 vector<int> l,r;
 string S;
-void dfs(int k)
+void dfs(int k)//枚举每个变量的状态
 {
 	if(k<n)v[k]=l[k],dfs(k+1),v[k]=r[k],dfs(k+1),f[k]=1,dfs(k+1),f[k]=0;else
 	{
