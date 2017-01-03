@@ -18,50 +18,26 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 typedef vector<pii> vpii;
 
-map<pair<int,ll>,ll> dp;
-int n,a[300010];
-bool nprime[1000010];
+//a simple dp problem
 
-ll dfs(int k,ll x)
-{
-	if (k>n) return 1;
-	if (x<a[k]) return 1;
-	if (ll(a[k])*a[k]>x) //we can arrange at most one prime
-	{
-		int l=k,r=n;
-		while (l<=r)
-		{
-			int mid=(l+r)>>1;
-			if (a[mid]<=x) l=mid+1; else r=mid-1;
-		}
-		return l-k+1;
-	}
-	ll s=dfs(k+1,x);
-	x/=a[k];
-	while (x)
-	{
-		s+=dfs(k+1,x);
-		x=x/a[k]/a[k];
-	}
-	return s;
-}
+int dp[55];
 
-struct HolyNumbers 
+struct CuttingBitString 
 {
-    long long count(long long upTo, int maximalPrime)
+    int getmin(string S)
     {
-    	n=0;
-    	//Euler's Sieve
-    	for (int i=2;i<=maximalPrime;i++)
+    	int n=S.size();dp[0]=0;
+    	for (int i=1;i<=n;i++)
     	{
-    		if (!nprime[i]) a[++n]=i;
-    		for (int j=1;j<=n;j++)
+    		dp[i]=n+1;
+    		for (int j=0;j<i;j++)
     		{
-    			if (i*a[j]>maximalPrime) break;
-    			nprime[i*a[j]]=1;
-    			if (i%a[j]==0) break;
+    			ll t=0;
+    			for (int k=j;k<i;k++) t=t*2+S[k]-'0';
+    			while (t&&t%5==0) t/=5;
+    			if (t==1&&S[j]=='1') dp[i]=min(dp[i],dp[j]+1);
     		}
     	}
-    	return dfs(1,upTo);
+    	if (dp[n]==n+1) return -1; else return dp[n];
     }
 };
