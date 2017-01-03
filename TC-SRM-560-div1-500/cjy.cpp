@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int a[300][300],b[300][300],f[300][300],i,j,k;
-class DrawingPointsDivOne
+class DrawingPointsDivOne//枚举
 {
 	public:
 		int maxSteps(vector<int> x,vector<int> y)
