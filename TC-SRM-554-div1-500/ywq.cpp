@@ -18,50 +18,28 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 typedef vector<pii> vpii;
 
-map<pair<int,ll>,ll> dp;
-int n,a[300010];
-bool nprime[1000010];
+pii b[55];
+bool ok[55];
 
-ll dfs(int k,ll x)
+struct TheBrickTowerMediumDivOne 
 {
-	if (k>n) return 1;
-	if (x<a[k]) return 1;
-	if (ll(a[k])*a[k]>x) //we can arrange at most one prime
-	{
-		int l=k,r=n;
-		while (l<=r)
-		{
-			int mid=(l+r)>>1;
-			if (a[mid]<=x) l=mid+1; else r=mid-1;
-		}
-		return l-k+1;
-	}
-	ll s=dfs(k+1,x);
-	x/=a[k];
-	while (x)
-	{
-		s+=dfs(k+1,x);
-		x=x/a[k]/a[k];
-	}
-	return s;
-}
-
-struct HolyNumbers 
-{
-    long long count(long long upTo, int maximalPrime)
+    vector <int> find(vector <int> heights)
     {
-    	n=0;
-    	//Euler's Sieve
-    	for (int i=2;i<=maximalPrime;i++)
+    	int n=heights.size();
+    	vi ans;ans.pb(0);
+    	int k=0;ok[k]=1;
+    	while (1)
     	{
-    		if (!nprime[i]) a[++n]=i;
-    		for (int j=1;j<=n;j++)
-    		{
-    			if (i*a[j]>maximalPrime) break;
-    			nprime[i*a[j]]=1;
-    			if (i%a[j]==0) break;
-    		}
+    		int p=k+1;
+    		while (p<n&&heights[p]>heights[k]) p++;
+    		if (p==n) break;
+    		ans.pb(p);ok[p]=1;k=p;
     	}
-    	return dfs(1,upTo);
+        //arrange the rest in non-decreasing order
+    	int m=0;
+    	for (int i=0;i<n;i++) if (!ok[i]) b[m++]=mp(heights[i],i);
+    	sort(b,b+m);
+    	for (int i=0;i<m;i++) ans.pb(b[i].y);
+    	return ans;
     }
 };
