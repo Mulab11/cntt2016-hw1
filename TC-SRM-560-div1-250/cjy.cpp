@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n,t[55],i=1,s;
-class TomekPhone
+class TomekPhone//贪心
 {
 	public:
 		int minKeystrokes(vector<int> a,vector<int> b)
