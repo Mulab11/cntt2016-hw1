@@ -18,50 +18,61 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 typedef vector<pii> vpii;
 
-map<pair<int,ll>,ll> dp;
-int n,a[300010];
-bool nprime[1000010];
+const int mod=1000000007;
+int f1[55][2],f2[55][2],dp1[55],dp2[55];
 
-ll dfs(int k,ll x)
+struct TwoConvexShapes 
 {
-	if (k>n) return 1;
-	if (x<a[k]) return 1;
-	if (ll(a[k])*a[k]>x) //we can arrange at most one prime
-	{
-		int l=k,r=n;
-		while (l<=r)
-		{
-			int mid=(l+r)>>1;
-			if (a[mid]<=x) l=mid+1; else r=mid-1;
-		}
-		return l-k+1;
-	}
-	ll s=dfs(k+1,x);
-	x/=a[k];
-	while (x)
-	{
-		s+=dfs(k+1,x);
-		x=x/a[k]/a[k];
-	}
-	return s;
-}
-
-struct HolyNumbers 
-{
-    long long count(long long upTo, int maximalPrime)
+    int countWays(vector <string> grid)
     {
-    	n=0;
-    	//Euler's Sieve
-    	for (int i=2;i<=maximalPrime;i++)
+    	int n=grid.size(),m=grid[0].size();
+    	for (int i=0;i<n;i++)
     	{
-    		if (!nprime[i]) a[++n]=i;
-    		for (int j=1;j<=n;j++)
+            //find the left(right) most 'B'('W') on the ith line
+    		f1[i][0]=f1[i][1]=m;f2[i][0]=f2[i][1]=-1;
+    		for (int j=0;j<m;j++)
+    			if (grid[i][j]=='B') f2[i][0]=j; else if (grid[i][j]=='W') f2[i][1]=j;
+    		for (int j=m-1;j>=0;j--)
+    			if (grid[i][j]=='B') f1[i][0]=j; else if (grid[i][j]=='W') f1[i][1]=j;
+    	}
+    	int ans=0;
+    	for (int k=0;k<2;k++)
+    	{
+    		for (int j=0;j<=m;j++) if (j<=f1[0][k^1]&&j>f2[0][k]) dp1[j]=dp2[j]=1; else dp1[j]=dp2[j]=0;
+    		for (int i=1;i<n;i++)
     		{
-    			if (i*a[j]>maximalPrime) break;
-    			nprime[i*a[j]]=1;
-    			if (i%a[j]==0) break;
+    			int s=0;
+    			for (int j=0;j<=m;j++)
+    			{
+    				s=(s+dp1[j])%mod;
+    				if (j<=f1[i][k^1]&&j>f2[i][k]) dp1[j]=s; else dp1[j]=0;
+    			}
+    			s=0;
+    			for (int j=m;j>=0;j--)
+    			{
+    				s=(s+dp2[j])%mod;
+    				if (j<=f1[i][k^1]&&j>f2[i][k]) dp2[j]=s; else dp2[j]=0;
+    			}
+    		}
+    		for (int j=0;j<=m;j++) ans=((ans+dp1[j])%mod+dp2[j])%mod;
+            //we've counted the situation that the boundary is a vertical twice
+    		for (int j=0;j<=m;j++)
+    		{
+    			bool ok=1;
+    			for (int i=0;i<n;i++)
+    				if (!(j<=f1[i][k^1]&&j>f2[i][k])) ok=0;
+    			ans=(ans-ok+mod)%mod;
     		}
     	}
-    	return dfs(1,upTo);
+        //we've counted the situation that the boundary is a horizontal twice
+    	for (int i=0;i<n;i++)
+	    	for (int k=0;k<2;k++)
+	    	{
+	    		bool ok=1;
+	    		for (int j=0;j<i;j++) if (f1[j][k]<m) ok=0;
+	    		for (int j=i;j<n;j++) if (f1[j][k^1]<m) ok=0;
+	    		ans=(ans-ok+mod)%mod;
+	    	}
+    	return ans;	
     }
 };
