@@ -18,50 +18,65 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 typedef vector<pii> vpii;
 
-map<pair<int,ll>,ll> dp;
-int n,a[300010];
-bool nprime[1000010];
+int n,l,r,m;
+ll f[40];
+string s,w;
 
-ll dfs(int k,ll x)
+ll dfs(int k,ll t,int z)
 {
-	if (k>n) return 1;
-	if (x<a[k]) return 1;
-	if (ll(a[k])*a[k]>x) //we can arrange at most one prime
+	if (t==0) //the intersection is empty
 	{
-		int l=k,r=n;
-		while (l<=r)
-		{
-			int mid=(l+r)>>1;
-			if (a[mid]<=x) l=mid+1; else r=mid-1;
-		}
-		return l-k+1;
+		bool ok=0;
+		for (int i=k;i<n;i++) if (f[i]!=-1) ok=1;
+		if (!ok) return z; else return 0;
 	}
-	ll s=dfs(k+1,x);
-	x/=a[k];
-	while (x)
+	if (k>=n)
 	{
-		s+=dfs(k+1,x);
-		x=x/a[k]/a[k];
+		ll s=1;
+		while (t) {if (t&1) s<<=1;t>>=1;}
+		return s*z;
 	}
+	ll s=dfs(k+1,t,z);
+	if (f[k]!=-1) s+=dfs(k+1,t&f[k],-z);
 	return s;
 }
 
-struct HolyNumbers 
+struct MapGuessing 
 {
-    long long count(long long upTo, int maximalPrime)
+    long long countPatterns(string goal, vector <string> code)
     {
-    	n=0;
-    	//Euler's Sieve
-    	for (int i=2;i<=maximalPrime;i++)
+    	n=goal.size();s="";
+    	for (int i=0;i<code.size();i++) s+=code[i];
+    	m=s.size();
+    	int k=0;l=0;r=0;
+    	for (int i=0;i<m;i++)
     	{
-    		if (!nprime[i]) a[++n]=i;
-    		for (int j=1;j<=n;j++)
-    		{
-    			if (i*a[j]>maximalPrime) break;
-    			nprime[i*a[j]]=1;
-    			if (i%a[j]==0) break;
-    		}
+    		if (s[i]=='<') k--;
+    		if (s[i]=='>') k++;
+    		l=min(l,k);r=max(r,k);
     	}
-    	return dfs(1,upTo);
+    	for (int i=0;i<n;i++)
+    	{
+    		w=goal;
+    		if (i+l>=0&&i+r<n)
+    		{
+    			int k=i;ll t=0;f[i]=0;
+    			for (int j=0;j<m;j++)
+    			{
+    				if (s[j]=='<') k--;
+    				if (s[j]=='>') k++;
+    				if (s[j]=='0'||s[j]=='1')
+    				{
+    					t|=(1ll<<k);
+    					bool ok=1;w[k]=s[j];
+    					for (int p=0;p<n;p++) if (w[p]!=goal[p]) ok=0;
+    					if (ok) f[i]=t;//all the positions after operations are the same as goal
+    				}
+    			}
+    		}
+    		else
+    			f[i]=-1;
+    	}
+    	return dfs(0,(1ll<<n)-1,-1)+(1ll<<n);
     }
 };
