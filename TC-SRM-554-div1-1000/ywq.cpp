@@ -18,50 +18,102 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 typedef vector<pii> vpii;
 
-map<pair<int,ll>,ll> dp;
-int n,a[300010];
-bool nprime[1000010];
+const int mod=1234567891;
 
-ll dfs(int k,ll x)
+int c0,h,n,g[15];
+unsigned cc[5000][6];
+bool ok[7];
+
+struct matrix
 {
-	if (k>n) return 1;
-	if (x<a[k]) return 1;
-	if (ll(a[k])*a[k]>x) //we can arrange at most one prime
-	{
-		int l=k,r=n;
-		while (l<=r)
+	unsigned d[90][90];
+}a,b,c,d;
+
+matrix operator *(matrix a,matrix b)
+{
+	for (int i=0;i<n;i++)
+		for (int j=0;j<n;j++)
 		{
-			int mid=(l+r)>>1;
-			if (a[mid]<=x) l=mid+1; else r=mid-1;
+			c.d[i][j]=0;
+			for (int k=0;k<n;k++) c.d[i][j]=(ll(a.d[i][k])*b.d[k][j]+c.d[i][j])%mod;
 		}
-		return l-k+1;
-	}
-	ll s=dfs(k+1,x);
-	x/=a[k];
-	while (x)
-	{
-		s+=dfs(k+1,x);
-		x=x/a[k]/a[k];
-	}
-	return s;
+	return c;
 }
 
-struct HolyNumbers 
+int calc1(int *a) //find the type of the layer
 {
-    long long count(long long upTo, int maximalPrime)
+	if (a[0]==a[1]&&a[1]==a[2]&&a[2]==a[3]) return 0;
+	if (a[0]==a[1]&&a[0]==a[2]) return 1;
+	if (a[0]==a[1]&&a[0]==a[3]) return 1;
+	if (a[0]==a[2]&&a[0]==a[3]) return 1;
+	if (a[1]==a[2]&&a[1]==a[3]) return 1;
+	if (a[0]==a[2]&&a[1]==a[3]) return 2;
+	if (a[0]==a[1]&&a[2]==a[3]) return 2;
+	if (a[0]==a[3]&&a[1]==a[2]) return 3;
+	if (a[0]==a[1]||a[0]==a[2]||a[1]==a[3]||a[2]==a[3]) return 4;
+	if (a[0]==a[3]||a[1]==a[2]) return 5;
+	return 6;
+}
+
+int calc2(int *a)
+{
+	return (a[0]==a[1])+(a[1]==a[3])+(a[3]==a[2])+(a[2]==a[0]);
+}
+
+void dfs(int k,int n)
+{
+	if (n>c0) return;
+	if (k==4)
+	{
+		int x=calc1(g),y=calc2(g);
+		if (y<=h) d.d[0][y*7+x]=(d.d[0][y*7+x]+cc[c0][n])%mod;
+		if (ok[x]) return;ok[x]=1;//we should count one type once
+	}
+	if (k==8)
+	{
+		int x1=calc1(g),y1=calc2(g);
+		int x2=calc1(g+4),y2=calc2(g+4);
+		int y3=0;
+		for (int i=0;i<4;i++) if (g[i]==g[i+4]) y3++;
+		int n0=0;for (int i=0;i<4;i++) n0=max(n0,g[i]);
+		for (int i=0;i+y1+y2+y3<=h;i++)
+			a.d[(y1+i)*7+x1][(y1+y2+y3+i)*7+x2]=(a.d[(y1+i)*7+x1][(y1+y2+y3+i)*7+x2]+cc[c0-n0][n-n0])%mod;
+		return;
+	}
+	for (int i=1;i<=n;i++)
+	{
+		g[k]=i;dfs(k+1,n);
+	}
+	g[k]=n+1;dfs(k+1,n+1);
+}
+
+struct TheBrickTowerHardDivOne 
+{
+    int find(int C, int K, long long H)
     {
-    	n=0;
-    	//Euler's Sieve
-    	for (int i=2;i<=maximalPrime;i++)
+    	c0=C;
+    	for (int i=0;i<=C;i++)
     	{
-    		if (!nprime[i]) a[++n]=i;
-    		for (int j=1;j<=n;j++)
-    		{
-    			if (i*a[j]>maximalPrime) break;
-    			nprime[i*a[j]]=1;
-    			if (i%a[j]==0) break;
-    		}
+    		cc[i][0]=1;
+    		for (int j=1;j<=4;j++) cc[i][j]=ll(cc[i][j-1])*(i-j+1)%mod;
     	}
-    	return dfs(1,upTo);
+    	h=K;n=7*(h+1)+1;
+    	for (int i=0;i<n;i++)
+    		for (int j=0;j<n;j++)
+    		{
+    			a.d[i][j]=0;
+    			b.d[i][j]=(i==j);
+    		}
+    	for (int i=0;i<n;i++) d.d[0][i]=0;
+    	dfs(0,0);
+    	for (int i=0;i<n;i++) a.d[i][n-1]=1;
+    	while (H)
+    	{
+    		if (H&1) b=b*a;
+    		a=a*a;H>>=1;
+    	}
+    	int ans=0;
+    	for (int i=0;i<n-1;i++) ans=(ll(d.d[0][i])*b.d[i][n-1]+ans)%mod;
+    	return ans;
     }
 };
