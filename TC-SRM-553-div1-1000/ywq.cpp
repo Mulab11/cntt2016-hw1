@@ -18,50 +18,55 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 typedef vector<pii> vpii;
 
-map<pair<int,ll>,ll> dp;
-int n,a[300010];
-bool nprime[1000010];
+const ll inf=1000000000000000ll;
+const ll inf2=1000000000000ll;
 
-ll dfs(int k,ll x)
+int n;
+ll f[55][55][105];
+
+void addedge(int x,int y,int z,ll l)
 {
-	if (k>n) return 1;
-	if (x<a[k]) return 1;
-	if (ll(a[k])*a[k]>x) //we can arrange at most one prime
-	{
-		int l=k,r=n;
-		while (l<=r)
-		{
-			int mid=(l+r)>>1;
-			if (a[mid]<=x) l=mid+1; else r=mid-1;
-		}
-		return l-k+1;
-	}
-	ll s=dfs(k+1,x);
-	x/=a[k];
-	while (x)
-	{
-		s+=dfs(k+1,x);
-		x=x/a[k]/a[k];
-	}
-	return s;
+    f[x][y][z+n]=min(f[x][y][z+n],l);
 }
 
-struct HolyNumbers 
+struct YamanoteLine 
 {
-    long long count(long long upTo, int maximalPrime)
+    long long howMany(int n0, vector <int> s1, vector <int> t1, vector <int> l1, vector <int> s2, vector <int> t2, vector <int> l2)
     {
-    	n=0;
-    	//Euler's Sieve
-    	for (int i=2;i<=maximalPrime;i++)
-    	{
-    		if (!nprime[i]) a[++n]=i;
-    		for (int j=1;j<=n;j++)
-    		{
-    			if (i*a[j]>maximalPrime) break;
-    			nprime[i*a[j]]=1;
-    			if (i%a[j]==0) break;
-    		}
-    	}
-    	return dfs(1,upTo);
+        n=n0;
+        for (int i=0;i<=n;i++)
+            for (int j=0;j<=n;j++)
+                for (int k=0;k<=2*n;k++)
+                    f[i][j][k]=inf;
+        for (int i=0;i<=n;i++) f[i][i][n]=0;
+        for (int i=0;i<n;i++) addedge(i+1,i,0,-1);
+        addedge(0,n,1,0);addedge(n,0,-1,0);
+        int m=s1.size();
+        for (int i=0;i<m;i++)
+            if (s1[i]<t1[i]) addedge(t1[i],s1[i],0,-l1[i]); else addedge(t1[i],s1[i],1,-l1[i]);
+        m=s2.size();
+        for (int i=0;i<m;i++)
+            if (s2[i]<t2[i]) addedge(s2[i],t2[i],0,l2[i]); else addedge(s2[i],t2[i],-1,l2[i]);
+        //floyd
+        for (int k=0;k<=n;k++)
+            for (int i=0;i<=n;i++)
+                for (int j=0;j<=n;j++)
+                    for (int p=0;p<=2*n;p++)
+                        for (int q=max(0,n-p);q<=min(2*n,3*n-p);q++)
+                        {
+                            int x=p+q-n;
+                            f[i][j][x]=min(f[i][j][x],f[i][k][p]+f[k][j][q]);
+                        }
+        ll l=n,r=inf;
+        for (int i=0;i<=n;i++) //enumerate the node on the circle
+            for (int j=0;j<=2*n;j++) //enumerate the length of the circle
+            {
+                if (j<n) r=min(r,f[i][i][j]/(n-j));
+                if (j==n&&f[i][i][j]<0) return 0;
+                if (j>n) l=max(l,(-f[i][i][j]-1)/(j-n)+1);
+            }
+        if (l>r) return 0;
+        if (r>=inf2) return -1;
+        return r-l+1;
     }
 };
