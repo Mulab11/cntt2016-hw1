@@ -2,7 +2,7 @@
 
 ---
 
-作者：闵梓轩 王聿中
+作者：闵梓轩 王聿中 徐明宽
 
 关键词：动态规划，曼哈顿距离
 
@@ -24,16 +24,26 @@
 
 ### 算法三
 
-考虑在算法一中如何快速计算每一个棋子的代价。  
-公式：$$\left|a-b\right|=max\left\{a-b,b-a\right\}$$  
+考虑在算法一中如何快速计算每一个棋子的代价。 
+公式：$$\left|a-b\right|=max\left\{a-b,b-a\right\}$$ 
 $$cost_{i}=max\left\{\left|x_{i}-x_{j}\right|+\left|y_{i}-y_{j}\right|\right\}\\
 =max\left\{max\left\{ x_{i}-x_{j},x_{j}-x_{i} \right\} +max\left\{ y_{i}-y_{j} , y_{j}-y_{i} \right\} \right\}\\
 =max\left\{max\left\{\left(x_{i}+y_{i}\right)-\left(x_{j}+y_{j}\right),\left(x_{j}+y_{j}\right)-\left(x_{i}+y_{i}\right)\right\},max\left\{\left(x_{i}-y_{i}\right)-\left(x_{j}-y_{j}\right),\left(x_{j}-y_{j}\right)-\left(x_{i}-y_{i}\right)\right\}\right\}\\
-=max\left\{\left|\left(x_{i}+y_{i}\right)-\left(x_{j}+y_{j}\right)\right|,\left|\left(x_{i}-y_{i}\right)-\left(x_{j}-y_{j}\right)\right|\right\}$$  
-如果我们定义重新定义一个棋子的新坐标$$x_{i}^{'}=x_{i}+y_{i},y_{i}^{'}=x_{i}-y_{i}$$  
-，那么$$cost_{i}=max\left\{\left|x_{i}^{'}-x_{j}^{'}\right|,\left|y_{i}^{'}-y_{j}^{'}\right|\right\}$$  
-于是我们在算法一中使用新坐标进行计算代价时只需要记录之前的棋子中x/y的最小/最大值（$$x_{min},x_{max},y_{min},y_{max}$$），即可$$O\left(1\right)$$计算出该棋子的代价。  
-此时算法二中的状态也可以从取完一个集合等价转换成取完以$$x_{min},x_{max},y_{min},y_{max}$$为边界的矩形内的点（可以证明当矩形扩大时再取这些点不会比没扩大时代价更小）。  
+=max\left\{\left|\left(x_{i}+y_{i}\right)-\left(x_{j}+y_{j}\right)\right|,\left|\left(x_{i}-y_{i}\right)-\left(x_{j}-y_{j}\right)\right|\right\}$$
+如果我们定义重新定义一个棋子的新坐标$$x_{i}^{'}=x_{i}+y_{i},y_{i}^{'}=x_{i}-y_{i}$$ 
+，那么$$cost_{i}=max\left\{\left|x_{i}^{'}-x_{j}^{'}\right|,\left|y_{i}^{'}-y_{j}^{'}\right|\right\}$$
+于是我们在算法一中使用新坐标进行计算代价时只需要记录之前的棋子中x/y的最小/最大值（$$x_{min},x_{max},y_{min},y_{max}$$），即可$$O\left(1\right)$$计算出该棋子的代价。
+此时算法二中的状态也可以从取完一个集合等价转换成取完以$$x_{min},x_{max},y_{min},y_{max}$$为边界的矩形内的点（可以证明当矩形扩大时再取这些点不会比没扩大时代价更小）。
 设坐标范围为$$l$$新的DP状态数为$$O\left(l^{4}\right)$$（其中自带$${0.5}^{2}$$的常数），状态转移枚举新取的点为$$O\left(l^{2}\right)$$（由于点的数目不变，因此自带$${0.5}^{2}$$的常数），计算代价花费$$O\left(l^{2}\right)$$（仍自带$${0.5}^{2}$$的常数），总的时间复杂度为$$O\left(l^{8}\right)$$，同时由于新坐标的范围由于两个坐标相加减变为了原来的两倍，所以$$l<16$$。
 ~~上述复杂度看起来不能通过，但是实际运行时达不到上述复杂度所该有的运算量，我也无法证明是常数过小，还是上面的时间复杂度上界估算不紧确。如果是后者，欢迎各位大佬给出更紧确的复杂度上界。~~
 由于有$${0.5}^{6}$$的常数，因此这个算法可以通过本题。
+
+### 算法四
+
+~~上面的复杂度看上去好像不太优美啊~~
+
+同样进行坐标转换$$x_{i}^{'}=x_{i}+y_{i},y_{i}^{'}=x_{i}-y_{i}$$ ，DP状态定义为$$f\left(x_{mn},x_{mx},y_{mn},y_{mx}\right)$$（注意区别于$$x_{min},x_{max},y_{min},y_{max}$$，例如可能不存在一个棋子的横坐标为$$x_{mn}$$）表示取完以$$x_{mn},x_{mx},y_{mn},y_{mx}$$为边界的矩形内的所有棋子的最小代价。转移时并不用枚举所有新取的点，因为新取的点一定在矩形的最边上一行或一列（先取更远的点肯定不优）；或者说，$$f\left(x_{mn},x_{mx},y_{mn},y_{mx}\right)$$只会由$$f\left(x_{mn}+1,x_{mx},y_{mn},y_{mx}\right)$$、$$f\left(x_{mn},x_{mx}-1,y_{mn},y_{mx}\right)$$、$$f\left(x_{mn},x_{mx},y_{mn}+1,y_{mx}\right)$$、$$f\left(x_{mn},x_{mx},y_{mn},y_{mx}-1\right)$$转移而来。可以花$$O\left(l^{2}\right)$$的时间算出当前矩形里的棋子的x/y的最小/最大值（$$x_{min},x_{max},y_{min},y_{max}$$），即可在$$4\cdot l \cdot O\left(1\right) = O\left(l\right)$$的时间内转移，于是总时间复杂度降到了$$O\left(l^{6}\right)$$。也可以花$$O\left(l^{4}\right)$$的时间预处理每个矩形里的棋子的x/y的最小/最大值，这样总时间复杂度就降到了$$O\left(l^{5}\right)$$。
+
+### 算法五
+
+考虑对算法四进一步优化。每次转移时新取的棋子的代价为$$\max\{x_i - x_{min}, x_{max} - x_i, y_i - y_{min}, y_{max} - y_i\}$$，而（不妨设）新取一行时这$$O\left(l\right)$$个棋子的$$y_i$$均相同（就是$$y_{max}$$或$$y_{min}$$），所以代价为$$\max\{x_i - x_{min}, x_{max} - x_i, y_{max} - y_{min}\}$$。看上去$$O\left(l\right)$$个这种式子的和还是不太好优化，但是我猜想存在一种最优的DP转移方案使得$$x_i$$不等于$$x_{min}$$或$$x_{max}$$时$$x_i - x_{min}$$和$$x_{max} - x_i$$均不超过$$y_{max} - y_{min}$$，这样预处理一下棋子个数的前缀和就能在$$O(1)$$的时间内转移了（代价就等于$$num \cdot \max\{x_{max} - x_{min}, y_{max} - y_{min}\}$$，其中$$num$$为棋子个数）。总时间复杂度为$$O\left(l^{4}\right)$$。代码通过了system test但我不太会证明这个算法的正确性，欢迎大家给出证明或者叉掉我的[代码](xumingkuan.cpp)。

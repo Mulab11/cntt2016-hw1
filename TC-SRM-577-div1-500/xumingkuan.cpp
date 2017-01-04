@@ -82,6 +82,12 @@ public:
 							f[i1][i2][j1][j2] = 0;
 							continue;
 						}
+						const int now = max(pos[i1][i2][j1][j2][1] - pos[i1][i2][j1][j2][0], pos[i1][i2][j1][j2][3] - pos[i1][i2][j1][j2][2]);
+						update(f[i1][i2][j1][j2], f[i1 + 1][i2][j1][j2] + (rowsum[i1][j2 + 1] - rowsum[i1][j1]) * now);
+						update(f[i1][i2][j1][j2], f[i1][i2 - 1][j1][j2] + (rowsum[i2][j2 + 1] - rowsum[i2][j1]) * now);
+						update(f[i1][i2][j1][j2], f[i1][i2][j1 + 1][j2] + (colsum[j1][i2 + 1] - colsum[j1][i1]) * now);
+						update(f[i1][i2][j1][j2], f[i1][i2][j1][j2 - 1] + (colsum[j2][i2 + 1] - colsum[j2][i1]) * now);
+						/*
 						const int dist[4] = {pos[i1][i2][j1][j2][1] - i1, i2 - pos[i1][i2][j1][j2][0], pos[i1][i2][j1][j2][3] - j1, j2 - pos[i1][i2][j1][j2][2]};//the cost to place pebbles at up/down/left/right
 						if(i1 != i2 && pos[i1][i2][j1][j2][2] == pos[i1 + 1][i2][j1][j2][2] && pos[i1][i2][j1][j2][3] == pos[i1 + 1][i2][j1][j2][3])//up: row i1 (didn't update 'pos' left or right)
 							update(f[i1][i2][j1][j2], f[i1 + 1][i2][j1][j2] + (rowsum[i1][j2 + 1] - rowsum[i1][j1]) * max(dist[0], max(dist[2], dist[3])));
@@ -104,6 +110,7 @@ public:
 						}
 						//if(f[i1][i2][j1][j2] && f[i1][i2][j1][j2] != f[i1 + 1][i2][j1][j2] && f[i1][i2][j1][j2] != f[i1][i2 - 1][j1][j2] && f[i1][i2][j1][j2] != f[i1][i2][j1 + 1][j2] && f[i1][i2][j1][j2] != f[i1][i2][j1][j2 - 1])//for debug
 						//	printf("f[%d,%d][%d,%d] = %d\n", i1, i2, j1, j2, f[i1][i2][j1][j2]);
+						*/
 					}
 		return f[0][n][0][n];
 	}
