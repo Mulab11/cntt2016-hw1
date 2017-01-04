@@ -16,7 +16,7 @@
 * [551-450](TC-SRM-551-div1-450/solution.md)
 * [551-1000](TC-SRM-551-div1-1000/solution.md)
 * [552-250](TC-SRM-552-div1-250/README.md)
-* [552-500](TC-SRM-552-div1-500/README.md)
+* [552-500](TC-SRM-552-div1-500/solution.md)
 * [552-900](TC-SRM-552-div1-900/README.md)
 * [553-250](TC-SRM-553-div1-250/solution.md)
 * [553-500](TC-SRM-553-div1-500/solution.md)
