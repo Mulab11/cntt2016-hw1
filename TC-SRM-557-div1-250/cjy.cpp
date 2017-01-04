@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int l,i;
-class FoxAndMountainEasy
+class FoxAndMountainEasy//模拟
 {
 	public:
 		string possible(int n,int a,int b,string s)
