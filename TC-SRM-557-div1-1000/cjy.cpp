@@ -2,7 +2,7 @@
 using namespace std;
 int i,j,k=62,n;
 long long s;
-class XorAndSum
+class XorAndSum//高斯消元求线性基
 {
 	public:
 		int n;
