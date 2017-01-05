@@ -3,7 +3,7 @@
 using namespace std;
 int T,h[55],l[M],e[M],c[M],v[55],f[55],t,s,O=1<<30,F=1,i,j,n;
 void A(int x,int y,int z){e[++t]=y,l[t]=h[x],h[x]=t,c[t]=z;e[++t]=x,l[t]=h[y],h[y]=t,c[t]=0;}
-int S(int x,int F)
+int S(int x,int F)//网络流
 {
 	if(x==T)return F;
 	int r=0,t,i;
