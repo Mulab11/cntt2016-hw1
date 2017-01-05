@@ -18,80 +18,160 @@ typedef pair<int,int> pii;
 typedef vector<int> vi;
 typedef vector<pii> vpii;
 
-const int mod=1000000007;
+int n,a[55];
 
-int d[55],fa[55],w[55],g[55],a[55],dp[55][15][15];
-
-int find(int x)
+namespace prog1
 {
-	int y=fa[x];
-	if (x!=fa[x]) fa[x]=find(fa[x]);
-	d[x]+=d[y];
-	return fa[x];
+	vi e[55];
+	int m,l,c[55][2],b[55],color[55];
+	bool v[55];
+
+	bool check(int k)
+	{
+		for (vi::iterator p=e[k].begin();p!=e[k].end();p++)
+			if (color[*p]==2)
+			{
+				color[*p]=color[k]^1;
+				if (!check(*p)) return 0;
+			}
+			else
+				if (color[*p]==color[k]) return 0;
+		return 1;
+	}
+
+	bool dfs(int k,int p)
+	{
+		if (k>=m)
+		{
+			for (int i=0;i<p;i++) e[i].clear();
+			for (int i=0;i<p;i++)
+				for (int j=0;j<p;j++)
+					if ((c[i][0]<c[j][0]&&c[j][0]<c[i][1]&&c[i][1]<c[j][1]))
+					{
+						e[i].pb(j);e[j].pb(i);
+					}
+			for (int i=0;i<p;i++) color[i]=2;
+			for (int i=0;i<p;i++)
+				if (color[i]==2)
+				{
+					color[i]=0;
+					if (!check(i)) return 0;
+				}
+			return 1;
+		}
+		if (v[k]) return dfs(k+1,p);
+		for (int i=k+1;i<m;i++)
+			if (!v[i])
+			{
+				c[p][0]=b[k];c[p][1]=b[i];
+				v[k]=1;v[i]=1;
+				if (dfs(k+1,p+1)) return 1;
+				v[k]=0;v[i]=0;
+			}
+		return 0;
+	}
+
+	string main()
+	{
+		m=l=0;
+		for (int i=0;i<n;i++) if (a[i]==-1) b[m++]=i;
+		for (int i=0;i<n;i++)
+		{
+			int x=-1,y=-1;
+			for (int j=0;j<n;j++)
+				if (a[j]==i) {if (x==-1) x=j; else y=j;}
+			if (x!=-1) {c[l][0]=x;c[l++][1]=y;}
+		}
+		memset(v,0,sizeof(v));
+		if (dfs(0,l)) return "POSSIBLE"; else return "IMPOSSIBLE";
+	}
 }
 
-struct EqualSums 
+namespace prog2
 {
-    int count(vector <string> board)
+	int m,fa[55],c[55][2],b[55],s[55];
+	bool d[55];
+
+	int find(int x)
+	{
+		int y=fa[x];
+		if (x!=fa[x]) fa[x]=find(fa[x]);
+		d[x]^=d[y];
+		return fa[x];
+	}
+
+	bool union0(int x,int y,bool z)
+	{
+		int fx=find(x),fy=find(y);
+		if (fx!=fy)
+		{
+			fa[fy]=fx;d[fy]=d[y]^d[x]^z;return 1;
+		}
+		if ((d[x]^d[y])!=z) return 0; else return 1;
+	}
+
+	string main()
+	{
+		m=0;
+		for (int i=0;i<n;i++)
+		{
+			int x=-1,y=-1;
+			for (int j=0;j<n;j++)
+				if (a[j]==i) {if (x==-1) x=j; else y=j;}
+			if (x!=-1) {c[m][0]=x;c[m++][1]=y;}
+		}
+		for (int i=0;i<m;i++)
+		{
+			b[i]=0;
+			for (int j=0;j<m;j++)
+				if ((c[i][0]<c[j][0]&&c[j][0]<c[i][1]&&c[i][1]<c[j][1])) b[i]^=(1<<j);
+		}
+		s[0]=0;for (int i=0;i<n;i++) {s[i+1]=s[i];if (a[i]==-1) s[i+1]^=-1;}
+		for (int i=0;i<(1<<m);i++)
+		{
+			bool ok=1;
+			for (int j=0;j<m;j++)
+				if (i&(1<<j))
+				{
+					if (i&b[j]) {ok=0;break;}
+				}
+				else
+				{
+					if ((i|b[j])!=i) {ok=0;break;}
+				}
+			if (!ok) continue;
+			for (int j=0;j<=n;j++) 
+			{
+				fa[j]=j;d[j]=0;
+			}
+			for (int j=0;j<n;j++) 
+				if (a[j]!=-1) union0(j,j+1,0);
+			for (int j=0;j<m;j++)
+				if (i&(1<<j))
+				{
+					if (!union0(c[j][0],c[j][1],0)) {ok=0;break;}
+				}
+				else
+				{
+					if (!union0(c[j][0],c[j][1],s[c[j][0]]^s[c[j][1]])) {ok=0;break;}
+				}
+			int x=find(0),y=find(n);
+			if (x==y&&(d[0]^d[n])) ok=0;
+			if (ok) return "POSSIBLE";
+		}
+		return "IMPOSSIBLE";
+	}
+}
+
+struct DisjointSemicircles 
+{
+    string getPossibility(vector <int> labels)
     {
-    	int n=board.size(),m=board[0].size();
+    	n=labels.size();int s=0;
+    	for (int i=0;i<n;i++) a[i]=labels[i];
     	for (int i=0;i<n;i++)
-   		{
-   			fa[i]=i;d[i]=0;
-   		}
-    	for (int i=0;i<n;i++)
-    		for (int j=0;j<m;j++)
-    			for (int k=j+1;k<m;k++)
-    				if (board[i][j]!='-'&&board[i][k]!='-')
-    				{
-    					int fx=find(j),fy=find(k);
-    					if (fx==fy)
-    					{
-    						if (d[j]-d[k]!=board[i][k]-board[i][j]) return 0;
-    					}
-    					else
-    					{
-    						int t=d[j]-d[k]+board[i][j]-board[i][k];
-    						if (t>0)
-    						{
-    							fa[fy]=fx;d[fy]=t;
-    						}
-    						else
-    						{
-    							fa[fx]=fy;d[fx]=-t;
-    						}
-    					}
-    				}
-    	for (int i=0;i<m;i++) w[i]=10;
-    	for (int i=0;i<n;i++)
-    		for (int j=0;j<m;j++)
-    			if (board[i][j]!='-')
-    			{
-    				int x=find(j);
-    				w[x]=min(w[x],board[i][j]-'0'+d[j]);
-    			}
-    	for (int i=0;i<m;i++)
-    	{
-    		int x=find(i);g[x]=max(g[x],d[i]);
-    	}
-    	int cnt=0;
-    	for (int i=0;i<m;i++) if (i==find(i)) a[++cnt]=i;
-    	for (int i=1;i<=cnt;i++) if (g[a[i]]>w[a[i]]) return 0;
-    	memset(dp,0,sizeof(dp));dp[1][w[a[1]]][g[a[1]]]=1;
-    	for (int i=2;i<=cnt;i++)
-    		for (int j=0;j<10;j++)
-    			for (int k=0;k<10;k++)
-    				if (dp[i-1][j][k])
-    					for (int p=-9;p<=9;p++)
-    					{
-    						if (j-p-g[a[i]]<0) continue;
-    						if (w[a[i]]+p-k<0) continue;
-    						dp[i][min(j,w[a[i]]+p)][max(k,p+g[a[i]])]=(dp[i][min(j,w[a[i]]+p)][max(k,p+g[a[i]])]+dp[i-1][j][k])%mod;
-    					}
-    	int ans=0;
-    	for (int j=0;j<10;j++)
-    		for (int k=0;k<10;k++)
-    			ans=(ans+dp[cnt][j][k])%mod;
-    	return ans;
+    		if (a[i]==-1) s++;
+    	if (s<=12) return prog1::main(); else return prog2::main();
     }
 };
+
