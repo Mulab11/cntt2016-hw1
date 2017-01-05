@@ -4,7 +4,7 @@
 using namespace std;
 string f[50][50][3];
 int n,i,j,k,l,e;
-class LeftRightDigitsGame2
+class LeftRightDigitsGame2//区间DP
 {
 	public:
 		string minNumber(string a,string b)
