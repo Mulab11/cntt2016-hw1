@@ -33,6 +33,7 @@ class ConversionMachine
                 for(j=x[i],k=0;j!=y[i];j=(j+1)%3)
                 {
                     maxCost-=costs[j];//扣除必要代价 
+                    if(maxCost<0)return 0;
                     k++;
                     m++;
                 }
