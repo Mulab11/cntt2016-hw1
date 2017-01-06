@@ -40,7 +40,6 @@ class ConversionMachine
                 if(k==1)b++;//计算有多少个位置距离为1 
                 if(k==2)a++;//计算有多少个位置距离为2 
             }
-            if(maxCost<0)return 0;
             m+=maxCost/(costs[0]+costs[1]+costs[2])*3;//计算最多操作次数 
             for(i=0;i<=n;i++)for(j=0;i+j<=n;j++)z[i][j]=N++;
             for(i=0;i<=n;i++)for(j=0;i+j<=n;j++)//计算转移矩阵 
