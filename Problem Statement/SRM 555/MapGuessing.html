@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TopCoder SRM 555 - 1055: MapGuessing</title>
+    
+    <link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico"/>
+    
+
+    
+    <style type="text/css">
+        /* font */
+body {
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+ul.constraints > li:before, ul.notes > li:before {
+    font-family: monospace;
+    font-weight: normal;
+}
+.heading {
+    font-weight: bold;
+    font-size: 175%;
+    line-height: 1.2em;
+}
+.section .section-title {
+    font-weight: bold;
+    font-size: 125%;
+}
+ol.testcases > li:before {
+    font-family: monospace;
+}
+type {
+    font-weight: bold;
+    font-family: monospace;
+}
+li.testcase .data {
+    font-family: monospace;
+    line-height: 1.5em;
+}
+
+/* layout */
+.heading {
+    margin-top: 0.1em;
+    margin-bottom:0.1em;
+    text-align: center;
+}
+.section .section-title {
+    margin-top : 1em;
+    margin-bottom: 1em;
+}
+.problem-intro, note, user-constraint {
+    padding-left: 1.25em;
+}
+
+/* Lists */
+ul.constraints, ul.notes, ul.variables, ul.problem-definition-lines {
+    list-style-type: none;
+    padding: 0px;
+}
+ul.constraints > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+ul.notes > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+
+/* Testcases */
+li.testcase {
+    line-height: 1.1em;
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    overflow: auto;
+}
+li.testcase > .testcase-content > div { padding-bottom: 0.5em; padding-left: 1em; }
+
+li.testcase .testcase-comment {
+    margin: 0;
+    padding-left: 1em;
+}
+.testcase-comment p:first-child { margin-top: 0; }
+.testcase-comment p:last-child { margin-bottom: 0; }
+
+li.testcase .testcase-content {
+    margin: 0.31em;
+}
+
+/* Data and variables */
+.testcase-output {
+    padding: 0.2em 1em 0.2em 0em;
+}
+.variables, .testcase-output {
+    margin-left: 0.5em;
+    display: table;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.variable {
+    display: table-row;
+}
+.variable .name {
+    padding: 0.2em 0em 0.2em 1em;
+    font-weight: bold;
+    display: table-cell;
+    text-align: right;
+}
+.testcase-output .prefix {
+    padding: 0.2em 0em 0.2em 1em;
+    display: table-cell;
+}
+.testcase-output .prefix:after {
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .name:after {
+    font-weight: bold;
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .value, .testcase-output .value {
+    padding: 0.2em 1em 0.2em 0em;
+    display: table-cell;
+}
+ol.testcases {
+    padding: 0px;
+    counter-reset: test_number -1;
+}
+ol.testcases > li {
+    list-style:none;
+}
+ol.testcases > li:before {
+    counter-increment:test_number;
+    display: block;
+    clear: both;
+    content:counter(test_number) ")";
+    color: inherit;
+    background: inherit;
+}
+
+/* Problem Definition */
+.problem-definition, .problem-limits {
+    padding-left: 1.25em;
+}
+.problem-definition-lines, .limit-lines {
+    display: table;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+.definition-line, .limit-line {
+    display: table-row;
+    height: 1.5em;
+    overflow: auto;
+}
+.limit-name:after {
+    content: ":";
+    margin-right: 1em;
+}
+.definition-name, .definition-value, .limit-name, .limit-value {
+    display: table-cell;
+}
+.definition-value {
+    padding-left: 0.5em;
+}
+.definition-name:after {
+    content: ":";
+}
+#contest-division:before {
+    content: "Div ";
+}
+#problem-score:before {
+    content: "- Problem ";
+}
+#problem-name {
+    display: block;
+}
+
+/* Tags, hidden default */
+.tag {
+    visibility: hidden;
+    position: absolute;
+}
+
+        body {
+    /* font color */
+    color: #333333;
+    /* background color */
+    background-color: white;
+}
+.section .section-title {
+    /* title color */
+    color: black;
+}
+li.testcase .data {
+    /* highlight color */
+    background: #eee;
+}
+
+    </style>
+    
+    
+    
+
+</head>
+
+<body>
+    <h1 class="heading">
+        <span id='contest-name'>SRM 555</span>
+        <span id='contest-division'>1</span>
+        <span id='problem-score'>1055</span>
+        <span id='problem-name'>MapGuessing</span>
+    </h1>
+
+    <hr />
+
+    <!-- Problem Statement -->
+    <div class="section">
+        <h2 class="section-title">Problem Statement</h2>
+        <div class="problem-intro">
+            <intro escaped="1"><p>Invader Squid Girl is a big fan of the Advanced Turing Game.
+This is a game in which the player programs a simple Turing machine (defined below).
+The goal of this game is to turn the starting tape into a pre-determined goal tape.</p>
+<br />
+<p><img src="http://snuke.main.jp/mapguess.png"></img></p>
+<br />
+<p>The picture above explains how the Turing machines in our problem operate.
+On the top you can see the goal tape: a finite sequence of cells, each containing a zero (0) or a one (1).
+The player starts with a tape of the same length as the goal tape.
+The player's tape is initially filled with some zeros and ones.
+The Turing machine has a &quot;head&quot;: a reading and writing device.
+At each moment, the head points at one of the cells of the tape.
+In order to change it to the goal tape, the player picks a starting cell for the head and writes a program for the Turing machine.</p>
+<br />
+<p>In this problem, the program is simply a sequence of commands, executed one after another.
+There are just four commands:</p>
+<ul>
+<li> '0' : Write 0 into the cell where the head points. (The old content of the cell is lost.)</li>
+<li> '1' : Write 1 into the cell where the head points. (The old content of the cell is lost.)</li>
+<li> '&lt;' : Move the head one cell to the left.</li>
+<li> '&gt;' : Move the head one cell to the right.</li>
+</ul>
+<br />
+<p>It is not allowed for the head to leave the tape (i.e., move left from the leftmost cell or right from the rightmost one).
+Should that happen, the player loses -- even if the goal has been reached before the head left the tape.
+In other words, a level of the Advanced Turing Game is considered solved if the head never leaves the tape, and at any point during the execution of the program (including the beginning and the end) the content of the tape exactly matches the goal tape.</p>
+<br />
+<p>Squid Girl recently solved a level of the Advanced Turing Game.
+However, she forgot the initial contents of the tape, and her choice of the starting cell.
+All she remembers is the program she wrote, and the content of the goal tape.
+Help her by counting the number of possible initial contents of the tape.</p>
+<br />
+<p>You are given a <type>String</type> <b>goal</b> that describes the goal tape, and a <type>String[]</type> <b>code</b>.
+Concatenate all elements of <b>code</b> to get Squid Girl's program.
+Return a <type>long</type> containing the number of possible initial contents of the tape.</p>
+<br /></intro>
+        </div>
+    </div>
+    
+    <!-- Problem definition -->
+    
+    <div class="section" id="definition">
+        <h2 class="section-title">Definition</h2>
+        <div class="problem-definition">
+            <ul class="problem-definition-lines">
+                <li class="definition-line" id='class-line'>
+                    <span class='definition-name'>Class</span>
+                    <span class='definition-value'>MapGuessing</span>
+                </li>
+                <li class="definition-line" id='method-line'>
+                    <span class='definition-name'>Method</span>
+                    <span class='definition-value'>countPatterns</span>
+                </li>
+                <li class="definition-line" id='parameters-line'>
+                    <span class='definition-name'>Parameters</span>
+                    <span class='definition-value'>
+                    
+                        string
+                    , 
+                        vector&lt;string&gt;
+                    
+                    </span>
+                </li>
+                <li class="definition-line" id='returns-line'>
+                    <span class='definition-name'>Returns</span>
+                    <span class='definition-value'>
+                        long long
+                    </span>
+                </li>
+                <li class="definition-line" id='signature-line'>
+                    <span class='definition-name'>Method signature</span>
+                    <span class='definition-value'>
+                        long long countPatterns(string goal, vector&lt;string&gt; code)
+                    </span>
+                </li>
+            </ul>
+            <div class="problem-definition-public-tip">(be sure your method is public)</div>
+        </div>        
+    </div>
+    
+
+    <!-- Limits -->
+    <div class="section">
+        <h2 class="section-title">Limits</h2>
+        <div class='problem-limits'>
+            <ul class="limit-lines">
+                <li class='limit-line'>
+                    <span class='limit-name'>Time limit (s)</span>
+                    <span class='limit-value'>2.000</span>
+                </li>
+                <li class='limit-line'>
+                    <span class='limit-name'>Memory limit (MB)</span>
+                    <span class='limit-value'>64</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <!-- Notes -->
+    <div class="section">
+        <h2 class="section-title">Notes</h2>
+        <ul class="notes">
+        
+            <li><note escaped="1">Note that we are only counting the possible initial contents of the tape. Even if multiple starting positions work for a given tape, we only count it once.</note></li>
+        
+            <li><note escaped="1">For some test cases the return value may be zero (0).</note></li>
+        
+            <li><note escaped="1">The constraints imply that <b>code</b> will contain at most 555 characters.</note></li>
+        
+            <li><note escaped="1">The automaton used in the problem is not an actual Turing machine. The actual Turing machines are more complex, with a potentially infinite tape and a more powerful &quot;programming language&quot;. Of course, this has no relevance regarding the problem you have to solve.</note></li>
+        
+        </ul>
+    </div>
+    
+    
+    <!-- Constraints -->
+    <div class="section">
+        <h2 class="section-title">Constraints</h2>
+        <ul class="constraints">
+        
+            <li><user-constraint escaped="1"><b>goal</b> will contain between 1 and 36 characters, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each character in <b>goal</b> will be either '0' or '1'.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>code</b> will contain between 1 and 15 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>code</b> will contain between 1 and 37 characters, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each character in each element of <b>code</b> will be one of '0', '1', '&lt;', and '&gt;'.</user-constraint></li>
+        
+        </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <h2 class="section-title">Test cases</h2>
+        <ol class="testcases" start='0'>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">goal</span>
+                                <span class="value data">
+                                
+                                    &quot;000&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">code</span>
+                                <span class="value data">
+                                
+                                    { &quot;0&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            4
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><p>There are 4 possible contents of the initial tape: &quot;000&quot;, &quot;001&quot;, &quot;010&quot;, and &quot;100&quot;.</p></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">goal</span>
+                                <span class="value data">
+                                
+                                    &quot;001&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">code</span>
+                                <span class="value data">
+                                
+                                    { &quot;0&gt;1&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            5
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><p>There are 5 possible contents of the initial tape: &quot;000&quot;, &quot;001&quot;, &quot;010&quot;, &quot;011&quot;, and &quot;101&quot;.</p>
+<p>Note that for the initial tape &quot;101&quot; we have to choose the leftmost cell as the starting one.</p>
+<p>We will then reach the goal after the first command is executed.</p></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">goal</span>
+                                <span class="value data">
+                                
+                                    &quot;000&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">code</span>
+                                <span class="value data">
+                                
+                                    { &quot;1&gt;1&gt;1&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            1
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><p>The goal can also be reached before any commands are executed.</p></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">goal</span>
+                                <span class="value data">
+                                
+                                    &quot;11001&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">code</span>
+                                <span class="value data">
+                                
+                                    { &quot;&gt;&gt;&lt;&lt;&lt;&lt;&gt;&lt;&lt;&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            0
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><p>There is no possible contents of the initial tape. (We do reach the goal if the initial tape is equal to the goal tape, but as the head leaves the word, this does not count.)</p></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">goal</span>
+                                <span class="value data">
+                                
+                                    &quot;1000101011&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">code</span>
+                                <span class="value data">
+                                
+                                    { &quot;1&lt;&lt;0&gt;&gt;0&gt;1&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            22
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">goal</span>
+                                <span class="value data">
+                                
+                                    &quot;00000010000000000000000000000000&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">code</span>
+                                <span class="value data">
+                                
+                                    { &quot;&gt;&lt;&gt;&gt;0&lt;0&lt;&gt;&gt;1&gt;0&gt;&lt;&gt;&quot;, &quot;&lt;&lt;0&gt;&gt;0&lt;&gt;&gt;&lt;0&gt;0&gt;&gt;&gt;&lt;&gt;&lt;&quot;, &quot;&gt;&gt;&gt;0&lt;&gt;&quot;, &quot;&gt;0&gt;&lt;&gt;&gt;&gt;&gt;0&lt;&lt;&gt;&lt;&gt;&gt;0&gt;&gt;&gt;0&lt;0&gt;&gt;0&gt;&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            13601
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><p>Don't forget to concatenate <b>code</b>.</p></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">goal</span>
+                                <span class="value data">
+                                
+                                    &quot;11100011010111111010100100110001101&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">code</span>
+                                <span class="value data">
+                                
+                                    {&quot;11111111111111111111&quot;,<br />&nbsp;&quot;1&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;000&gt;000&gt;&lt;0&lt;&gt;&lt;0&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;0&lt;&gt;&lt;&gt;0&gt;&lt;0&lt;00&gt;00&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;00&lt;&gt;000&gt;&lt;0&lt;0&lt;0&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;&lt;&gt;0&gt;0&gt;&lt;0&lt;0&lt;&gt;&lt;0&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;000&lt;&gt;0&gt;&lt;0&lt;0&lt;&gt;&lt;0&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;000&gt;&lt;000&lt;&gt;000&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;0&gt;&lt;&gt;&lt;0&lt;&gt;&lt;&gt;0&gt;&lt;&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;000&gt;&lt;000&lt;&gt;000&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;&lt;&gt;0&gt;&lt;&gt;&lt;0&lt;&gt;&lt;&gt;0&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;000&gt;&lt;000&lt;&gt;000&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;1&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;1&quot;,<br />&nbsp;&quot;11111111111111111111&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            90
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+        </ol>
+    </div>
+    <hr />
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>
