@@ -5,7 +5,7 @@ using namespace std;
 #define PPP pair<PII,PII>
 #define P 1000000009
 const int dx[]={-1,0,0,1},dy[]={0,-1,1,0};
-int n,m,i,j,N,a[50][50],p[2000],d[2000],ans;
+int n,m,i,j,N,a[50][50],p[2000],d[2000],A[50][50],ans;
 bool b[50][50],c=1;
 PPP x;
 map<PPP,int> s;
@@ -37,8 +37,9 @@ class CoinsGame
                     x=mp(mp(move(i,j,0),move(i,j,1)),mp(move(i,j,2),move(i,j,3)));//计算四元组 
                     if(!s[x])s[x]=++N;//计算新标号 
                     if(s[x]!=a[i][j])c=1;//判断是否有标号变化 
-                    a[i][j]=s[x];//更新标号 
+                    A[i][j]=s[x];//更新标号 
                 }
+                for(i=1;i<=n;i++)for(j=1;j<=m;j++)a[i][j]=A[i][j];
             }
             for(i=1;i<=n;i++)for(j=1;j<=m;j++)d[a[i][j]]++;//统计每组个数 
             for(i=1;i<2000;i++)ans=(ans-p[d[i]]+1+P)%P;//计算答案 
