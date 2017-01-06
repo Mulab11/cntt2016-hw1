@@ -10,10 +10,10 @@ class Suminator
         {
             n=program.size();
             reverse(program.begin(),program.end());//反转后便于处理 
-            for(i=j=0,k=1;i<n;i++)if(!program[i]||!~program[i])k++; 
+            for(i=j=0,k=1;i<n&&k;i++)if(!program[i]||!~program[i])k++; 
             else if(--k>=0)j+=program[i];
             if(j==wantedResult)return 0;//判断未知数是否等于0 
-            for(i=j=l=0,k=1;i<n;i++)if(!program[i])k++;
+            for(i=j=l=0,k=1;i<n&&k;i++)if(!program[i])k++;
             else if(--k>=0)if(~program[i])j+=program[i];
             else l=1;
             j=wantedResult-j;
