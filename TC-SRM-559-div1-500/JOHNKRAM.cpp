@@ -12,7 +12,7 @@ bool dfs(int x)//判断是否合法
         j++;
         d[p[i]]=d[x]+1;
         f[p[i]]=x;
-        dfs(p[i]);
+        if(!dfs(p[i]))return 0;
         m1[x]=min(m1[x],m1[p[i]]);
         m2[x]=max(m2[x],m2[p[i]]);
     }
