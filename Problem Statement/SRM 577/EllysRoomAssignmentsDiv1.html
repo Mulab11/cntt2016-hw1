@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TopCoder SRM 577 - 250: EllysRoomAssignmentsDiv1</title>
+    
+    <link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico"/>
+    
+
+    
+    <style type="text/css">
+        /* font */
+body {
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+ul.constraints > li:before, ul.notes > li:before {
+    font-family: monospace;
+    font-weight: normal;
+}
+.heading {
+    font-weight: bold;
+    font-size: 175%;
+    line-height: 1.2em;
+}
+.section .section-title {
+    font-weight: bold;
+    font-size: 125%;
+}
+ol.testcases > li:before {
+    font-family: monospace;
+}
+type {
+    font-weight: bold;
+    font-family: monospace;
+}
+li.testcase .data {
+    font-family: monospace;
+    line-height: 1.5em;
+}
+
+/* layout */
+.heading {
+    margin-top: 0.1em;
+    margin-bottom:0.1em;
+    text-align: center;
+}
+.section .section-title {
+    margin-top : 1em;
+    margin-bottom: 1em;
+}
+.problem-intro, note, user-constraint {
+    padding-left: 1.25em;
+}
+
+/* Lists */
+ul.constraints, ul.notes, ul.variables, ul.problem-definition-lines {
+    list-style-type: none;
+    padding: 0px;
+}
+ul.constraints > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+ul.notes > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+
+/* Testcases */
+li.testcase {
+    line-height: 1.1em;
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    overflow: auto;
+}
+li.testcase > .testcase-content > div { padding-bottom: 0.5em; padding-left: 1em; }
+
+li.testcase .testcase-comment {
+    margin: 0;
+    padding-left: 1em;
+}
+.testcase-comment p:first-child { margin-top: 0; }
+.testcase-comment p:last-child { margin-bottom: 0; }
+
+li.testcase .testcase-content {
+    margin: 0.31em;
+}
+
+/* Data and variables */
+.testcase-output {
+    padding: 0.2em 1em 0.2em 0em;
+}
+.variables, .testcase-output {
+    margin-left: 0.5em;
+    display: table;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.variable {
+    display: table-row;
+}
+.variable .name {
+    padding: 0.2em 0em 0.2em 1em;
+    font-weight: bold;
+    display: table-cell;
+    text-align: right;
+}
+.testcase-output .prefix {
+    padding: 0.2em 0em 0.2em 1em;
+    display: table-cell;
+}
+.testcase-output .prefix:after {
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .name:after {
+    font-weight: bold;
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .value, .testcase-output .value {
+    padding: 0.2em 1em 0.2em 0em;
+    display: table-cell;
+}
+ol.testcases {
+    padding: 0px;
+    counter-reset: test_number -1;
+}
+ol.testcases > li {
+    list-style:none;
+}
+ol.testcases > li:before {
+    counter-increment:test_number;
+    display: block;
+    clear: both;
+    content:counter(test_number) ")";
+    color: inherit;
+    background: inherit;
+}
+
+/* Problem Definition */
+.problem-definition, .problem-limits {
+    padding-left: 1.25em;
+}
+.problem-definition-lines, .limit-lines {
+    display: table;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+.definition-line, .limit-line {
+    display: table-row;
+    height: 1.5em;
+    overflow: auto;
+}
+.limit-name:after {
+    content: ":";
+    margin-right: 1em;
+}
+.definition-name, .definition-value, .limit-name, .limit-value {
+    display: table-cell;
+}
+.definition-value {
+    padding-left: 0.5em;
+}
+.definition-name:after {
+    content: ":";
+}
+#contest-division:before {
+    content: "Div ";
+}
+#problem-score:before {
+    content: "- Problem ";
+}
+#problem-name {
+    display: block;
+}
+
+/* Tags, hidden default */
+.tag {
+    visibility: hidden;
+    position: absolute;
+}
+
+        body {
+    /* font color */
+    color: #333333;
+    /* background color */
+    background-color: white;
+}
+.section .section-title {
+    /* title color */
+    color: black;
+}
+li.testcase .data {
+    /* highlight color */
+    background: #eee;
+}
+
+    </style>
+    
+    
+    
+
+</head>
+
+<body>
+    <h1 class="heading">
+        <span id='contest-name'>SRM 577</span>
+        <span id='contest-division'>1</span>
+        <span id='problem-score'>250</span>
+        <span id='problem-name'>EllysRoomAssignmentsDiv1</span>
+    </h1>
+
+    <hr />
+
+    <!-- Problem Statement -->
+    <div class="section">
+        <h2 class="section-title">Problem Statement</h2>
+        <div class="problem-intro">
+            <intro escaped="1">Elly is going to take part in a programming contest. Before the contest, each contestant is assigned a room (just like in this SRM).<br /><br />
+The contest uses the following room assignment algorithm:
+<ol>
+<li>Let the number of registrants be N.</li>
+<li>The number of rooms is set to be R = N / 20, if N is divisible by 20, or R = N / 20 + 1 otherwise. Here the '/' operator represents integer division, i.e., the remainder is being ignored.</li>
+<li>The registrants are sorted by rating in decreasing order.</li>
+<li>The first R registrants are randomly assigned to rooms such that no two of them are in the same room. Then the same is done with the next R registrants and so on, until there are no more unassigned registrants. Note that it is possible for the last group to have less than R registrants, but they are still randomly assigned into the rooms in such a way that no two of them are in the same room.</li>
+</ol>
+
+You are given a <type>String[]</type> <b>ratings</b>. Concatenate its elements to obtain one long string. It will represent a space-separated list of the contestants' ratings. For simplicity, no two ratings in the list will be equal. Elly's rating is the first one in the list.<br /><br />
+Return the expected average rating of the contestants in Elly's room (including her own).</intro>
+        </div>
+    </div>
+    
+    <!-- Problem definition -->
+    
+    <div class="section" id="definition">
+        <h2 class="section-title">Definition</h2>
+        <div class="problem-definition">
+            <ul class="problem-definition-lines">
+                <li class="definition-line" id='class-line'>
+                    <span class='definition-name'>Class</span>
+                    <span class='definition-value'>EllysRoomAssignmentsDiv1</span>
+                </li>
+                <li class="definition-line" id='method-line'>
+                    <span class='definition-name'>Method</span>
+                    <span class='definition-value'>getAverage</span>
+                </li>
+                <li class="definition-line" id='parameters-line'>
+                    <span class='definition-name'>Parameters</span>
+                    <span class='definition-value'>
+                    
+                        vector&lt;string&gt;
+                    
+                    </span>
+                </li>
+                <li class="definition-line" id='returns-line'>
+                    <span class='definition-name'>Returns</span>
+                    <span class='definition-value'>
+                        double
+                    </span>
+                </li>
+                <li class="definition-line" id='signature-line'>
+                    <span class='definition-name'>Method signature</span>
+                    <span class='definition-value'>
+                        double getAverage(vector&lt;string&gt; ratings)
+                    </span>
+                </li>
+            </ul>
+            <div class="problem-definition-public-tip">(be sure your method is public)</div>
+        </div>        
+    </div>
+    
+
+    <!-- Limits -->
+    <div class="section">
+        <h2 class="section-title">Limits</h2>
+        <div class='problem-limits'>
+            <ul class="limit-lines">
+                <li class='limit-line'>
+                    <span class='limit-name'>Time limit (s)</span>
+                    <span class='limit-value'>2.000</span>
+                </li>
+                <li class='limit-line'>
+                    <span class='limit-name'>Memory limit (MB)</span>
+                    <span class='limit-value'>64</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <!-- Notes -->
+    <div class="section">
+        <h2 class="section-title">Notes</h2>
+        <ul class="notes">
+        
+            <li><note escaped="1">The expected value of a variable can be seen as the average value of the variable, where the average is taken over many rounds of the experiment. See http://en.wikipedia.org/wiki/Expected_value for a formal definition.</note></li>
+        
+        </ul>
+    </div>
+    
+    
+    <!-- Constraints -->
+    <div class="section">
+        <h2 class="section-title">Constraints</h2>
+        <ul class="constraints">
+        
+            <li><user-constraint escaped="1"><b>ratings</b> will contain between 1 and 50 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>ratings</b> will contain between 1 and 50 characters, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each character in <b>ratings</b> will be either a digit ('0'-'9') or a space (' ').</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each number in the concatenation of <b>ratings</b> will be an integer without leading zeroes.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each number in the concatenation of <b>ratings</b> will be a unique integer between 1200 and 3923, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Every two numbers in the concatenation of <b>ratings</b> will be separated by a single space.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">The count of numbers in the concatenation of <b>ratings</b> will be between 8 and 500, inclusive.</user-constraint></li>
+        
+        </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <h2 class="section-title">Test cases</h2>
+        <ol class="testcases" start='0'>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">ratings</span>
+                                <span class="value data">
+                                
+                                    { &quot;1924 1242 1213 1217 2399 1777 2201 2301 1683 2045 &quot;, &quot;1396 2363 1560 2185 1496 2244 2117 2207 2098 1319 &quot;, &quot;2216 1223 1256 2359 2394 1572 2151 2191 2147 2253 &quot;, &quot;1633 2217 2211 1591 1310 1209 1430 1445 1988 2030 &quot;, &quot;1947 1202 1203&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            1821.3291005291007
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">There are 43 contestants, one of them is Elly. Her rating is 1924.<br />
+The contestants will be distributed into (43/20) + 1 = 3 rooms. One of the rooms will have 15 contestants and each of the other two will have 14.<br />
+Note that due to the nature of the room assignment algorithm Elly will never share a room with the competitors with ratings 1947 and 1777.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">ratings</span>
+                                <span class="value data">
+                                
+                                    { &quot;3380 3413 3254 3515 2885 2946 2790 3140&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            3165.375
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">With only 8 people competing, they will all be in the same room. Thus the expected average is simply the average of all ratings.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">ratings</span>
+                                <span class="value data">
+                                
+                                    { &quot;2367 1395 1639 1842 1426 2393 2348 1571 2077 12&quot;, &quot;2&quot;, &quot;2 1966 1495 13&quot;, &quot;09 1251 3039 1566 1989 2083 1819 1875 &quot;, &quot;1579 2206 1503 1461 2262 2116 1429 2150 1834 2097 &quot;, &quot;2093 1518 1923 1796 1669 2342 1826 2374 1635 1683 &quot;, &quot;1656 2190 1632 1946 1207 1293 2029 2243 2252 1559 &quot;, &quot;2366 1590 1563 2319 1391 1255 1727 1565 1911 1679 &quot;, &quot;1282 2358 1682 2148 3555 2362 1208 2044 1949 1980 &quot;, &quot;1983 2215 2184 1545 1665 2146 1272 2110 1889 1829 &quot;, &quot;1808 2065 1987 1297 2216 1609 1318 1816 1444 20&quot;, &quot;00 1404&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            1824.662456140351
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">Note that the numbers can be split between two or even more strings.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">ratings</span>
+                                <span class="value data">
+                                
+                                    { &quot;2869 3239 1609 2367 1836 1663 1697 2317 1475 2212 &quot;, &quot;2188 2073 1263 1391 1495 3010 1243 2198 1782 1564 &quot;, &quot;3594 1219 2037 1473 1624 1435 2159 2315 2056 3029 &quot;, &quot;1863 1297 2245 3206 3510 1728 1246 1230 1875 3511 &quot;, &quot;1241 2775 1255 2304 2013 1205 2070 2763 1518 2344 &quot;, &quot;1690 1398 2320 1912 2752 2155 1778 1644 2230 3026 &quot;, &quot;1817 1401 1962 1470 1387 2339 3443 1510 2094 2374 &quot;, &quot;1273 1664 2853 1907 2380 3265 2786 1298 1983 1899 &quot;, &quot;1507 3252 2176 1452 1261 1981 1570 1207 2107 3550 &quot;, &quot;1282 3331 1254 2276 2096 1716 1966 3389 1766 2068 &quot;, &quot;3006 1802 1698 1555 1971 1509 1531 1556 2044 2358 &quot;, &quot;2327 2241 3182 2152 1514 2219 1559 1895 1992 2046 &quot;, &quot;1200 1915 1930 2296 1859 1501 1960 1683 1222 1288 &quot;, &quot;1808 1360 2177 2711 1286 1562 2078 1801 1834 2808 &quot;, &quot;1948 1674 1305 3031 2160 2252 1613 1621 2345 1850 &quot;, &quot;2169 2106 1918 1309 1317 1417 1670 2733 1946 1844 &quot;, &quot;1774 1956 1355 1336 1300 1349 2283 1247 3258 3415 &quot;, &quot;2795 1978 1990 1394 2347 1337 1340 1503 1722 3528 &quot;, &quot;2139 2968 2257 1312 2148 2166 1460 2216 1632 1325 &quot;, &quot;1404 1878 2197 1524 2030 1438 1973 1444 2191 1606 &quot;, &quot;3390 1866 1688 1779 3027 2254 1582 2123 3105 1568 &quot;, &quot;2036 1579 2995 1591 1933 1382 1596 2364 3310 1856 &quot;, &quot;3427 1816 1344 1304 3269 1906 1646 1480 2040 1725 &quot;, &quot;2766 1496 1265 2050 1842 2341 1367 1679 1202 1546 &quot;, &quot;2300 1936 2224 1846 2987 2248 1657 2907 1958 1853 &quot;, &quot;3326 1943 3336 2801 2839 2357 1819 2266 1727 2200 &quot;, &quot;2385 1904 1323 1710 1796 1594 2262 2798 1952 2292 &quot;, &quot;2204 1916 3572 1477 1280 1961 1270 1250 2000 2089 &quot;, &quot;3584 1612 1873 1451 2004 3174 1251 3011 3474 2386 &quot;, &quot;1330 1758 1271 3540 1497 1284 1839 2383 1489 2326 &quot;, &quot;2822 2124 2307 1313 3263 1804 2001 1338 2161 1303 &quot;, &quot;2016 1488 2015 1558 1522 2267 1567 1676 2221 1201 &quot;, &quot;1576 1711 1887 2228 1539 1227 2392 2109 1616 2183 &quot;, &quot;2362 2784 2057 1411 1318 2097 1208 1672 1379 1339 &quot;, &quot;1545 1461 3370 1369 1763 1425 1322 1897 1395 1209 &quot;, &quot;1665 2373 1645 1447 2393 1426 1293 1508 2049 2378 &quot;, &quot;2234 1879 1949 1266 1849 3164 1260 2181 1611 1935 &quot;, &quot;1348 2021 3332 1820 1316 2261 3077 3328 1892 1324 &quot;, &quot;2035 3251 1893 1910 1474 1557 2923 2024 2196 1571 &quot;, &quot;1980 2072 1924 2017 1770 2240 1659 3195 1486 3122 &quot;, &quot;1341 1521 1890 1419 3229 1977 2366 1267 3458 2210 &quot;, &quot;2157 1523 1399 2146 1228 1415 1256 1642 1687 2184 &quot;, &quot;1865 3089 3581 1429 2313 1352 1272 2285 1390 2209 &quot;, &quot;1785 1449 1295 1410 1239 1416 2354 1281 1840 2265 &quot;, &quot;2330 3295 1353 1423 1204 2150 2116 3588 1908 1976 &quot;, &quot;2233 1923 1635 1825 1469 2251 1792 1249 2125 2100 &quot;, &quot;1833 2281 2142 2093 1920 2144 1565 1590 2826 3045 &quot;, &quot;3475 1911 1695 2067 1634 2319 1376 2348 1529 1682&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            1985.7041666666669
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">In this case the number of competitors is 480, which is divisible by 20. Thus, the number of rooms is 24.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">ratings</span>
+                                <span class="value data">
+                                
+                                    { &quot;1298 2272 2618 1344 3020 3212 3419 1754 3571 2835 &quot;, &quot;3049 2893 1970 3006 3244 3451 3273 2039 3826 2199 &quot;, &quot;3159&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            2670.4545454545455
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">Two rooms, one with 10 people and one with 11. Elly is the lowest rated competitor.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+        </ol>
+    </div>
+    <hr />
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

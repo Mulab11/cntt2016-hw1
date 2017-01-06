@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TopCoder SRM 580 - 600: ShoutterDiv1</title>
+    
+    <link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico"/>
+    
+
+    
+    <style type="text/css">
+        /* font */
+body {
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+ul.constraints > li:before, ul.notes > li:before {
+    font-family: monospace;
+    font-weight: normal;
+}
+.heading {
+    font-weight: bold;
+    font-size: 175%;
+    line-height: 1.2em;
+}
+.section .section-title {
+    font-weight: bold;
+    font-size: 125%;
+}
+ol.testcases > li:before {
+    font-family: monospace;
+}
+type {
+    font-weight: bold;
+    font-family: monospace;
+}
+li.testcase .data {
+    font-family: monospace;
+    line-height: 1.5em;
+}
+
+/* layout */
+.heading {
+    margin-top: 0.1em;
+    margin-bottom:0.1em;
+    text-align: center;
+}
+.section .section-title {
+    margin-top : 1em;
+    margin-bottom: 1em;
+}
+.problem-intro, note, user-constraint {
+    padding-left: 1.25em;
+}
+
+/* Lists */
+ul.constraints, ul.notes, ul.variables, ul.problem-definition-lines {
+    list-style-type: none;
+    padding: 0px;
+}
+ul.constraints > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+ul.notes > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+
+/* Testcases */
+li.testcase {
+    line-height: 1.1em;
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    overflow: auto;
+}
+li.testcase > .testcase-content > div { padding-bottom: 0.5em; padding-left: 1em; }
+
+li.testcase .testcase-comment {
+    margin: 0;
+    padding-left: 1em;
+}
+.testcase-comment p:first-child { margin-top: 0; }
+.testcase-comment p:last-child { margin-bottom: 0; }
+
+li.testcase .testcase-content {
+    margin: 0.31em;
+}
+
+/* Data and variables */
+.testcase-output {
+    padding: 0.2em 1em 0.2em 0em;
+}
+.variables, .testcase-output {
+    margin-left: 0.5em;
+    display: table;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.variable {
+    display: table-row;
+}
+.variable .name {
+    padding: 0.2em 0em 0.2em 1em;
+    font-weight: bold;
+    display: table-cell;
+    text-align: right;
+}
+.testcase-output .prefix {
+    padding: 0.2em 0em 0.2em 1em;
+    display: table-cell;
+}
+.testcase-output .prefix:after {
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .name:after {
+    font-weight: bold;
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .value, .testcase-output .value {
+    padding: 0.2em 1em 0.2em 0em;
+    display: table-cell;
+}
+ol.testcases {
+    padding: 0px;
+    counter-reset: test_number -1;
+}
+ol.testcases > li {
+    list-style:none;
+}
+ol.testcases > li:before {
+    counter-increment:test_number;
+    display: block;
+    clear: both;
+    content:counter(test_number) ")";
+    color: inherit;
+    background: inherit;
+}
+
+/* Problem Definition */
+.problem-definition, .problem-limits {
+    padding-left: 1.25em;
+}
+.problem-definition-lines, .limit-lines {
+    display: table;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+.definition-line, .limit-line {
+    display: table-row;
+    height: 1.5em;
+    overflow: auto;
+}
+.limit-name:after {
+    content: ":";
+    margin-right: 1em;
+}
+.definition-name, .definition-value, .limit-name, .limit-value {
+    display: table-cell;
+}
+.definition-value {
+    padding-left: 0.5em;
+}
+.definition-name:after {
+    content: ":";
+}
+#contest-division:before {
+    content: "Div ";
+}
+#problem-score:before {
+    content: "- Problem ";
+}
+#problem-name {
+    display: block;
+}
+
+/* Tags, hidden default */
+.tag {
+    visibility: hidden;
+    position: absolute;
+}
+
+        body {
+    /* font color */
+    color: #333333;
+    /* background color */
+    background-color: white;
+}
+.section .section-title {
+    /* title color */
+    color: black;
+}
+li.testcase .data {
+    /* highlight color */
+    background: #eee;
+}
+
+    </style>
+    
+    
+    
+
+</head>
+
+<body>
+    <h1 class="heading">
+        <span id='contest-name'>SRM 580</span>
+        <span id='contest-division'>1</span>
+        <span id='problem-score'>600</span>
+        <span id='problem-name'>ShoutterDiv1</span>
+    </h1>
+
+    <hr />
+
+    <!-- Problem Statement -->
+    <div class="section">
+        <h2 class="section-title">Problem Statement</h2>
+        <div class="problem-intro">
+            <intro escaped="1"><p>
+A group of freshman rabbits has recently joined the Eel club.
+No two of the rabbits knew each other.
+Yesterday, each of the rabbits went to the club for the first time.
+For each i, rabbit number i entered the club at the time s[i] and left the club at the time t[i].
+</p>
+<p>
+Each pair of rabbits that was in the club at the same time got to know each other, and they became friends on the social network service Shoutter.
+This is also the case for rabbits who just met for a single moment (i.e., one of them entered the club exactly at the time when the other one was leaving).
+</p>
+<p>
+In Shoutter, each user can post a short message at any time.
+The message can be read by the user's friends.
+The friends can also repost the message, making it visible to their friends that are not friends with the original poster.
+In turn, those friends can then repost the message again, and so on.
+Each message can be reposted in this way arbitrarily many times. 
+If a rabbit wants to repost multiple messages, he must repost each of them separately.
+</p>
+<p>
+Today, each of the rabbits posted a self-introduction to Shoutter.
+Each rabbit would now like to read the self-introductions of all other rabbits (including those that are currently not his friends).
+Compute and return the minimal number of reposts necessary to reach this goal.
+If it is impossible to reach the goal, return -1 instead.
+</p>
+<p>
+As the number of rabbits can be greater than what the TopCoder arena supports, you are given the times s[i] and t[i] encoded in the following form:
+You are given <type>String[]</type>s <b>s1000</b>, <b>s100</b>, <b>s10</b>, and <b>s1</b>.
+Concatenate all elements of <b>s1000</b> to obtain a string S1000.
+In the same way obtain the strings S100, S10, and S1.
+Character i of each of these strings corresponds to the rabbit number i.
+More precisely, these characters are the digits of s[i]:
+we obtain s[i] by converting the string S1000[i]+S100[i]+S10[i]+S1[i] to an integer.
+For example, if S1000[4]='0', S100[4]='1', S10[4]='4', and S1[4]='7', then s[4]=to_integer(&quot;0147&quot;)=147.
+You are also given <type>String[]</type>s <b>t1000</b>, <b>t100</b>, <b>t10</b>, and <b>t1</b>.
+These encode the times t[i] in the same way.
+</p></intro>
+        </div>
+    </div>
+    
+    <!-- Problem definition -->
+    
+    <div class="section" id="definition">
+        <h2 class="section-title">Definition</h2>
+        <div class="problem-definition">
+            <ul class="problem-definition-lines">
+                <li class="definition-line" id='class-line'>
+                    <span class='definition-name'>Class</span>
+                    <span class='definition-value'>ShoutterDiv1</span>
+                </li>
+                <li class="definition-line" id='method-line'>
+                    <span class='definition-name'>Method</span>
+                    <span class='definition-value'>count</span>
+                </li>
+                <li class="definition-line" id='parameters-line'>
+                    <span class='definition-name'>Parameters</span>
+                    <span class='definition-value'>
+                    
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    
+                    </span>
+                </li>
+                <li class="definition-line" id='returns-line'>
+                    <span class='definition-name'>Returns</span>
+                    <span class='definition-value'>
+                        int
+                    </span>
+                </li>
+                <li class="definition-line" id='signature-line'>
+                    <span class='definition-name'>Method signature</span>
+                    <span class='definition-value'>
+                        int count(vector&lt;string&gt; s1000, vector&lt;string&gt; s100, vector&lt;string&gt; s10, vector&lt;string&gt; s1, vector&lt;string&gt; t1000, vector&lt;string&gt; t100, vector&lt;string&gt; t10, vector&lt;string&gt; t1)
+                    </span>
+                </li>
+            </ul>
+            <div class="problem-definition-public-tip">(be sure your method is public)</div>
+        </div>        
+    </div>
+    
+
+    <!-- Limits -->
+    <div class="section">
+        <h2 class="section-title">Limits</h2>
+        <div class='problem-limits'>
+            <ul class="limit-lines">
+                <li class='limit-line'>
+                    <span class='limit-name'>Time limit (s)</span>
+                    <span class='limit-value'>2.000</span>
+                </li>
+                <li class='limit-line'>
+                    <span class='limit-name'>Memory limit (MB)</span>
+                    <span class='limit-value'>64</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    
+    <!-- Constraints -->
+    <div class="section">
+        <h2 class="section-title">Constraints</h2>
+        <ul class="constraints">
+        
+            <li><user-constraint escaped="1"><b>s1000, s100, s10, s1, t1000, t100, t10</b> and <b>t1</b> will each contain between 1 and 50 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>s1000, s100, s10, s1, t1000, t100, t10</b> and <b>t1</b> will contain the same number of elements.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>s1000, s100, s10, s1, t1000, t100, t10</b> and <b>t1</b> will contain between 1 and 50 characters, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">For each i, the i-th elements of all input variables will all contain the same number of characters.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each character in the input variables will be a digit ('0'-'9').</user-constraint></li>
+        
+            <li><user-constraint escaped="1">For each i, t[i] will be greater than or equal to s[i].</user-constraint></li>
+        
+        </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <h2 class="section-title">Test cases</h2>
+        <ol class="testcases" start='0'>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">s1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;22&quot;, &quot;2&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s100</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot;, &quot;0&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s10</span>
+                                <span class="value data">
+                                
+                                    { &quot;11&quot;, &quot;1&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s1</span>
+                                <span class="value data">
+                                
+                                    { &quot;21&quot;, &quot;4&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;22&quot;, &quot;2&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t100</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot;, &quot;0&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t10</span>
+                                <span class="value data">
+                                
+                                    { &quot;11&quot;, &quot;1&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1</span>
+                                <span class="value data">
+                                
+                                    { &quot;43&quot;, &quot;6&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            2
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">After parsing the input, you will get the following information: Rabbit 0 will enter the room at 2012 and leave the room at 2014. Rabbit 1 will enter the room at 2011 and leave the room at 2013. Rabbit 2 will enter the room at 2014 and leave the room at 2016. Therefore, Rabbit 0 and Rabbit 1 will be friends, and Rabbit 0 and Rabbit 2 will be friends too, but Rabbit 1 and Rabbit 2 won't be friends.
+<br />
+<br />
+Rabbit 0 can already see the self-introductions of all rabbits, but rabbits 1 and 2 cannot see each other's self-introduction.
+Two actions are needed: First, Rabbit 0 reposts the self-introduction of Rabbit 1, and then Rabbit 0 reposts the self-introduction of Rabbit 2.
+Now everybody can read everything.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">s1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s100</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s10</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s1</span>
+                                <span class="value data">
+                                
+                                    { &quot;13&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t100</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t10</span>
+                                <span class="value data">
+                                
+                                    { &quot;00&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1</span>
+                                <span class="value data">
+                                
+                                    { &quot;24&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            -1
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">If it is impossible to achieve the goal, return -1.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">s1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s100</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s10</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s1</span>
+                                <span class="value data">
+                                
+                                    { &quot;1234&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t100</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t10</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1</span>
+                                <span class="value data">
+                                
+                                    { &quot;2345&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            6
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">The following pairs will be friends: Rabbit 0 and 1, 1 and 2, and 2 and 3. One of the optimal strategies is as follows:
+<ul>
+<li>Rabbit 1 shares introductions of Rabbit 0 and 2.</li>
+<li>Rabbit 2 shares introductions of Rabbit 1 and 3.</li>
+<li>Rabbit 1 shares introduction of Rabbit 3 (this is possible because now Rabbit 3's introduction is shared by Rabbit 2, who is a Rabbit 1's friend).</li>
+<li>Rabbit 2 shares introduction of Rabbit 0 (this is possible because now Rabbit 0's introduction is shared by Rabbit 1, who is a Rabbit 2's friend).</li>
+</ul></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">s1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s100</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s10</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s1</span>
+                                <span class="value data">
+                                
+                                    { &quot;7626463146&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t100</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t10</span>
+                                <span class="value data">
+                                
+                                    { &quot;0000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1</span>
+                                <span class="value data">
+                                
+                                    { &quot;9927686479&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            18
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">s1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;00000000000000000000000000000000000000000000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s100</span>
+                                <span class="value data">
+                                
+                                    { &quot;00000000000000000000000000000000000000000000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s10</span>
+                                <span class="value data">
+                                
+                                    { &quot;50353624751857130208544645495168271486083954769538&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">s1</span>
+                                <span class="value data">
+                                
+                                    { &quot;85748487990028258641117783760944852941545064635928&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1000</span>
+                                <span class="value data">
+                                
+                                    { &quot;00000000000000000000000000000000000000000000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t100</span>
+                                <span class="value data">
+                                
+                                    { &quot;00000000000000000000000000000000000000000000000000&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t10</span>
+                                <span class="value data">
+                                
+                                    { &quot;61465744851859252308555855596388482696094965779649&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">t1</span>
+                                <span class="value data">
+                                
+                                    { &quot;37620749792666153778227385275518278477865684777411&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            333
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+        </ol>
+    </div>
+    <hr />
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

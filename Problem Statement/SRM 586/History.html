@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TopCoder SRM 586 - 500: History</title>
+    
+    <link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico"/>
+    
+
+    
+    <style type="text/css">
+        /* font */
+body {
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+ul.constraints > li:before, ul.notes > li:before {
+    font-family: monospace;
+    font-weight: normal;
+}
+.heading {
+    font-weight: bold;
+    font-size: 175%;
+    line-height: 1.2em;
+}
+.section .section-title {
+    font-weight: bold;
+    font-size: 125%;
+}
+ol.testcases > li:before {
+    font-family: monospace;
+}
+type {
+    font-weight: bold;
+    font-family: monospace;
+}
+li.testcase .data {
+    font-family: monospace;
+    line-height: 1.5em;
+}
+
+/* layout */
+.heading {
+    margin-top: 0.1em;
+    margin-bottom:0.1em;
+    text-align: center;
+}
+.section .section-title {
+    margin-top : 1em;
+    margin-bottom: 1em;
+}
+.problem-intro, note, user-constraint {
+    padding-left: 1.25em;
+}
+
+/* Lists */
+ul.constraints, ul.notes, ul.variables, ul.problem-definition-lines {
+    list-style-type: none;
+    padding: 0px;
+}
+ul.constraints > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+ul.notes > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+
+/* Testcases */
+li.testcase {
+    line-height: 1.1em;
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    overflow: auto;
+}
+li.testcase > .testcase-content > div { padding-bottom: 0.5em; padding-left: 1em; }
+
+li.testcase .testcase-comment {
+    margin: 0;
+    padding-left: 1em;
+}
+.testcase-comment p:first-child { margin-top: 0; }
+.testcase-comment p:last-child { margin-bottom: 0; }
+
+li.testcase .testcase-content {
+    margin: 0.31em;
+}
+
+/* Data and variables */
+.testcase-output {
+    padding: 0.2em 1em 0.2em 0em;
+}
+.variables, .testcase-output {
+    margin-left: 0.5em;
+    display: table;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.variable {
+    display: table-row;
+}
+.variable .name {
+    padding: 0.2em 0em 0.2em 1em;
+    font-weight: bold;
+    display: table-cell;
+    text-align: right;
+}
+.testcase-output .prefix {
+    padding: 0.2em 0em 0.2em 1em;
+    display: table-cell;
+}
+.testcase-output .prefix:after {
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .name:after {
+    font-weight: bold;
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .value, .testcase-output .value {
+    padding: 0.2em 1em 0.2em 0em;
+    display: table-cell;
+}
+ol.testcases {
+    padding: 0px;
+    counter-reset: test_number -1;
+}
+ol.testcases > li {
+    list-style:none;
+}
+ol.testcases > li:before {
+    counter-increment:test_number;
+    display: block;
+    clear: both;
+    content:counter(test_number) ")";
+    color: inherit;
+    background: inherit;
+}
+
+/* Problem Definition */
+.problem-definition, .problem-limits {
+    padding-left: 1.25em;
+}
+.problem-definition-lines, .limit-lines {
+    display: table;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+.definition-line, .limit-line {
+    display: table-row;
+    height: 1.5em;
+    overflow: auto;
+}
+.limit-name:after {
+    content: ":";
+    margin-right: 1em;
+}
+.definition-name, .definition-value, .limit-name, .limit-value {
+    display: table-cell;
+}
+.definition-value {
+    padding-left: 0.5em;
+}
+.definition-name:after {
+    content: ":";
+}
+#contest-division:before {
+    content: "Div ";
+}
+#problem-score:before {
+    content: "- Problem ";
+}
+#problem-name {
+    display: block;
+}
+
+/* Tags, hidden default */
+.tag {
+    visibility: hidden;
+    position: absolute;
+}
+
+        body {
+    /* font color */
+    color: #333333;
+    /* background color */
+    background-color: white;
+}
+.section .section-title {
+    /* title color */
+    color: black;
+}
+li.testcase .data {
+    /* highlight color */
+    background: #eee;
+}
+
+    </style>
+    
+    
+    
+
+</head>
+
+<body>
+    <h1 class="heading">
+        <span id='contest-name'>SRM 586</span>
+        <span id='contest-division'>1</span>
+        <span id='problem-score'>500</span>
+        <span id='problem-name'>History</span>
+    </h1>
+
+    <hr />
+
+    <!-- Problem Statement -->
+    <div class="section">
+        <h2 class="section-title">Problem Statement</h2>
+        <div class="problem-intro">
+            <intro escaped="1">There were N ancient nations.
+We will denote them using uppercase letters from 'A' to 'A'+N-1.
+<br /><br />
+All nations were using the same calendar: the new year always started on the same day in each nation.
+However, each nation used its own numbering of years.
+For example, the years 47, 48, and 49 of nation A could correspond to years 123, 124, and 125 of nation B.
+<br /><br />
+Each nation had several monarchs over its history.
+For each nation, the monarchs are numbered starting from 0, in chronological order.
+For example, &quot;C0&quot; denotes the earliest ruling monarch of the nation 'C'.
+Each monarch started his rule on the first day of some year.
+For each monarch we know the exact years when they ruled, according to the corresponding nation's calendar.
+<br /><br />
+Manao wants to determine how the calendars of those nations correspond to each other.
+To do this, he collected information about various battles that have occurred throughout the history.
+For each battle we know the two monarchs that were involved.
+For example, &quot;C0-D3&quot; denotes a battle between the monarchs &quot;C0&quot; and &quot;D3&quot;.
+The information that this battle has occurred tells us that &quot;C0&quot; and &quot;D3&quot; had to rule in the same year.
+<br /><br />
+Manao now has to answer a bunch of questions.
+Each question is of the following form:
+&quot;Given all the known information, is it possible that there was a battle between monarchs Xn and Ym?&quot;
+<br /><br />
+You are given the above information encoded as three <type>String[]</type>s: <b>dynasties</b>, <b>battles</b>, and <b>queries</b>.
+<br /><br />
+For each i, element i of <b>dynasties</b> contains information about all monarchs of the nation 'A'+i:
+the year when each of them started ruling, and finally the first year after the last monarch died.
+More precisely, <b>dynasties</b>[i] is a space-separated list of increasing integers: the years described above.
+For example, if <b>dynasties</b>[0]=&quot;42 47 55 63&quot;, nation 'A' had three monarchs: &quot;A0&quot; ruled in years 42-46, &quot;A1&quot; ruled in years 47-54, and &quot;A2&quot; ruled in years 55-62. 
+<br /><br />
+Concatenate the elements of <b>battles</b> to obtain a single <type>String</type>.
+The string will represent a space-separated list of battles that are known to have occurred.
+Each battle will be given in the above format.
+<br /><br />
+Each element of <b>queries</b> is a single battle given in the same format.
+<br /><br />
+Return a <type>String</type> of the same length as the number of elements in <b>queries</b>.
+For each i, character i of this <type>String</type> should be 'Y' if the battle in <b>queries</b>[i] is possible, and 'N' otherwise.</intro>
+        </div>
+    </div>
+    
+    <!-- Problem definition -->
+    
+    <div class="section" id="definition">
+        <h2 class="section-title">Definition</h2>
+        <div class="problem-definition">
+            <ul class="problem-definition-lines">
+                <li class="definition-line" id='class-line'>
+                    <span class='definition-name'>Class</span>
+                    <span class='definition-value'>History</span>
+                </li>
+                <li class="definition-line" id='method-line'>
+                    <span class='definition-name'>Method</span>
+                    <span class='definition-value'>verifyClaims</span>
+                </li>
+                <li class="definition-line" id='parameters-line'>
+                    <span class='definition-name'>Parameters</span>
+                    <span class='definition-value'>
+                    
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    , 
+                        vector&lt;string&gt;
+                    
+                    </span>
+                </li>
+                <li class="definition-line" id='returns-line'>
+                    <span class='definition-name'>Returns</span>
+                    <span class='definition-value'>
+                        string
+                    </span>
+                </li>
+                <li class="definition-line" id='signature-line'>
+                    <span class='definition-name'>Method signature</span>
+                    <span class='definition-value'>
+                        string verifyClaims(vector&lt;string&gt; dynasties, vector&lt;string&gt; battles, vector&lt;string&gt; queries)
+                    </span>
+                </li>
+            </ul>
+            <div class="problem-definition-public-tip">(be sure your method is public)</div>
+        </div>        
+    </div>
+    
+
+    <!-- Limits -->
+    <div class="section">
+        <h2 class="section-title">Limits</h2>
+        <div class='problem-limits'>
+            <ul class="limit-lines">
+                <li class='limit-line'>
+                    <span class='limit-name'>Time limit (s)</span>
+                    <span class='limit-value'>2.000</span>
+                </li>
+                <li class='limit-line'>
+                    <span class='limit-name'>Memory limit (MB)</span>
+                    <span class='limit-value'>64</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <!-- Notes -->
+    <div class="section">
+        <h2 class="section-title">Notes</h2>
+        <ul class="notes">
+        
+            <li><note escaped="1">The Constraints guarantee that there will be at most 10 monarchs in each dynasty. Thus, the number of each monarch will be a single digit.</note></li>
+        
+            <li><note escaped="1">Each query should be processed separately. In other words, if you answer 'Y' to some query, this should <b>not</b> be considered as new information for the remaining queries.</note></li>
+        
+        </ul>
+    </div>
+    
+    
+    <!-- Constraints -->
+    <div class="section">
+        <h2 class="section-title">Constraints</h2>
+        <ul class="constraints">
+        
+            <li><user-constraint escaped="1"><b>dynasties</b> will contain between 2 and 26 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>dynasties</b> will be between 3 and 50 characters long, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>dynasties</b> will be a space-separated list containing between 2 and 11 integers, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each integer in <b>dynasties</b> will be between 1 and 99999, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">The sequence of integers in each element of <b>dynasties</b> will be strictly increasing.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>battles</b> will contain between 1 and 50 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>battles</b> will be between 1 and 50 characters long, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">The <type>String</type> B obtained by concatenating the elements of <b>battles</b> will be a space-separated list of tokens.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each token in the string B will be of the form &quot;Xn-Ym&quot;, where X and Y are two distinct uppercase letters that represent valid nations, and n and m are digits that represent valid monarchs of those nations.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">The information given in <b>dynasties</b> and <b>battles</b> will not be contradictory.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>queries</b> will contain between 1 and 50 elements, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">Each element of <b>queries</b> will be of the form &quot;Xn-Ym&quot;, where X and Y are two distinct uppercase letters that represent valid nations, and n and m are digits that represent valid monarchs of those nations.</user-constraint></li>
+        
+        </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <h2 class="section-title">Test cases</h2>
+        <ol class="testcases" start='0'>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">dynasties</span>
+                                <span class="value data">
+                                
+                                    {&quot;1 2 4&quot;,<br />&nbsp;&quot;1 2 3&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">battles</span>
+                                <span class="value data">
+                                
+                                    { &quot;A1-B0&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">queries</span>
+                                <span class="value data">
+                                
+                                    {&quot;A0-B0&quot;,<br />&nbsp;&quot;A0-B1&quot;,<br />&nbsp;&quot;A1-B0&quot;,<br />&nbsp;&quot;A1-B1&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            &quot;NNYY&quot;
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">There are two nations. Both had two monarchs. Nation A's monarch 0 ruled in year 1 according to this nation's year numbering. Nation A's monarch 1 ruled in years 2 and 3. Nation B's monarch 0 ruled in year 1 and its monarch 1 ruled in year 2, according to nation B's year numbering.
+<br /><br />
+Manao knows for sure that a battle between nation A's monarch 1 and nation B's monarch 0 occured. He is interested whether the following battles could take place:
+<br />
+<ul>
+<li>A0-B0. Since monarchs A0 and B0 both ruled for 1 year only, the battle between them would mean that their rulings coincided. However, B0 battled A1, thus he had to rule later than A0.</li>
+<li>A0-B1. We have already seen that monarch B0 ruled later than A0. Therefore monarch B1 ruled even later and could not battle with A0.</li>
+<li>A1-B0. This battle is already provided in <b>battles</b>.</li>
+<li>A1-B1. This battle could occur if nation A's year 2 coincides with nation B's year 1.</li>
+</ul></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">dynasties</span>
+                                <span class="value data">
+                                
+                                    { &quot;1000 2000 3000 10000&quot;, &quot;600 650 2000&quot;, &quot;1 1001 20001&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">battles</span>
+                                <span class="value data">
+                                
+                                    { &quot;B1-C0 A0-B0 A2-C1 B1-C1&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">queries</span>
+                                <span class="value data">
+                                
+                                    {&quot;A0-B1&quot;,<br />&nbsp;&quot;A1-B1&quot;,<br />&nbsp;&quot;A2-B1&quot;,<br />&nbsp;&quot;C0-A0&quot;,<br />&nbsp;&quot;B0-A2&quot;,<br />&nbsp;&quot;C1-B0&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            &quot;YYYYNN&quot;
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">Some monarchs can rule for thousands of years.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">dynasties</span>
+                                <span class="value data">
+                                
+                                    { &quot;1 4 5&quot;, &quot;10 13 17&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">battles</span>
+                                <span class="value data">
+                                
+                                    { &quot;A0-B0 A0-B0 B0-A0&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">queries</span>
+                                <span class="value data">
+                                
+                                    {&quot;A1-B0&quot;,<br />&nbsp;&quot;A0-B1&quot;,<br />&nbsp;&quot;A1-B1&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            &quot;YYY&quot;
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">Note that a battle between the same monarchs can occur multiple times. Also note that they all may occur during the same year.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">dynasties</span>
+                                <span class="value data">
+                                
+                                    {&quot;1 5 6&quot;,<br />&nbsp;&quot;1 2 5&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">battles</span>
+                                <span class="value data">
+                                
+                                    { &quot;A0&quot;, &quot;-B0 A&quot;, &quot;1-B1&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">queries</span>
+                                <span class="value data">
+                                
+                                    {&quot;A0-B0&quot;,<br />&nbsp;&quot;A1-B0&quot;,<br />&nbsp;&quot;A0-B1&quot;,<br />&nbsp;&quot;A1-B1&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            &quot;YNYY&quot;
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment">Note that you need to concatenate the elements of <b>battles</b> before parsing the tokens.</div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">dynasties</span>
+                                <span class="value data">
+                                
+                                    { &quot;2294 7344&quot;, &quot;366 384 449 965 1307 1415&quot;, &quot;307 473 648 688 1097&quot;, &quot;1145 1411 1569 2606&quot;, &quot;87 188 551 598 947 998 1917 1942&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">battles</span>
+                                <span class="value data">
+                                
+                                    { &quot;A0-B4 B4-E2 B3-E2 D2-E4 A0-E4 B1-C3 A0-E3 A0-E6 D0&quot;, &quot;-E2 B2-E1 B4-E3 B4-D0 D0-E3 A0-D1 B2-C3 B1-C3 B4-E&quot;, &quot;3 D0-E1 B3-D0 B3-E2&quot; }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">queries</span>
+                                <span class="value data">
+                                
+                                    {&quot;A0-C2&quot;,<br />&nbsp;&quot;E6-C2&quot;,<br />&nbsp;&quot;A0-E4&quot;,<br />&nbsp;&quot;B3-C1&quot;,<br />&nbsp;&quot;C0-D2&quot;,<br />&nbsp;&quot;B0-C1&quot;,<br />&nbsp;&quot;D1-C3&quot;,<br />&nbsp;&quot;C3-D0&quot;,<br />&nbsp;&quot;C1-E3&quot;,<br />&nbsp;&quot;D1-A0&quot;}
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            &quot;YNYNNYNNNY&quot;
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+        </ol>
+    </div>
+    <hr />
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>

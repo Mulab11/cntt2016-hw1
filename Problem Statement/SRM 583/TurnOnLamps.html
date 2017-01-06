@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TopCoder SRM 583 - 500: TurnOnLamps</title>
+    
+    <link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico"/>
+    
+
+    
+    <style type="text/css">
+        /* font */
+body {
+    font-family: Helvetica, Arial, Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.2em;
+}
+ul.constraints > li:before, ul.notes > li:before {
+    font-family: monospace;
+    font-weight: normal;
+}
+.heading {
+    font-weight: bold;
+    font-size: 175%;
+    line-height: 1.2em;
+}
+.section .section-title {
+    font-weight: bold;
+    font-size: 125%;
+}
+ol.testcases > li:before {
+    font-family: monospace;
+}
+type {
+    font-weight: bold;
+    font-family: monospace;
+}
+li.testcase .data {
+    font-family: monospace;
+    line-height: 1.5em;
+}
+
+/* layout */
+.heading {
+    margin-top: 0.1em;
+    margin-bottom:0.1em;
+    text-align: center;
+}
+.section .section-title {
+    margin-top : 1em;
+    margin-bottom: 1em;
+}
+.problem-intro, note, user-constraint {
+    padding-left: 1.25em;
+}
+
+/* Lists */
+ul.constraints, ul.notes, ul.variables, ul.problem-definition-lines {
+    list-style-type: none;
+    padding: 0px;
+}
+ul.constraints > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+ul.notes > li:before {
+    content: "-";
+    position:relative;
+    margin-left: 0px; /* optional, for multiline li element */
+    left: 0.625em;
+}
+
+/* Testcases */
+li.testcase {
+    line-height: 1.1em;
+    padding-top: 0.625em;
+    padding-bottom: 0.625em;
+    overflow: auto;
+}
+li.testcase > .testcase-content > div { padding-bottom: 0.5em; padding-left: 1em; }
+
+li.testcase .testcase-comment {
+    margin: 0;
+    padding-left: 1em;
+}
+.testcase-comment p:first-child { margin-top: 0; }
+.testcase-comment p:last-child { margin-bottom: 0; }
+
+li.testcase .testcase-content {
+    margin: 0.31em;
+}
+
+/* Data and variables */
+.testcase-output {
+    padding: 0.2em 1em 0.2em 0em;
+}
+.variables, .testcase-output {
+    margin-left: 0.5em;
+    display: table;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.variable {
+    display: table-row;
+}
+.variable .name {
+    padding: 0.2em 0em 0.2em 1em;
+    font-weight: bold;
+    display: table-cell;
+    text-align: right;
+}
+.testcase-output .prefix {
+    padding: 0.2em 0em 0.2em 1em;
+    display: table-cell;
+}
+.testcase-output .prefix:after {
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .name:after {
+    font-weight: bold;
+    content : ":";
+    padding-right: 0.5em;
+}
+.variable .value, .testcase-output .value {
+    padding: 0.2em 1em 0.2em 0em;
+    display: table-cell;
+}
+ol.testcases {
+    padding: 0px;
+    counter-reset: test_number -1;
+}
+ol.testcases > li {
+    list-style:none;
+}
+ol.testcases > li:before {
+    counter-increment:test_number;
+    display: block;
+    clear: both;
+    content:counter(test_number) ")";
+    color: inherit;
+    background: inherit;
+}
+
+/* Problem Definition */
+.problem-definition, .problem-limits {
+    padding-left: 1.25em;
+}
+.problem-definition-lines, .limit-lines {
+    display: table;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+.definition-line, .limit-line {
+    display: table-row;
+    height: 1.5em;
+    overflow: auto;
+}
+.limit-name:after {
+    content: ":";
+    margin-right: 1em;
+}
+.definition-name, .definition-value, .limit-name, .limit-value {
+    display: table-cell;
+}
+.definition-value {
+    padding-left: 0.5em;
+}
+.definition-name:after {
+    content: ":";
+}
+#contest-division:before {
+    content: "Div ";
+}
+#problem-score:before {
+    content: "- Problem ";
+}
+#problem-name {
+    display: block;
+}
+
+/* Tags, hidden default */
+.tag {
+    visibility: hidden;
+    position: absolute;
+}
+
+        body {
+    /* font color */
+    color: #333333;
+    /* background color */
+    background-color: white;
+}
+.section .section-title {
+    /* title color */
+    color: black;
+}
+li.testcase .data {
+    /* highlight color */
+    background: #eee;
+}
+
+    </style>
+    
+    
+    
+
+</head>
+
+<body>
+    <h1 class="heading">
+        <span id='contest-name'>SRM 583</span>
+        <span id='contest-division'>1</span>
+        <span id='problem-score'>500</span>
+        <span id='problem-name'>TurnOnLamps</span>
+    </h1>
+
+    <hr />
+
+    <!-- Problem Statement -->
+    <div class="section">
+        <h2 class="section-title">Problem Statement</h2>
+        <div class="problem-intro">
+            <intro escaped="1"><p><i>This problem statement contains superscripts and/or subscripts. These may not display properly outside the applet.</i></p>
+
+<p>Gobble City has a tree topology: There are N intersections, numbered 0 through N-1. The intersections are connected by N-1 bidirectional roads in such a way that it is possible to travel between any two intersections. More precisely, for each pair of intersections there is a unique path (a sequence of roads; see Notes for a formal definition) that connects them. You are given a <type>int[]</type> <b>roads</b> that describes the roads: for each i (0 &lt;= i &lt;= N-2), we have 0 &lt;= <b>roads</b>[i] &lt;= i and there is a road between intersections numbered <b>roads</b>[i] and i+1.</p>
+
+<p>On each road there is a single lamp. The lamps are numbered 0 through N-2. For each i, lamp i is on the road that connects <b>roads</b>[i] and i+1. You are given a <type>String</type> <b>initState</b> that describes the initial states of all lamps: <b>initState</b>[i]='1' means that lamp i is initially on, and <b>initState</b>[i]='0' means that it is off.</p>
+
+<p>Now you are at the Control Center for these lamps. The only way in which you can operate the lamps looks as follows: You enter the numbers of two intersections (X and Y) into the Control Center computer, and the computer toggles the state of all lamps on the path between X and Y. (Toggling the state of a lamp means that if the lamp was off it is now on, and vice versa.) You can perform arbitrarily many such operations, one after another.</p>
+
+<p>Some of the lamps are important to you. You are given this information in the <type>String</type> <b>isImportant</b>: <b>isImportant</b>[i]='1' means that lamp i is important, and <b>isImportant</b>[i]='0' means that it is not.</p>
+
+<p>Your goal is to turn on all important lamps at the same time. (We do not care about the state of the remaining lamps.) Return the minimum number of operations needed to achieve the goal.</p></intro>
+        </div>
+    </div>
+    
+    <!-- Problem definition -->
+    
+    <div class="section" id="definition">
+        <h2 class="section-title">Definition</h2>
+        <div class="problem-definition">
+            <ul class="problem-definition-lines">
+                <li class="definition-line" id='class-line'>
+                    <span class='definition-name'>Class</span>
+                    <span class='definition-value'>TurnOnLamps</span>
+                </li>
+                <li class="definition-line" id='method-line'>
+                    <span class='definition-name'>Method</span>
+                    <span class='definition-value'>minimize</span>
+                </li>
+                <li class="definition-line" id='parameters-line'>
+                    <span class='definition-name'>Parameters</span>
+                    <span class='definition-value'>
+                    
+                        vector&lt;int&gt;
+                    , 
+                        string
+                    , 
+                        string
+                    
+                    </span>
+                </li>
+                <li class="definition-line" id='returns-line'>
+                    <span class='definition-name'>Returns</span>
+                    <span class='definition-value'>
+                        int
+                    </span>
+                </li>
+                <li class="definition-line" id='signature-line'>
+                    <span class='definition-name'>Method signature</span>
+                    <span class='definition-value'>
+                        int minimize(vector&lt;int&gt; roads, string initState, string isImportant)
+                    </span>
+                </li>
+            </ul>
+            <div class="problem-definition-public-tip">(be sure your method is public)</div>
+        </div>        
+    </div>
+    
+
+    <!-- Limits -->
+    <div class="section">
+        <h2 class="section-title">Limits</h2>
+        <div class='problem-limits'>
+            <ul class="limit-lines">
+                <li class='limit-line'>
+                    <span class='limit-name'>Time limit (s)</span>
+                    <span class='limit-value'>2.000</span>
+                </li>
+                <li class='limit-line'>
+                    <span class='limit-name'>Memory limit (MB)</span>
+                    <span class='limit-value'>64</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+    <!-- Notes -->
+    <div class="section">
+        <h2 class="section-title">Notes</h2>
+        <ul class="notes">
+        
+            <li><note escaped="1">In your solution some lamps may be toggled multiple times.</note></li>
+        
+            <li><note escaped="1">A path between two intersection a and b is a sequence of intersections (v<sub>0</sub>=a, v<sub>1</sub>, v<sub>2</sub>, ..., v<sub>k</sub>=b) such that all v<sub>0</sub>, v<sub>1</sub>, ..., v<sub>k</sub> are pairwise distinct and for each i=0..k-1, there exists a road between v<sub>i</sub> and v<sub>i+1</sub>.</note></li>
+        
+        </ul>
+    </div>
+    
+    
+    <!-- Constraints -->
+    <div class="section">
+        <h2 class="section-title">Constraints</h2>
+        <ul class="constraints">
+        
+            <li><user-constraint escaped="1"><b>roads</b> will contain N-1 elements, where N is between 2 and 50, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1">For each i, the i-th (0-based index) element of <b>roads</b> will be between 0 and i, inclusive.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>initState</b> will be N-1 characters long.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>initState</b> will only contain the characters '0' and '1'.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>isImportant</b> will be N-1 characters long.</user-constraint></li>
+        
+            <li><user-constraint escaped="1"><b>isImportant</b> will only contain the characters '0' and '1'.</user-constraint></li>
+        
+        </ul>
+    </div>
+
+    <!-- Test cases -->
+    <div class="section">
+        <h2 class="section-title">Test cases</h2>
+        <ol class="testcases" start='0'>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">roads</span>
+                                <span class="value data">
+                                
+                                    { 0, 0, 1, 1 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">initState</span>
+                                <span class="value data">
+                                
+                                    &quot;0001&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">isImportant</span>
+                                <span class="value data">
+                                
+                                    &quot;0111&quot;
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            1
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><p>The figure below illustrates this test case and its optimal solution.</p>
+<img src="http://www.topcoder.com/contest/problem/TurnOnLamps/TurnOnLamps11.png"></img>
+<p>Red roads are the important ones. The optimal solution chooses the intersections 2 and 3. The path that corresponds to this choice is enclosed by the dashed line. All lamps on this path are toggled from 0 to 1.</p></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">roads</span>
+                                <span class="value data">
+                                
+                                    { 0, 0, 1, 1 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">initState</span>
+                                <span class="value data">
+                                
+                                    &quot;0000&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">isImportant</span>
+                                <span class="value data">
+                                
+                                    &quot;0111&quot;
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            2
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><p>This is almost the same test case as Example 0, but now the initial state of the lamp 3 (i.e., the lamp on the road that connects intersections 1 and 4) is now 0. As this is an important lamp, we now need two operations in order to turn all important lamps to 1.</p>
+<img src="http://www.topcoder.com/contest/problem/TurnOnLamps/TurnOnLamps12.png"></img></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">roads</span>
+                                <span class="value data">
+                                
+                                    { 0, 0, 1, 1, 4, 4 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">initState</span>
+                                <span class="value data">
+                                
+                                    &quot;000100&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">isImportant</span>
+                                <span class="value data">
+                                
+                                    &quot;111111&quot;
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            2
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><img src="http://www.topcoder.com/contest/problem/TurnOnLamps/TurnOnLamps13.png"></img>
+<p>Note that lamp on the road between intersections 1 and 4 was toggled twice: first from 1 to 0, and then from 0 back to 1.</p></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">roads</span>
+                                <span class="value data">
+                                
+                                    { 0, 0, 1, 1, 4, 4 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">initState</span>
+                                <span class="value data">
+                                
+                                    &quot;100100&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">isImportant</span>
+                                <span class="value data">
+                                
+                                    &quot;011101&quot;
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            2
+                        
+                        </span>
+                    </div>
+                    
+                    <div class="testcase-annotation">
+                        <div class='tag'>note</div>
+                        <div class="testcase-comment"><img src="http://www.topcoder.com/contest/problem/TurnOnLamps/TurnOnLamps14.png"></img></div>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">roads</span>
+                                <span class="value data">
+                                
+                                    { 0, 0, 2, 2, 3, 1, 6, 3, 1 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">initState</span>
+                                <span class="value data">
+                                
+                                    &quot;010001110&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">isImportant</span>
+                                <span class="value data">
+                                
+                                    &quot;000110100&quot;
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            1
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+            <li class="testcase">
+                <div class="testcase-content">
+                    <div class="testcase-input">
+                        <div class='tag'>input</div>
+                        <ul class="variables">
+                        
+                            <li class="variable data">
+                                <span class="name data">roads</span>
+                                <span class="value data">
+                                
+                                    { 0, 0, 1, 2, 4, 4, 6, 1, 2, 5, 2, 8, 8, 3, 6, 4, 14, 7, 18, 14, 11, 7, 1, 12, 7, 5, 18, 23, 0, 14, 11, 10, 2, 2, 6, 1, 30, 11, 9, 12, 5, 35, 25, 11, 23, 17, 14, 45, 15 }
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">initState</span>
+                                <span class="value data">
+                                
+                                    &quot;0000000000010000000000000010000010100000000000000&quot;
+                                
+                                </span>
+                            </li>
+                        
+                            <li class="variable data">
+                                <span class="name data">isImportant</span>
+                                <span class="value data">
+                                
+                                    &quot;1010111111111011011111000110111111111111111110111&quot;
+                                
+                                </span>
+                            </li>
+                        
+                        </ul>
+                    </div>
+                    <div class="testcase-output">
+                        <div class='tag'>output</div>
+                        <span class="prefix data">Returns</span>
+                        <span class="value data">
+                        
+                            14
+                        
+                        </span>
+                    </div>
+                    
+               
+                </div>
+            </li>
+            
+        </ol>
+    </div>
+    <hr />
+
+    This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
+</body>
+</html>
