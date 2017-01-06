@@ -15,7 +15,7 @@ bool work(int now)//匈牙利算法
 	for(int i=h[now];i;i=ne[i])if(!b[p[i]])
 	{
 		b[p[i]]=1;
-		if(!L[p[i]]||work(L[p[i]]))
+		if(!~L[p[i]]||work(L[p[i]]))
 		{
 			L[p[i]]=now;
 			return 1;
@@ -32,6 +32,7 @@ class Incubator
             for(i=0;i<n;i++)for(j=0;j<n;j++)g[i][j]=love[i][j]=='Y';
             for(k=0;k<n;k++)for(i=0;i<n;i++)for(j=0;j<n;j++)g[i][j]=g[i][j]||g[i][k]&&g[k][j];//传递闭包 
             for(i=0;i<n;i++)for(j=0;j<n;j++)if(g[i][j])add(i,j);
+            memset(L,-1,sizeof(L));
             for(i=j=0;i<n;i++)//二分图最大匹配 
             {
                 memset(b,0,sizeof(b));
