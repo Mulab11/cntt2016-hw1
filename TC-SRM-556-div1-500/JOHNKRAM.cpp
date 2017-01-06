@@ -18,6 +18,7 @@ class LeftRightDigitsGame2
         string minNumber(string digits, string lowerBound)
         {
             n=digits.size();
+            if(n==1)return cmp(digits[0],lowerBound[0])?digits:f[0][0][0];//特判 
             for(i=0;i<n;i++)f[i][i][cmp(digits[0],lowerBound[i])]=digits[0];//枚举第0个放的位置 
             for(l=1;l<n;l++)for(i=0;i+l<n;i++)
             {
