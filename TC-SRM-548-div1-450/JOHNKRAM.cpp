@@ -20,7 +20,7 @@ class KingdomAndDice
             f[0][A]=1;
             for(i=0;i<n;i++)for(j=1;a[i];j=min(j<<1,a[i]-=j))for(k=N;k>=j;k--)for(l=n*n;l>=i*j;l--)f[k][l]|=f[k-j][l-i*j];//多重背包 
             for(i=1;i<=N;i++)for(j=n;j<=n*n;j++)f[i][j]|=f[i-1][j-n];
-            for(i=0,j=A;i<=n*n;i++)if(f[N][i]&&max(i*2-n*n,n*n-i*2)<=max(j*2-n*n,n*n-j*2))j=i;//计算答案 
+            for(i=0,j=A+N*n;i<=n*n;i++)if(f[N][i]&&max(i*2-n*n,n*n-i*2)<=max(j*2-n*n,n*n-j*2))j=i;//计算答案 
             return 1-(double)j/n/n;
         }
 };
