@@ -8,7 +8,7 @@ void dfs(int k,LL x,int f){if(k==t){for(g=f,i=0;i<n;i++)if(x>>i&1)g*=2;s+=g;}els
 class MapGuessing
 {
 	public:
-		long long countPatterns(string e,vector<string> _)
+		LL countPatterns(string e,vector<string> _)
 		{
 			for(auto y:_)S+=y;
 			for(n=e.size(),m=S.size();i<n;i++)E+=((LL)e[i]-48)<<i;
