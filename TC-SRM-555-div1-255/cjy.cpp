@@ -2,7 +2,7 @@
 using namespace std;
 long long x,t;
 int n,f[51],i,j;
-class CuttingBitString
+class CuttingBitString//DP
 {
 	public:
 		int getmin(string s)
