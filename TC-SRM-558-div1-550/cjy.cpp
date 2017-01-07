@@ -4,7 +4,7 @@
 using namespace std;
 int n,m,a[300],b[300],c[300],x,y,z,u,v,i,j;
 long long s;
-class Ear
+class Ear//枚举，二分
 {
 	public:
 		long long getCount(vs A,vs B,vs C)
