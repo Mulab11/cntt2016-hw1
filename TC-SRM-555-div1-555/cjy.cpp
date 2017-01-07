@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int P=555555555,C[2555][2555],i,j,s;
-class XorBoard
+class XorBoard//枚举，组合
 {
 	public:
 		int count(int n,int m,int r,int c,int S)
