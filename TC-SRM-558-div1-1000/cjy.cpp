@@ -4,7 +4,7 @@
 using namespace std;
 int T,h[N],l[N],e[N],c[N],v[N],f[N],t=1,O=1<<30,n,m,i,j,s,dx[4]={0,1,0,-1},dy[4]={1,0,-1,0},x,y,k,b,g;
 void A(int x,int y,int z){e[++t]=y,l[t]=h[x],h[x]=t,c[t]=z,e[++t]=x,l[t]=h[y],h[y]=t;}
-int S(int x,int F)
+int S(int x,int F)//最小割
 {
 	if(x==T)return F;
 	int r=0,t,i;
