@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int f[55],v[55],i,j,l=1,k,c,n,s=1e9;
-class Stamp
+class Stamp//动态规划
 {
 	public:
 		int getMinimumCost(string C,int A,int B)
