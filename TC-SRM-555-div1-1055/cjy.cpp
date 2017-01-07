@@ -3,7 +3,7 @@
 using namespace std;
 LL E,a[40],t,x,f,g,s;
 string S;
-int n,m,i,j,k;
+int n,m,i,j,k;//搜索，容斥
 void dfs(int k,LL x,int f){if(k==t){for(g=f,i=0;i<n;i++)if(x>>i&1)g*=2;s+=g;}else if(x)dfs(k+1,x,f),dfs(k+1,x&a[k],-f);}
 class MapGuessing
 {
