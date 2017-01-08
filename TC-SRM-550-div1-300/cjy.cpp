@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int dx[4]={1,0,-1,0},dy[4]={0,1,0,-1},v[200][200],x=99,y=x,k,i,j,l=x,r=x,u=x,d=x,C;
-class RotatingBot
+class RotatingBot//模拟
 {
 	public:
 		int minArea(vector<int> a)
