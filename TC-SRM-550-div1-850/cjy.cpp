@@ -2,7 +2,7 @@
 using namespace std;
 int P=1e9+7,N=150,n,i,j,k,t[3];
 struct M{int x[150][150];}E,X,S;
-M C(M x,M y)
+M C(M x,M y)//矩阵快速幂优化DP
 {
 	M z=E;
 	for(i=0;i<N;i++)for(k=0;k<N;k++)if(x.x[i][k])for(j=0;j<N;j++)(z.x[i][j]+=1ll*x.x[i][k]*y.x[k][j]%P)%=P;
