@@ -3,7 +3,7 @@
 #define C L=SL[j][v]-SL[i-1][v]-SL[j][u-1]+SL[i-1][u-1],P=SP[j][v]-SP[i-1][v]-SP[j][u-1]+SP[i-1][u-1]
 using namespace std;
 int n,m,k,i,j,u,v,F,S,SL[55][55],SP[55][55],F1[2017],F2[2017],P,L;
-int G(vs A)
+int G(vs A)//枚举
 {
 	int S=-1;
 	for(i=1;i<=n;i++)for(j=1;j<=m;j++)SL[i][j]=SL[i-1][j]+SL[i][j-1]-SL[i-1][j-1]+(A[i-1][j-1]=='L'),SP[i][j]=SP[i-1][j]+SP[i][j-1]-SP[i-1][j-1]+(A[i-1][j-1]=='P');
