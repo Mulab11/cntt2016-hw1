@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #define LL long long 
 using namespace std;
-class FoxPaintingBalls
+class FoxPaintingBalls//直接计算
 {
 	public:
 		LL theMax(LL R,LL G,LL B,LL n)
