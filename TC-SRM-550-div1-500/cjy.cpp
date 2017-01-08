@@ -2,7 +2,7 @@
 #define LL long long
 using namespace std;
 vector<string> S;string s;LL f,i,j,z;
-class CheckerExpansion
+class CheckerExpansion//结论，暴力
 {
 	public:
 		char G(LL x,LL y)
