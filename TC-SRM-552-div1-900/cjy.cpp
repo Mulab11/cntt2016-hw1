@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 #define LL long long
 using namespace std;
-LL f[1<<20],p[1<<20],t,i,j;
+LL f[1<<20],p[1<<20],t,i,j;//搜索，剪枝
 class HolyNumbers
 {
 	public:
