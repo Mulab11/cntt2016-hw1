@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int l,r=1e9,m,f,h[55],i;
-class KingdomAndTrees
+class KingdomAndTrees//二分，贪心
 {
 	public:
 		int minLevel(vector<int> a)
