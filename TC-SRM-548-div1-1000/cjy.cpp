@@ -2,7 +2,7 @@
 using namespace std;
 int g[55][55][3],f[55][55][3],c[2555][2555],P=1e9+7,i,j,k,u,v,e,t;
 int C(int x,int y){return y<0?0:c[x][y];} 
-struct KingdomAndCities 
+struct KingdomAndCities//DP 容斥
 {
 	public:
 	    int howMany(int n,int m,int K)
