@@ -2,7 +2,7 @@
 using namespace std;
 int n,m,i,t,f[55][2555],j,k,d;
 double s=9,r;
-class KingdomAndDice
+class KingdomAndDice//背包DP
 {
 	public:
 		double newFairness(vector<int> a,vector<int> b,int R)
