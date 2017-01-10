@@ -2,7 +2,7 @@
 using namespace std;
 int d[55],f[55][55],i,j,k,m;
 long long s=1;
-class PenguinSledding
+class PenguinSledding//分类统计
 {
 	public:
 		long long countDesigns(int n,vector<int> x,vector<int> y)
