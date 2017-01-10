@@ -8,7 +8,7 @@ H C(H x,H y)
 	for(i=0;i<n;i++)for(j=0;j<n;j++)(z.x[(i+j)%n]+=x.x[i]*y.x[j])%=P;
 	return z;
 }
-class PenguinEmperor
+class PenguinEmperor//矩阵乘法优化
 {
 	public:
 		int countJourneys(int N,long long m)
