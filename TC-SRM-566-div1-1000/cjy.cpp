@@ -3,7 +3,7 @@
 #define N 255][255]
 using namespace std;
 int P=1e5+7,f[N[2],g[N,h[N,c[255],i,j,k,d,m,b[N,t,u;long long A[N,C[N;double e,X[255],Y[255];
-class FencingPenguins
+class FencingPenguins//区间DP,叉积
 {
 	public:
 		int countWays(int n,int r,vector<int> x,vector<int> y,string _)
