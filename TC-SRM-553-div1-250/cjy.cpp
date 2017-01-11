@@ -2,7 +2,7 @@
 using namespace std;
 int n,i,t,f,O=1e9+1;
 long long x,m;
-class Suminator
+class Suminator//模拟
 {
     public:
         int findMissing(vector<int> a,int M)
