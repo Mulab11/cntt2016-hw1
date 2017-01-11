@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int i,j,k,s,t,p,q,r,n;
-class ColorfulChocolates
+class ColorfulChocolates//枚举
 {
 	public:
 		int maximumSpread(string c,int m)
