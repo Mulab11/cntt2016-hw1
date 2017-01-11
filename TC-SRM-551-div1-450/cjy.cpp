@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int d[50][50],n,i,j,k;
-class ColorfulWolves
+class ColorfulWolves//最短路
 {
 	public:
 		int getmin(vector<string> s)
