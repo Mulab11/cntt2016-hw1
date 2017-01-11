@@ -3,7 +3,7 @@ using namespace std;
 int P=1e9+7,n,m,g[55][55],f[55],c[55][55],i,j,u,v,t,b[55],x,e,S;
 vector<int> L[55],R[55];
 int V(int x){int r=1,n=P-2;for(;n;n/=2,x=1ll*x*x%P)if(n&1)r=1ll*r*x%P;return r;}
-class SweetFruits
+class SweetFruits//矩阵树定理，MeetintheMiddle
 {
 	public:
 		int countTrees(vector<int> a,int M)
