@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int S,n,m,i,j,l[55],r[55],f[55][55],t,P=1e9+7; vector<string> a;
-void G()
+void G()//讨论，DP
 {
 	for(i=0;i<=m;i++)f[0][i]=1;
 	for(i=1;i<=n;i++)for(j=0;j<=m;j++)if(f[i][j]=j?f[i][j-1]:0,l[i-1]<j&&r[i-1]>=j)f[i][j]=(f[i][j]+f[i-1][j])%P;S=(S+f[n][m])%P;
