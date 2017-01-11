@@ -3,7 +3,7 @@
 #define A(a,b,c,e) d[a][b][N+(c)]=min(d[a][b][N+(c)],(L)e)
 #define V vector<int>
 using namespace std;int N=55,i,j,k,u,v;L O=1ll<<60,l,r=O,d[55][55][110];
-class YamanoteLine
+class YamanoteLine//差分约束
 {
 	public:
 		L howMany(L n,V s1,V t1,V l1,V s2,V t2,V l2)
