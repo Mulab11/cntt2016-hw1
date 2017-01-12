@@ -17,12 +17,14 @@ public:
 		//p[k] = f[i][j][k] (i != j),g[k] = f[i][i][k]
 		for(int i = 1;i <= k;i ++)
 		{
+			//from j!=i and j=i
 			p[i] = (p[i - 1] * (n - 1) * (n - 2) / 2 + g[i - 1] + (n - 2) * p[i - 1]) / (n * (n - 1) / 2);
 			g[i] = 1 - (n - 1) * p[i];
 		}
 		double ans = 0,all = 0;
 		for(int i = 1;i <= n;i ++)
 		{
+			//E[ans]=E[prob_i]E[b_i],E[prob_i]=i*(n-i+1)/(\sum n-i+1}),E[b_i]=\sum_{j} prob(i->j)*v_j 
 			for(int j = 1;j <= n;j ++)
 				ans += val[j] * (i != j ? p[k] : g[k]) * (i * (n - i + 1));
 			all += n - i + 1;
