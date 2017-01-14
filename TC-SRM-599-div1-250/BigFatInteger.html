@@ -1,0 +1,31 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p><i>This problem statement contains superscipts that may not display properly outside the applet.</i></p>
+<br></br>
+Lun the dog loves very large integers. Her favorite is <b>A</b><sup><b>B</b></sup> (<b>A</b> to the power of <b>B</b>).
+<br></br>
+<br></br>
+She has an integer variable X. Initially, the value of X is set to 1. She can perform the following two kinds of operations in any order, any number of times.
+<ul>
+<li>Operation 1: choose a prime number p, then multiply X by p.</li>
+<li>Operation 2: choose a positive divisor d of the value of X at that point, then multiply X by d.</li>
+</ul>
+<br></br>
+<br></br>
+You are given two ints <b>A</b> and <b>B</b>. Return the minimum number of operations Lun needs to perform
+in order to obtain X = <b>A</b><sup><b>B</b></sup> from the initial state X = 1.</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>BigFatInteger</td></tr><tr><td>Method:</td><td>minOperations</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int minOperations(int A, int B)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>64</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>A</b> will be between 2 and 1,000,000 (10<sup>6</sup>), inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>B</b> will be between 1 and 1,000,000 (10<sup>6</sup>), inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>6</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">Here, <b>A</b><sup><b>B</b></sup> = 6<sup>1</sup> = 6. Here is one of the optimal sequences of operations:
+<ol>
+<li>Perform operation 1 by choosing p=2. X is now 1*2 = 2.</li>
+<li>Perform operation 1 by choosing p=3. X is now 2*3 = 6.</li>
+</ol></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>162</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: 4</pre></td></tr><tr><td><table><tr><td colspan="2">One of the optimal sequences of operations:
+<ol>
+<li>Perform operation 1 by choosing p=3. X is now 1*3 = 3.</li>
+<li>Perform operation 1 by choosing p=3. X is now 3*3 = 9.</li>
+<li>Perform operation 2 by choosing d=9. X is now 9*9 = 81.</li>
+<li>Perform operation 1 by choosing p=2. X is now 81*2 = 162.</li>
+</ol></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>999983</pre></td></tr><tr><td><pre>9</pre></td></tr></table></td></tr><tr><td><pre>Returns: 5</pre></td></tr><tr><td><table><tr><td colspan="2">Here, <b>A</b> is prime. One of the optimal sequences of operations:
+<ol>
+<li>Perform operation 1 by choosing p=<b>A</b>. X is now <b>A</b>.</li>
+<li>Perform operation 1 by choosing p=<b>A</b>. X is now <b>A</b><sup>2</sup>.</li>
+<li>Perform operation 1 by choosing p=<b>A</b>. X is now <b>A</b><sup>3</sup>.</li>
+<li>Perform operation 2 by choosing d=<b>A</b><sup>3</sup>. X is now <b>A</b><sup>6</sup>.</li>
+<li>Perform operation 2 by choosing d=<b>A</b><sup>3</sup>. X is now <b>A</b><sup>9</sup>.</li>
+</ol></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>360</pre></td></tr><tr><td><pre>8</pre></td></tr></table></td></tr><tr><td><pre>Returns: 8</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
