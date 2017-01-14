@@ -33,7 +33,7 @@ class ColorfulChocolates
 					//Calculate the cost when the position of i-th chocolate with color c is conserved.
 					for(int k=i;k<=j;k++)
 						w+=p[c][k]-(p[c][i]+k-i);
-					//Pick all chocolate whose position remain unchanged, and maintain the cost.
+					//Pick all chocolates whose position remain unchanged, and maintain the cost.
 					for(int k=i;k<=j;k++)
 					{
 						if(w<=maxSwaps)//Update the answer.
