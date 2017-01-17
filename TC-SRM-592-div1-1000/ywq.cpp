@@ -106,4 +106,3 @@ struct SplittingFoxes2
     	return tmp;
     }
 };
-CodeProcessor
