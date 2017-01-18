@@ -13,8 +13,8 @@ using namespace std;
 typedef int key_t;
 typedef int value_t;
 const int MAXN = 1010;
-value_t sigmamu[MAXN];//sigmamu[i] = sigma_{j=1}^i mu(j).
-value_t sigmamu2[MAXN];//sigmamu2[i] = sigma_{j=1}^i mu^2(j).
+value_t sigmamu[MAXN];//sigmamu[i] = sum(j=1~i) mu(j).
+value_t sigmamu2[MAXN];//sigmamu2[i] = sum(j=1~i) mu^2(j).
 int prime[MAXN], primenum;
 int minprime[MAXN];
 int maxinitnum;
