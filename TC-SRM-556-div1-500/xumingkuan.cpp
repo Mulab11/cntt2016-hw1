@@ -16,13 +16,13 @@ using namespace std;
 
 class LeftRightDigitsGame2
 {
-	private:
+private:
 	int n;
 	string f[60][60];//f[i][j]: digits [0, i) > lowerBound [j, j + i), min string [0, i)
 	bool eq[60][60];//eq[i][j]: if digits [0, i) == lowerBound [j, j + i)
 	bool ex[60][60];//ex[i][j]: if f[i][j] exists
-	string mn[60];//mn[i]: digits [0, i) -> mininum number
-	public:
+	string mn[60];//mn[i]: digits [0, i) -> minimum number
+public:
 	string minNumber(string digits, string lowerBound)
 	{
 		n = digits.size();
