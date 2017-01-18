@@ -26,7 +26,7 @@ void init(int n)
 	primenum = 0;
 	sigmamu[0] = sigmamu2[0] = 0;
 	sigmamu[1] = sigmamu2[1] = 1;
-	for(int i = 2; i <= n; i++)
+	for(int i = 2; i <= n; i++)//linear sieve
 	{
 		if(!minprime[i])
 			prime[++primenum] = minprime[i] = i;
@@ -87,11 +87,10 @@ value_t solve(key_t n, key_t m)
 }
 class TheSquareRootDilemma
 {
-	public:
+public:
 	int countPairs(int N, int M)
 	{
 		init((int)(pow(max(N, M), 1.0 / 3.0) * pow(min(N, M), 2.0 / 9.0)) + 1);
 		return solve(N, M);
 	}
 };
-
