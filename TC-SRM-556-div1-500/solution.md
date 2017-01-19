@@ -1,6 +1,6 @@
 # LeftRightDigitsGame2
 
-作者：陈通
+作者：陈通 陈俊锟
 
 关键词：动态规划 记忆化搜索
 
