@@ -1,8 +1,11 @@
 # FlippingBitsDiv1
+
 作者：尤艺霖
 
 关键词：算法复合 动态规划
+
 ## 题意简述
+
 给出一个只包含字符`0`和字符`1`的字符串和数字 $$M$$。
 
 允许两种操作：
@@ -16,7 +19,9 @@
 字符串通过输入它的各个部分的方式给出，要求输出最少的操作次数。
 
 保证字符串的长度小于或等于 $$300$$。
+
 ## 算法
+
 设 $$T=N/M$$ ，由于$$N$$的范围不超过300，所以$$T$$和$$M$$的较小值一定小于或等于17，可以分别解决$$T$$和$$M$$较小的情况。
 
 考虑 $$M$$ 小于或等于17的情况：
@@ -34,46 +39,46 @@
 ```C++
 inline int firstpart(int n,int m)// if m is less than or equal to 17
 {
-	int ans=n;
-	for (int mask=0;mask<(1<<m);mask++)
-	{
-		int co=0;
-		for (int i=1;i<=m;i++)
-		{
-			if((mask&(1<<(i-1)))!=0)tmp[i]=1;
-			else tmp[i]=0;
-		}
-		for (int i=m+1;i<=n;i++)
-		{
-			tmp[i]=tmp[(i-1)%m+1];
-		}
-		for (int i=1;i<=n;i++)
-		{
-			tmp[i]=tmp[i]^str[i];
-		}
-		for (int i=(n/m)*m+1;i<=n;i++)
-		{
-			co+=tmp[i];
-		}
-		for (int i=1;i<=n/m+1;i++)
-		{
-			dp[i][0]=n;
-			dp[i][1]=n;
-		}
-		dp[n/m+1][0]=0;
-		for (int i=n/m;i>=1;i--)
-		{
-			int c0=0,c1=0;
-			for (int j=i*m-m+1;j<=i*m;j++)
-			{
-				if(tmp[j]==0)c0++;
-				else c1++;
-			}
-			dp[i][0]=min(dp[i+1][0],dp[i+1][1]+1)+c1;
-			dp[i][1]=min(dp[i+1][0]+1,dp[i+1][1])+c0;
-		}
-		ans=min(ans,co+min(dp[1][0],dp[1][1]));
-	}return ans;
+    int ans=n;
+    for (int mask=0;mask<(1<<m);mask++)
+    {
+        int co=0;
+        for (int i=1;i<=m;i++)
+        {
+            if((mask&(1<<(i-1)))!=0)tmp[i]=1;
+            else tmp[i]=0;
+        }
+        for (int i=m+1;i<=n;i++)
+        {
+            tmp[i]=tmp[(i-1)%m+1];
+        }
+        for (int i=1;i<=n;i++)
+        {
+            tmp[i]=tmp[i]^str[i];
+        }
+        for (int i=(n/m)*m+1;i<=n;i++)
+        {
+            co+=tmp[i];
+        }
+        for (int i=1;i<=n/m+1;i++)
+        {
+            dp[i][0]=n;
+            dp[i][1]=n;
+        }
+        dp[n/m+1][0]=0;
+        for (int i=n/m;i>=1;i--)
+        {
+            int c0=0,c1=0;
+            for (int j=i*m-m+1;j<=i*m;j++)
+            {
+                if(tmp[j]==0)c0++;
+                else c1++;
+            }
+            dp[i][0]=min(dp[i+1][0],dp[i+1][1]+1)+c1;
+            dp[i][1]=min(dp[i+1][0]+1,dp[i+1][1])+c0;
+        }
+        ans=min(ans,co+min(dp[1][0],dp[1][1]));
+    }return ans;
 }
 ```
 
@@ -90,42 +95,45 @@ inline int firstpart(int n,int m)// if m is less than or equal to 17
 ```C++
 inline int solve2(int n,int m)// solve the situation if we can only flip one bit
 {
-	int ans=0;
-	for (int i=1;i<=m;i++)
-	{
-		int c0=0;
-		int c1=0;
-		for (int j=0;j<=n/m;j++)
-		{
-			if(j*m+i<=n)
-			{
-				if(tmp[j*m+i]==0)c0++;
-				else c1++;
-			}
-		}
-		ans+=min(c0,c1);
-	}return ans;
+    int ans=0;
+    for (int i=1;i<=m;i++)
+    {
+        int c0=0;
+        int c1=0;
+        for (int j=0;j<=n/m;j++)
+        {
+            if(j*m+i<=n)
+            {
+                if(tmp[j*m+i]==0)c0++;
+                else c1++;
+            }
+        }
+        ans+=min(c0,c1);
+    }return ans;
 }
 inline int secondpart(int n,int m)// if n/m is less than or equal to 17
 {
-	int t=n/m,ans=n;
-	for (int mask=0;mask<(1<<t);mask++)
-	{
-		for (int i=1;i<=n;i++)
-		{
-			tmp[i]=str[i];
-		}
-		for (int i=0;i<t;i++)
-		{
-			if((mask&(1<<i))!=0)
-			{
-				for (int j=i*m+1;j<=i*m+m;j++)
-				{
-					tmp[j]=1-tmp[j];
-				}
-			}
-		}
-		ans=min(ans,cnt[mask]+solve2(n,m));
-	}return ans;
+    int t=n/m,ans=n;
+    for (int mask=0;mask<(1<<t);mask++)
+    {
+        for (int i=1;i<=n;i++)
+        {
+            tmp[i]=str[i];
+        }
+        for (int i=0;i<t;i++)
+        {
+            if((mask&(1<<i))!=0)
+            {
+                for (int j=i*m+1;j<=i*m+m;j++)
+                {
+                    tmp[j]=1-tmp[j];
+                }
+            }
+        }
+        ans=min(ans,cnt[mask]+solve2(n,m));
+    }return ans;
 }
 ```
+
+
+
