@@ -47,7 +47,7 @@ void Dp()
     }
     memset(f, 0, sizeof(f));
     f[0][0][cnt & 1] = 1;
-    for (int i = 0; i < m; ++i) {//Dp，枚举到了哪一列，现在的数字和是多少，集合大小为奇数还是偶数
+    for (int i = 0; i < m; ++i) {//Dp，枚举到了哪一列，现在的概率的和是多少，集合大小为奇数还是偶数
         for (int j = 0; j < maxs; ++j) {
             for (int k = 0; k < 2; ++k) {
                 f[i + 1][j][k] += f[i][j][k];
@@ -58,10 +58,10 @@ void Dp()
         }
     }
     double tp;
-    for (int i = 0; i < maxs; ++i) {//统计总的期望，根据容斥原理，奇减偶加
+    for (int i = 0; i < maxs; ++i) {//根据容斥原理统计总的期望
         if (f[m][i][1]) {
             tp = (S - i - fs) / (double)S;
-            if (tp != 1) Ans += (1 + tp / (1 - tp)) * f[m][i][1];//特殊判断tp为1的情况
+            if (tp != 1) Ans += (1 + tp / (1 - tp)) * f[m][i][1];
         }
         if (f[m][i][0]) {
             tp = (S - i - fs) / (double)S;
@@ -74,7 +74,7 @@ void Solve()
 {
     int N = (1 << n);
     int tmp;
-    for (int i = 0; i < N; ++i) {//先枚举固定的行集合
+    for (int i = 0; i < N; ++i) {//先枚举固定行的集合
         tmp = i;
         for (int j = 1; j <= n; ++j) {
             hv[j] = tmp & 1;

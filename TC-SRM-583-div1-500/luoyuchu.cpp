@@ -45,16 +45,16 @@ class TurnOnLamps {
         for (int i = 1; i <= n; ++i) Getfa(i);
         memset(cnt, 0, sizeof(cnt));
         for (int i = 0; i < n - 1; ++i) {
-            if (isImportant[i] == '1' && initState[i] == '0') {//将边上的计数器的加1(这里记录的奇偶性)
+            if (isImportant[i] == '1' && initState[i] == '0') {//在所有需要改动的边的两端打上标记，标记可以相互抵消
                 cnt[fa[edge[i][0]]] ^= 1;
                 cnt[fa[edge[i][1]]] ^= 1;
             }
         }
         int Ans = 0;
-        for (int i = 1; i <= n; ++i) {//统计为奇数的计数器的数量
+        for (int i = 1; i <= n; ++i) {//统计剩余标记总数
             Ans += cnt[i];
         }
-        Ans /= 2;//一条路径可覆盖两个端点
+        Ans /= 2;//一次操作消除两个标记
         return Ans;//返回答案
     }
 };
