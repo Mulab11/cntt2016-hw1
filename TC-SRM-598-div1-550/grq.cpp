@@ -18,25 +18,20 @@
 #define FF first
 using namespace std;
 
-int n,si;
+string C="Ciel",D="Draw",L="Liss";
 
-class BinPacking{
+class FoxAndFencing{
 public:
-	int minBins(vector <int> item){
-		n=item.size();si=0;
-		sort(item.begin(),item.end());
-		for(int i=0;i<n;i++)
-			if(item[i]==100) si++;
-		int ans=n+1;
-		for(int i=0;i<=si;i+=3){
-			int l=i,r=n-1,tmp=i/3;
-			while(l<=r){
-				tmp++;
-				if(item[l]+item[r]<=300) l++;
-				r--;
-			}
-			ans=min(ans,tmp);
+	string WhoCanWin(int mov1, int mov2, int rng1, int rng2, int d){
+		rng1+=mov1;rng2+=mov2;
+		if(d<=rng1) return C;
+		if(rng1<rng2){
+			if(mov1+d<=rng2) return L;
+			if(mov1<mov2&&mov1+rng1<rng2) return L;
+			return D;
 		}
-		return ans;
+		if(rng1==rng2) return D;
+		if(mov2<mov1&&mov2+rng2<rng1) return C;
+		return D;
 	}
 };
