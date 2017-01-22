@@ -7,64 +7,37 @@
 #include <set>
 #include <vector>
 #include <sstream>
-#include <queue>
 #include <typeinfo>
 #include <fstream>
-#include <cassert>
 
 using namespace std;
-const int maxn = 52*52;
-const long long  INF = 1e17;
+typedef long long ll;
 
-class SkiResorts {
+class FoxPaintingBalls {
     public:
-    int n, nodes;
-    
-    priority_queue<pair<long long, int> > q;
-    
-    long long d[maxn];
-    int x[maxn], y[maxn], book[maxn], id[52][52];
-    long long Dijkstra(vector<string> road, vector<int> altitude)
-    {
-//        for(int i=0;i<n;i++) 
-//            g[0].push_back(edge(id(0, i), abs(altitude[0] - altitude[i])));
-//        
-        for(int i=0;i<maxn;i++) d[i] = INF , book[i] = 0;
-        for(int i=0;i<n;i++) d[id[0][i]] = abs(altitude[0] - altitude[i]);
+    ll theMax(ll R,ll G,ll B,int n) { 
+        ll lim = 1LL*n*(n+1)/6 , t=0;
+        if(n%3==1) t=1;
         
-        for(int i=0;i<nodes;i++)
-        {
-            long long res = INF; int who = -1;
-            for(int j=0;j<nodes;j++) if(book[j] == 0 && d[j] < res) res = d[j], who = j;
-            if(who < 0) break;
-            book[who] = 1;
+        ll l=0,r;
+        if(!lim) r = R+G+B+1;
+        else r = max(R, max(G, B))/lim + 1;
+        
+        while(l+1 < r) {
+            ll x=(l+r) / 2;
+            ll lr = R-lim*x,lg = G-lim*x,lb = B-lim*x;
             
-            for(int j=0;j<nodes;j++) 
-                if(d[j] > d[who] && road[x[who]][x[j]] == 'Y' && altitude[y[who]] >= altitude[y[j]])
-                    d[j] = min(d[j], d[who] + abs(altitude[y[j]] - altitude[x[j]]));
+            if(lr>=0 && lg>=0 && lb>=0 && lg+lr+lb>=t*x) 
+                l=x;
+            else 
+                r=x;
         }
-        
-        long long res = INF;
-        for(int i=0;i<n;i++) res = min(res, d[id[n-1][i]]);
-        return res == INF ? -1 : res;
-    }
-        
-    long long minCost(vector<string> road, vector<int> altitude) {
-        n = road.size();
-        nodes = n*n+1;
-        for(int i=0;i<n;i++) for(int j=0;j<n;j++)
-        {
-            int to = i*n+j+1;
-            x[to] = i;
-            y[to] = j;
-            id[i][j] = to;
-        }
-        return Dijkstra(road, altitude);
+        return l;
     }
 };
 
 // CUT begin
-ifstream data("SkiResorts.sample");
+ifstream data("FoxPaintingBalls.sample");
 
 string next_line() {
     string s;
@@ -81,17 +54,6 @@ void from_stream(string &s) {
     s = next_line();
 }
 
-template <typename T> void from_stream(vector<T> &ts) {
-    int len;
-    from_stream(len);
-    ts.clear();
-    for (int i = 0; i < len; ++i) {
-        T t;
-        from_stream(t);
-        ts.push_back(t);
-    }
-}
-
 template <typename T>
 string to_string(T t) {
     stringstream s;
@@ -103,10 +65,10 @@ string to_string(string t) {
     return "\"" + t + "\"";
 }
 
-bool do_test(vector<string> road, vector<int> altitude, long long __expected) {
+bool do_test(long long R, long long G, long long B, int N, long long __expected) {
     time_t startClock = clock();
-    SkiResorts *instance = new SkiResorts();
-    long long __result = instance->minCost(road, altitude);
+    FoxPaintingBalls *instance = new FoxPaintingBalls();
+    long long __result = instance->theMax(R, G, B, N);
     double elapsed = (double)(clock() - startClock) / CLOCKS_PER_SEC;
     delete instance;
 
@@ -127,10 +89,14 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
     while (true) {
         if (next_line().find("--") != 0)
             break;
-        vector<string> road;
-        from_stream(road);
-        vector<int> altitude;
-        from_stream(altitude);
+        long long R;
+        from_stream(R);
+        long long G;
+        from_stream(G);
+        long long B;
+        from_stream(B);
+        int N;
+        from_stream(N);
         next_line();
         long long __answer;
         from_stream(__answer);
@@ -140,16 +106,16 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
             continue;
 
         cout << "  Testcase #" << cases - 1 << " ... ";
-        if ( do_test(road, altitude, __answer)) {
+        if ( do_test(R, G, B, N, __answer)) {
             passed++;
         }
     }
     if (mainProcess) {
         cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1477065360;
+        int T = time(NULL) - 1479303388;
         double PT = T / 60.0, TT = 75.0;
         cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
-        cout << "Score  : " << 450 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
+        cout << "Score  : " << 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
     }
     return 0;
 }
@@ -167,7 +133,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (mainProcess) {
-        cout << "SkiResorts (450 Points)" << endl << endl;
+        cout << "FoxPaintingBalls (250 Points)" << endl << endl;
     }
     return run_test(mainProcess, cases, argv[0]);
 }

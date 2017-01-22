@@ -7,64 +7,40 @@
 #include <set>
 #include <vector>
 #include <sstream>
-#include <queue>
 #include <typeinfo>
 #include <fstream>
-#include <cassert>
 
 using namespace std;
-const int maxn = 52*52;
-const long long  INF = 1e17;
 
-class SkiResorts {
+class BallsSeparating {
+    int INF = 0x3f3f3f3f;
     public:
-    int n, nodes;
-    
-    priority_queue<pair<long long, int> > q;
-    
-    long long d[maxn];
-    int x[maxn], y[maxn], book[maxn], id[52][52];
-    long long Dijkstra(vector<string> road, vector<int> altitude)
+    bool hasOne(vector<int> a)
     {
-//        for(int i=0;i<n;i++) 
-//            g[0].push_back(edge(id(0, i), abs(altitude[0] - altitude[i])));
-//        
-        for(int i=0;i<maxn;i++) d[i] = INF , book[i] = 0;
-        for(int i=0;i<n;i++) d[id[0][i]] = abs(altitude[0] - altitude[i]);
-        
-        for(int i=0;i<nodes;i++)
-        {
-            long long res = INF; int who = -1;
-            for(int j=0;j<nodes;j++) if(book[j] == 0 && d[j] < res) res = d[j], who = j;
-            if(who < 0) break;
-            book[who] = 1;
-            
-            for(int j=0;j<nodes;j++) 
-                if(d[j] > d[who] && road[x[who]][x[j]] == 'Y' && altitude[y[who]] >= altitude[y[j]])
-                    d[j] = min(d[j], d[who] + abs(altitude[y[j]] - altitude[x[j]]));
-        }
-        
-        long long res = INF;
-        for(int i=0;i<n;i++) res = min(res, d[id[n-1][i]]);
-        return res == INF ? -1 : res;
+        for(int i=0;i<a.size();i++) if(a[i]) return true;
+        return false;
     }
+    
+    int d[100][10];
+    int minOperations(vector<int> red, vector<int> green, vector<int> blue) {
+        int Set = hasOne(red) + hasOne(green)*2 + hasOne(blue) * 4;
+        if(__builtin_popcount(Set) > red.size()) return -1;
         
-    long long minCost(vector<string> road, vector<int> altitude) {
-        n = road.size();
-        nodes = n*n+1;
-        for(int i=0;i<n;i++) for(int j=0;j<n;j++)
+        for(int i=0;i<=red.size();i++) for(int j=0;j<=Set;j++) d[i][j] = INF;
+        d[0][0] = 0;
+        
+        for(int i=0;i<red.size();i++) for(int j=0;j<=Set;j++)
         {
-            int to = i*n+j+1;
-            x[to] = i;
-            y[to] = j;
-            id[i][j] = to;
+            d[i+1][j] = red[i] + green[i] + blue[i] - max(red[i], max(green[i], blue[i])) + d[i][j];
+            if(j | 1) d[i+1][j] = min(d[i+1][j], d[i][j^1] + green[i] + blue[i]);
+            if(j | 2) d[i+1][j] = min(d[i+1][j], d[i][j^2] + red[i] + blue[i]);
+            if(j | 4) d[i+1][j] = min(d[i+1][j], d[i][j^4] + red[i] + green[i]);
         }
-        return Dijkstra(road, altitude);
+        return d[red.size()][Set];
     }
 };
-
 // CUT begin
-ifstream data("SkiResorts.sample");
+ifstream data("BallsSeparating.sample");
 
 string next_line() {
     string s;
@@ -103,10 +79,10 @@ string to_string(string t) {
     return "\"" + t + "\"";
 }
 
-bool do_test(vector<string> road, vector<int> altitude, long long __expected) {
+bool do_test(vector<int> red, vector<int> green, vector<int> blue, int __expected) {
     time_t startClock = clock();
-    SkiResorts *instance = new SkiResorts();
-    long long __result = instance->minCost(road, altitude);
+    BallsSeparating *instance = new BallsSeparating();
+    int __result = instance->minOperations(red, green, blue);
     double elapsed = (double)(clock() - startClock) / CLOCKS_PER_SEC;
     delete instance;
 
@@ -127,12 +103,14 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
     while (true) {
         if (next_line().find("--") != 0)
             break;
-        vector<string> road;
-        from_stream(road);
-        vector<int> altitude;
-        from_stream(altitude);
+        vector<int> red;
+        from_stream(red);
+        vector<int> green;
+        from_stream(green);
+        vector<int> blue;
+        from_stream(blue);
         next_line();
-        long long __answer;
+        int __answer;
         from_stream(__answer);
 
         cases++;
@@ -140,16 +118,16 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
             continue;
 
         cout << "  Testcase #" << cases - 1 << " ... ";
-        if ( do_test(road, altitude, __answer)) {
+        if ( do_test(red, green, blue, __answer)) {
             passed++;
         }
     }
     if (mainProcess) {
         cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1477065360;
+        int T = time(NULL) - 1479028474;
         double PT = T / 60.0, TT = 75.0;
         cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
-        cout << "Score  : " << 450 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
+        cout << "Score  : " << 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
     }
     return 0;
 }
@@ -167,7 +145,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (mainProcess) {
-        cout << "SkiResorts (450 Points)" << endl << endl;
+        cout << "BallsSeparating (250 Points)" << endl << endl;
     }
     return run_test(mainProcess, cases, argv[0]);
 }

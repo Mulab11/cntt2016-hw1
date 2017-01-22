@@ -1,42 +1,46 @@
-#include <cstdio>
-#include <cmath>
-#include <cstring>
-#include <ctime>
 #include <iostream>
-#include <algorithm>
-#include <set>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <cmath>
+#include <string>
 #include <vector>
-#include <sstream>
-#include <typeinfo>
-#include <fstream>
+#include <deque>
+#include <stack>
+#include <queue>
+#include <set>
+#include <map>
+#include <algorithm>
+#include <cassert>
 
 using namespace std;
 
-class TeamContest {
+class FoxAndMountainEasy
+{
     public:
-    int worstRank(vector<int> strength) {
-        int f0 = strength[0], f1 = strength[1], f2 = strength[2];
-        int b = max(max(f0, f1), f2) + min(min(f0, f1), f2) + 1;
-        
-        vector<int> a;
-        for(int i=3;i<strength.size();i++)
-            a.push_back(strength[i]);
-        
-        sort(a.begin(), a.end());
-        int l = 0, r = a.size(), res = 1;
-        while(--r >= l)
-        {
-            l = lower_bound(a.begin()+l, a.begin()+r, b - a[r]) - a.begin();
-            if(l + 1 < r) ++res;
-            l += 2;
-        }
+    string possible(int n, int h0, int hn, string history)
+    {
+        int len = hn - h0;
+        if((n + len) % 2 != 0)
+            return "NO";
+        if(abs(len) > n)
+            return "NO";
 
-        return res;
+        int up = (n+len)/2, down = (n-len)/2, u = 0, d = 0, low = 0, now = 0;
+        for(int i = 0; i < history.size(); i++)
+            if(history[i] == 'U')
+                u++, ++now;
+            else
+                d++, low = min(low, --now);
+
+        if(u + max(0, -low - h0) > up || d > down)
+            return "NO";
+        return "YES";
     }
 };
 
 // CUT begin
-ifstream data("TeamContest.sample");
+ifstream data("FoxAndMountainEasy.sample");
 
 string next_line() {
     string s;
@@ -53,17 +57,6 @@ void from_stream(string &s) {
     s = next_line();
 }
 
-template <typename T> void from_stream(vector<T> &ts) {
-    int len;
-    from_stream(len);
-    ts.clear();
-    for (int i = 0; i < len; ++i) {
-        T t;
-        from_stream(t);
-        ts.push_back(t);
-    }
-}
-
 template <typename T>
 string to_string(T t) {
     stringstream s;
@@ -75,10 +68,10 @@ string to_string(string t) {
     return "\"" + t + "\"";
 }
 
-bool do_test(vector<int> strength, int __expected) {
+bool do_test(int n, int h0, int hn, string history, string __expected) {
     time_t startClock = clock();
-    TeamContest *instance = new TeamContest();
-    int __result = instance->worstRank(strength);
+    FoxAndMountainEasy *instance = new FoxAndMountainEasy();
+    string __result = instance->possible(n, h0, hn, history);
     double elapsed = (double)(clock() - startClock) / CLOCKS_PER_SEC;
     delete instance;
 
@@ -99,10 +92,16 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
     while (true) {
         if (next_line().find("--") != 0)
             break;
-        vector<int> strength;
-        from_stream(strength);
+        int n;
+        from_stream(n);
+        int h0;
+        from_stream(h0);
+        int hn;
+        from_stream(hn);
+        string history;
+        from_stream(history);
         next_line();
-        int __answer;
+        string __answer;
         from_stream(__answer);
 
         cases++;
@@ -110,13 +109,13 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
             continue;
 
         cout << "  Testcase #" << cases - 1 << " ... ";
-        if ( do_test(strength, __answer)) {
+        if ( do_test(n, h0, hn, history, __answer)) {
             passed++;
         }
     }
     if (mainProcess) {
         cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1476626214;
+        int T = time(NULL) - 1485055546;
         double PT = T / 60.0, TT = 75.0;
         cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
         cout << "Score  : " << 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
@@ -137,7 +136,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (mainProcess) {
-        cout << "TeamContest (250 Points)" << endl << endl;
+        cout << "FoxAndMountainEasy (250 Points)" << endl << endl;
     }
     return run_test(mainProcess, cases, argv[0]);
 }

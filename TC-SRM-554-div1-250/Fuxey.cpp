@@ -12,31 +12,25 @@
 
 using namespace std;
 
-class TeamContest {
+class TheBrickTowerEasyDivOne 
+{
     public:
-    int worstRank(vector<int> strength) {
-        int f0 = strength[0], f1 = strength[1], f2 = strength[2];
-        int b = max(max(f0, f1), f2) + min(min(f0, f1), f2) + 1;
-        
-        vector<int> a;
-        for(int i=3;i<strength.size();i++)
-            a.push_back(strength[i]);
-        
-        sort(a.begin(), a.end());
-        int l = 0, r = a.size(), res = 1;
-        while(--r >= l)
+        int find(int rc, int rh, int bc, int bh) 
         {
-            l = lower_bound(a.begin()+l, a.begin()+r, b - a[r]) - a.begin();
-            if(l + 1 < r) ++res;
-            l += 2;
+            if(rc==bc)
+            {
+                if(rh==bh) return rc*2;//except the second divide the third
+                else return rc*3;
+            }
+            else//one more when equal
+            {
+                if(rh==bh)return min(rc,bc)*2+1;// same abocve
+                else return min(rc,bc)*3+1;
+            }
         }
-
-        return res;
-    }
 };
-
 // CUT begin
-ifstream data("TeamContest.sample");
+ifstream data("TheBrickTowerEasyDivOne.sample");
 
 string next_line() {
     string s;
@@ -53,17 +47,6 @@ void from_stream(string &s) {
     s = next_line();
 }
 
-template <typename T> void from_stream(vector<T> &ts) {
-    int len;
-    from_stream(len);
-    ts.clear();
-    for (int i = 0; i < len; ++i) {
-        T t;
-        from_stream(t);
-        ts.push_back(t);
-    }
-}
-
 template <typename T>
 string to_string(T t) {
     stringstream s;
@@ -75,10 +58,10 @@ string to_string(string t) {
     return "\"" + t + "\"";
 }
 
-bool do_test(vector<int> strength, int __expected) {
+bool do_test(int redCount, int redHeight, int blueCount, int blueHeight, int __expected) {
     time_t startClock = clock();
-    TeamContest *instance = new TeamContest();
-    int __result = instance->worstRank(strength);
+    TheBrickTowerEasyDivOne *instance = new TheBrickTowerEasyDivOne();
+    int __result = instance->find(redCount, redHeight, blueCount, blueHeight);
     double elapsed = (double)(clock() - startClock) / CLOCKS_PER_SEC;
     delete instance;
 
@@ -99,8 +82,14 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
     while (true) {
         if (next_line().find("--") != 0)
             break;
-        vector<int> strength;
-        from_stream(strength);
+        int redCount;
+        from_stream(redCount);
+        int redHeight;
+        from_stream(redHeight);
+        int blueCount;
+        from_stream(blueCount);
+        int blueHeight;
+        from_stream(blueHeight);
         next_line();
         int __answer;
         from_stream(__answer);
@@ -110,13 +99,13 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
             continue;
 
         cout << "  Testcase #" << cases - 1 << " ... ";
-        if ( do_test(strength, __answer)) {
+        if ( do_test(redCount, redHeight, blueCount, blueHeight, __answer)) {
             passed++;
         }
     }
     if (mainProcess) {
         cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1476626214;
+        int T = time(NULL) - 1485054520;
         double PT = T / 60.0, TT = 75.0;
         cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
         cout << "Score  : " << 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
@@ -137,7 +126,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (mainProcess) {
-        cout << "TeamContest (250 Points)" << endl << endl;
+        cout << "TheBrickTowerEasyDivOne (250 Points)" << endl << endl;
     }
     return run_test(mainProcess, cases, argv[0]);
 }

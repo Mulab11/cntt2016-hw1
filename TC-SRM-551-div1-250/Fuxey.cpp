@@ -12,31 +12,47 @@
 
 using namespace std;
 
-class TeamContest {
+class ColorfulChocolates {
     public:
-    int worstRank(vector<int> strength) {
-        int f0 = strength[0], f1 = strength[1], f2 = strength[2];
-        int b = max(max(f0, f1), f2) + min(min(f0, f1), f2) + 1;
+    int n, d[51][2501][30];
+    
+    int id(char c) { return c - 'A'; }
+    void update(int &a , int b) { a = max(a, b); }
+    int maximumSpread(string chocolates, int maxSwaps) {
+        n = chocolates.size();
         
-        vector<int> a;
-        for(int i=3;i<strength.size();i++)
-            a.push_back(strength[i]);
-        
-        sort(a.begin(), a.end());
-        int l = 0, r = a.size(), res = 1;
-        while(--r >= l)
-        {
-            l = lower_bound(a.begin()+l, a.begin()+r, b - a[r]) - a.begin();
-            if(l + 1 < r) ++res;
-            l += 2;
-        }
-
+        int res = 0;
+        for(int i=0;i<n;i++) for(int j=i;j<n;j++)
+            if(chocolates[i] == chocolates[j])
+            {
+                vector<int> v;
+                for(int k=i;k<=j;k++)
+                    if(chocolates[k] == chocolates[i])
+                        v.push_back(k);
+                
+                
+                bool ok = false;
+                for(int k=0;k<v.size();k++)
+                {
+                    int now = 0;
+                    for(int l=k-1;l>=0;l--) now += abs(v[k]-(k-l)-v[l]);
+                    for(int l=k+1;l<v.size();l++) now += abs(v[k]+(l-k)-v[l]);
+                    
+                    if(now <= maxSwaps)
+                    { 
+                        ok = true;
+                        break;
+                    }
+                    if(i == 1 && j == 6) cout<<k<<" "<<now<<endl;
+                }
+                if(ok) res = max(res, (int)v.size());
+            }
         return res;
     }
 };
 
 // CUT begin
-ifstream data("TeamContest.sample");
+ifstream data("ColorfulChocolates.sample");
 
 string next_line() {
     string s;
@@ -53,17 +69,6 @@ void from_stream(string &s) {
     s = next_line();
 }
 
-template <typename T> void from_stream(vector<T> &ts) {
-    int len;
-    from_stream(len);
-    ts.clear();
-    for (int i = 0; i < len; ++i) {
-        T t;
-        from_stream(t);
-        ts.push_back(t);
-    }
-}
-
 template <typename T>
 string to_string(T t) {
     stringstream s;
@@ -75,10 +80,10 @@ string to_string(string t) {
     return "\"" + t + "\"";
 }
 
-bool do_test(vector<int> strength, int __expected) {
+bool do_test(string chocolates, int maxSwaps, int __expected) {
     time_t startClock = clock();
-    TeamContest *instance = new TeamContest();
-    int __result = instance->worstRank(strength);
+    ColorfulChocolates *instance = new ColorfulChocolates();
+    int __result = instance->maximumSpread(chocolates, maxSwaps);
     double elapsed = (double)(clock() - startClock) / CLOCKS_PER_SEC;
     delete instance;
 
@@ -99,8 +104,10 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
     while (true) {
         if (next_line().find("--") != 0)
             break;
-        vector<int> strength;
-        from_stream(strength);
+        string chocolates;
+        from_stream(chocolates);
+        int maxSwaps;
+        from_stream(maxSwaps);
         next_line();
         int __answer;
         from_stream(__answer);
@@ -110,13 +117,13 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
             continue;
 
         cout << "  Testcase #" << cases - 1 << " ... ";
-        if ( do_test(strength, __answer)) {
+        if ( do_test(chocolates, maxSwaps, __answer)) {
             passed++;
         }
     }
     if (mainProcess) {
         cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1476626214;
+        int T = time(NULL) - 1479130625;
         double PT = T / 60.0, TT = 75.0;
         cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
         cout << "Score  : " << 250 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
@@ -137,7 +144,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (mainProcess) {
-        cout << "TeamContest (250 Points)" << endl << endl;
+        cout << "ColorfulChocolates (250 Points)" << endl << endl;
     }
     return run_test(mainProcess, cases, argv[0]);
 }

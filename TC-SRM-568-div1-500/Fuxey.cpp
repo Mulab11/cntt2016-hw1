@@ -7,64 +7,82 @@
 #include <set>
 #include <vector>
 #include <sstream>
-#include <queue>
 #include <typeinfo>
 #include <fstream>
-#include <cassert>
 
 using namespace std;
-const int maxn = 52*52;
-const long long  INF = 1e17;
 
-class SkiResorts {
+class EqualSums {
     public:
-    int n, nodes;
-    
-    priority_queue<pair<long long, int> > q;
-    
-    long long d[maxn];
-    int x[maxn], y[maxn], book[maxn], id[52][52];
-    long long Dijkstra(vector<string> road, vector<int> altitude)
+    int n, book[110], cur[110], g[110][110];
+    bool isOkay(int x, int v)
     {
-//        for(int i=0;i<n;i++) 
-//            g[0].push_back(edge(id(0, i), abs(altitude[0] - altitude[i])));
-//        
-        for(int i=0;i<maxn;i++) d[i] = INF , book[i] = 0;
-        for(int i=0;i<n;i++) d[id[0][i]] = abs(altitude[0] - altitude[i]);
-        
-        for(int i=0;i<nodes;i++)
-        {
-            long long res = INF; int who = -1;
-            for(int j=0;j<nodes;j++) if(book[j] == 0 && d[j] < res) res = d[j], who = j;
-            if(who < 0) break;
-            book[who] = 1;
-            
-            for(int j=0;j<nodes;j++) 
-                if(d[j] > d[who] && road[x[who]][x[j]] == 'Y' && altitude[y[who]] >= altitude[y[j]])
-                    d[j] = min(d[j], d[who] + abs(altitude[y[j]] - altitude[x[j]]));
-        }
-        
-        long long res = INF;
-        for(int i=0;i<n;i++) res = min(res, d[id[n-1][i]]);
-        return res == INF ? -1 : res;
+        book[x] = 1;
+        if(cur[x] != -1) return cur[x] == v;
+        cur[x] = v;
+        if(v < 0) return false;
+        for(int i=1;i<=n;i++) if(g[x][i] != -1) 
+            if(isOkay(i, g[x][i] - v) == false) return false;
+        return true;
     }
-        
-    long long minCost(vector<string> road, vector<int> altitude) {
-        n = road.size();
-        nodes = n*n+1;
-        for(int i=0;i<n;i++) for(int j=0;j<n;j++)
+    
+    bool isOkay1(int x, int v)
+    {
+        book[x] = 1;
+        if(cur[x] != -1) return cur[x] == v;
+         
+        cur[x] = v;
+        if(v < 0 || (x <= n/2 && v == 0)) return false;
+        for(int i=1;i<=n;i++) if(g[x][i] != -1) 
+            if(isOkay1(i, g[x][i] - v) == false) return false;
+        return true;
+    }
+    
+    int count(vector<string> board) {
+        n = board.size();
+        memset(g, -1, sizeof(g));
+        for(int i=0;i<n;i++) for(int j=0;j<n;j++) if(isdigit(board[i][j]))
         {
-            int to = i*n+j+1;
-            x[to] = i;
-            y[to] = j;
-            id[i][j] = to;
+            int s = i+1, t = j + 1 + n;
+            g[s][t] = g[t][s] = board[i][j] - '0';
         }
-        return Dijkstra(road, altitude);
+        
+        n *= 2;
+        int modu = 1e9+7;
+        
+        long long res = 1;
+        memset(book, 0, sizeof(book));
+        for(int i=1;i<=n;i++) if(!book[i]) 
+        {
+            int now = 0;
+           
+            for(int j=0;j<=9;j++) 
+            {
+                memset(cur, -1, sizeof(cur));
+                now += isOkay(i, j);
+            }
+            (res *= now) %= modu;
+            cout<<i<<" "<<now<<endl;
+        }
+        
+        long long del = 1;
+        memset(book, 0, sizeof(book));
+        for(int i=1;i<=n;i++) if(!book[i]) 
+        {
+            int now = 0;
+            for(int j=0;j<=9;j++) 
+            {
+                memset(cur, -1, sizeof(cur));
+                now += isOkay1(i, j);
+            }            
+            (del *= now) %= modu;
+        }
+        return (res+modu-del)%modu;
     }
 };
 
 // CUT begin
-ifstream data("SkiResorts.sample");
+ifstream data("EqualSums.sample");
 
 string next_line() {
     string s;
@@ -103,10 +121,10 @@ string to_string(string t) {
     return "\"" + t + "\"";
 }
 
-bool do_test(vector<string> road, vector<int> altitude, long long __expected) {
+bool do_test(vector<string> board, int __expected) {
     time_t startClock = clock();
-    SkiResorts *instance = new SkiResorts();
-    long long __result = instance->minCost(road, altitude);
+    EqualSums *instance = new EqualSums();
+    int __result = instance->count(board);
     double elapsed = (double)(clock() - startClock) / CLOCKS_PER_SEC;
     delete instance;
 
@@ -127,12 +145,10 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
     while (true) {
         if (next_line().find("--") != 0)
             break;
-        vector<string> road;
-        from_stream(road);
-        vector<int> altitude;
-        from_stream(altitude);
+        vector<string> board;
+        from_stream(board);
         next_line();
-        long long __answer;
+        int __answer;
         from_stream(__answer);
 
         cases++;
@@ -140,16 +156,16 @@ int run_test(bool mainProcess, const set<int> &case_set, const string command) {
             continue;
 
         cout << "  Testcase #" << cases - 1 << " ... ";
-        if ( do_test(road, altitude, __answer)) {
+        if ( do_test(board, __answer)) {
             passed++;
         }
     }
     if (mainProcess) {
         cout << endl << "Passed : " << passed << "/" << cases << " cases" << endl;
-        int T = time(NULL) - 1477065360;
+        int T = time(NULL) - 1479028748;
         double PT = T / 60.0, TT = 75.0;
         cout << "Time   : " << T / 60 << " minutes " << T % 60 << " secs" << endl;
-        cout << "Score  : " << 450 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
+        cout << "Score  : " << 500 * (0.3 + (0.7 * TT * TT) / (10.0 * PT * PT + TT * TT)) << " points" << endl;
     }
     return 0;
 }
@@ -167,7 +183,7 @@ int main(int argc, char *argv[]) {
         }
     }
     if (mainProcess) {
-        cout << "SkiResorts (450 Points)" << endl << endl;
+        cout << "EqualSums (500 Points)" << endl << endl;
     }
     return run_test(mainProcess, cases, argv[0]);
 }
