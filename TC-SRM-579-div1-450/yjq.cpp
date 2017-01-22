@@ -29,6 +29,7 @@ class TravellingPurchasingMan {
 				int maxStores(int n, vector<string> store, vector<string> roads) { 
 						m = store.size() ; 
 						memset(dis, 0x3f, sizeof dis) ;
+						memset(dp, 0x3f, sizeof dp) ; 
 						for (int i = 0; i < n; i ++) dis[i][i] = 0 ; 
 						vector<int> tmp ; 
 						for (int i = 0; i < m; i ++) { 
@@ -53,7 +54,7 @@ class TravellingPurchasingMan {
 						for (int i = 1; i < (1 << m); i ++) {
 								for (int j = 0; j < m; j ++) { 
 										if (dp[j][i] > 1000000000) continue ; 
-										if (dp[j][i] <= r[i]) dp[j][i] = max(dp[j][i], l[i]) + t[i], ans = max(ans, __builtin_popcount(i)) ; 
+										if (dp[j][i] <= r[j]) dp[j][i] = max(dp[j][i], l[j]) + t[j], ans = max(ans, __builtin_popcount(i)) ; 
 										else continue ;  
 										for (int k = 0; k < m; k ++) { 
 												if (!((i >> k) & 1)) dp[k][i ^ (1 << k)] = min(dp[k][i ^ (1 << k)], dp[j][i] + dis[j][k]) ; 
