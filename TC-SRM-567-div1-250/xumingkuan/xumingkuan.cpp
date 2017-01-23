@@ -31,7 +31,7 @@ public:
 			for(int j = 1; i * i * j <= lim; j++)
 				f[i * i * j] = true;//square factor i * i
 	}
-	int countPairs(int N, int M)
+	int countPairs(int N, int M)//algorithm #2, O(min(n,m))
 	{
 		const int lim = min(N, M);
 		init(lim);
