@@ -7,7 +7,7 @@ public:
 	int bc[265], minx, miny, maxx, maxy, C[15][15];
 	LL countCells(int a, int b, int n, int m, int k){
 		int dx[] = {a, a, -a, -a, b, b, -b, -b}, dy[] = {b, -b, b, -b, a, -a, a, -a}, i, j;
-		LL ans = 0;
+		LL ans = 0; bc[0] = 0;
 		for(i = 0; i <= 8; ++ i)
 			for(j = C[i][0] = C[i][i] = 1; j < i; ++ j)
 				C[i][j] = C[i - 1][j] + C[i - 1][j - 1];
@@ -27,7 +27,4 @@ public:
 			else ans += C[bc[i]][k] * LL(maxx - minx + 1) * (maxy - miny + 1);
 		} return ans;
 	}
-}x;
-int main(){
-	printf("%lld\n", x.countCells(2, 3, 1e9, 1e9, 8));
-}
+};
