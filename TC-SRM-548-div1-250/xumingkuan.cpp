@@ -14,7 +14,7 @@ using namespace std;
 
 class KingdomAndTrees
 {
-	private:
+private:
 	int n, h[55];
 	bool check(int x)
 	{
@@ -27,7 +27,7 @@ class KingdomAndTrees
 		}
 		return true;
 	}
-	public:
+public:
 	int minLevel(vector<int> heights)
 	{
 		n = heights.size();
