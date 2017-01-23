@@ -9,7 +9,6 @@
 #include <sstream>
 #include <typeinfo>
 #include <fstream>
-
 using namespace std;
 /*
 SSR(A, B) is int
@@ -20,7 +19,7 @@ const int MAXN = 80808;
 bool f[MAXN];//have square factors
 class TheSquareRootDilemma
 {
-	public:
+public:
 	int floorsqrt(int x)
 	{
 		return (int)(sqrt(x) + 1e-8);
