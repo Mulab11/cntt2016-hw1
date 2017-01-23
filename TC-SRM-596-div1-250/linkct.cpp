@@ -18,6 +18,3 @@ class IncrementAndDoubling{
 			} return ans + getSize(mx);
 		}
 };
-int main(){
-	return 0;
-}

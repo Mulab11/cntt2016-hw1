@@ -50,7 +50,3 @@ class BitwiseAnd{
 			return ans;
 		}
 };
-
-int main(){
-	return 0;
-}

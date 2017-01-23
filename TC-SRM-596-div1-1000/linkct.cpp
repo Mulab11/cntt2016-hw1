@@ -45,5 +45,3 @@ class SparseFactorial{
 			} return ret;
 		}
 };
-int main(){
-}
