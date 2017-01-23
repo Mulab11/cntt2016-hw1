@@ -63,5 +63,9 @@ class MegaFactorial {
 						}
 						return ans.a[0][ans.n - 1] / cntb;
 				}
-} ;
+} sol ;
+
+int main() { 
+		printf("%d\n", sol.countTrailingZeros(6, 1, 4)) ; 
+}
 

@@ -15,4 +15,8 @@ class FoxAndMountainEasy {
 						if (abs(a - b) <= n && (!((a - b + n) & 1))) return "YES" ;
 						return "NO" ;
 				}
-};
+} sol ; 
+
+int main() {
+		cout << sol.possible(4, 0, 4, "UU") << endl ; 
+}

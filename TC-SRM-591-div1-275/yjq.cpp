@@ -12,10 +12,9 @@ class TheTree {
 				for (int i = 1;i <= n;i ++) cnt[i] = a[i - 1] ; 
 				cnt[0] = 1;
 			    int last = n + 1, ans = 0 ; 	
-                // 用last维护当前的b， ans表示答案
 				for (int i = n ;i >= 0 ;i --) {
 						ans = max(ans, n - i + last - 1 - i) ;
-					    if (cnt[i] == 1) last = i ;  //更新last
+					    if (cnt[i] == 1) last = i ;  
 				}
 				return ans ; 
 		}

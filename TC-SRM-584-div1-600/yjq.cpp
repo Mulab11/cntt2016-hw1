@@ -65,4 +65,5 @@ class Excavations {
 						}
 						return ans;
 				}
-};
+} sol ; 
+

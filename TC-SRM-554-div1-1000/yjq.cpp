@@ -118,4 +118,6 @@ class TheBrickTowerHardDivOne {
 						}
 						return tmpf[0][tot << 3]; 
 				}
-}; 
+} sol ;
+
+int main() {} 

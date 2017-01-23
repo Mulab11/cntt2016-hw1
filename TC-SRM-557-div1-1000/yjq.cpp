@@ -10,7 +10,7 @@ class XorAndSum {
 		public:
 				LL maxSum(vector<LL> number) {
 						a = number;
-						int n = n; 
+						int n = number.size() ; 
 						for(LL k = (1ll << 60),i = 0;k && i < n;k >>= 1) {
 								for(int j = i;j < n;j ++) if (a[j] & k) {swap(a[i],a[j]);break;}
 								if (!(a[i] & k)) continue;
@@ -23,4 +23,7 @@ class XorAndSum {
 						for(int i = 1;i < n;i ++) ans += (a[i] ^ a[0]) ; 
 						return ans;
 				}
-};
+} sol ;
+
+int main() { 
+}

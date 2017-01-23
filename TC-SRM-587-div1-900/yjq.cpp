@@ -53,4 +53,16 @@ class ThreeColorability {
 						}
 						return mp;
 				}
-};
+} sol ;
+
+string tx[] = 	
+{"N?N??NN","??ZN??Z","NN???Z?","ZZZ?Z??","Z???NN?","N?????N","ZZ?N?NN"} ; 
+
+vector<string> gx ; 
+
+int main() { 
+		for (int i = 0; i < 7; i ++) gx.push_back(tx[i]) ; 
+		vector<string> res = sol.lexSmallest(gx) ; 
+		for (int i = 0; i < res.size();  i ++) cout << res[i] << endl ; 
+}
+

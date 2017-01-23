@@ -22,4 +22,10 @@ class PiecewiseLinearFunction {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+int main() { 
+		vector<int> g ; 
+		g.push_back(1) ,g.push_back(4), g.push_back(-1), g.push_back(2) ; 
+		printf("%d\n", sol.maximumSolutions(g)) ; 
+}

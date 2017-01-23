@@ -35,4 +35,8 @@ class CuttingBitString {
 						}
 						return -1;
 				}
-};
+} sol ;
+
+int main() { 
+		printf("%d\n", sol.getmin("1111101") ) ; 
+}

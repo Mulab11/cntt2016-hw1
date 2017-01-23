@@ -27,4 +27,13 @@ class LISNumber {
 						}
 						return k[f] ; 
 				}
-};
+} sol ;
+
+int a[] = {1, 1, 1} ; 
+
+vector<int> g ;
+
+int main() { 
+		for (int i = 0; i < 3; i ++) g.push_back(a[i]) ; 
+		printf("%d\n", sol.count(g, 2)) ; 
+}

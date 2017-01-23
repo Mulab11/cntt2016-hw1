@@ -73,4 +73,14 @@ class GameInDarknessDiv1 {
 						}
 						return "Alice wins";
 				}
-};
+} sol ;
+
+string tmp[] = {"A.B..",
+ "##.##",
+ "##.##"} ; 
+vector<string> gx ; 
+int main() {
+		for (int i = 0; i <3 ; i ++) gx.push_back(tmp[i]) ; 
+		cout << sol.check(gx) << endl ; 
+}
+

@@ -17,4 +17,8 @@ class TriangleXor {
 						}
 						return (int)(ans * w / 2.0);
 				}
-};
+} sol ;
+
+int main() { 
+		printf("%d\n", sol.theArea(12345)) ; 
+}

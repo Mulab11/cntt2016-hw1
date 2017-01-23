@@ -20,4 +20,15 @@ class FoxAndChess {
 						}
 						return "Possible";
 				}
-};
+} sol ;
+
+
+string a = ".L.R.R." ; 
+
+string b = 
+"L...R.R" ; 
+
+int main() { 
+		cout << sol.ableToMove(a, b) << endl ; 
+
+}

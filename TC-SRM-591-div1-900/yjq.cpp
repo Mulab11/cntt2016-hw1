@@ -8,8 +8,8 @@ int pos[10][10] ;
 pair<int, int> seq[20] ; 
 
 inline void update(int &a, int b) {
-		a += b ;
-		if (a >= MOD) a -= MOD ; 
+  a += b ;
+  if (a >= MOD) a -= MOD ; 
 }
 
 int n, m ;
@@ -17,87 +17,87 @@ int n, m ;
 string A, B ; 
 
 class StringPath {
-		public :
-				int countBoards(int n, int m, string A, string B) {
-						int p = 0 ;
-						if (A[0] != B[0]) return 0 ; 
-						dp[p][3] = 1; 
-						memset(pos, -1, sizeof pos) ; 	
-						pos[1][1] = 0 ; //posæ•°ç»„è®°å½•è¯¥æ ¼å­æ˜¯å½“å‰è½®å»“çº¿ä¸Šçš„ç¬¬å‡ ä¸ªæ ¼å­ 
-						int now = 1 ; 
-						seq[0] = make_pair(1, 1) ; //seqæ•°ç»„è®°å½•å½“å‰è½®å»“çº¿ä¸Šçš„æ ¼å­ã€‚
+  public :
+	int countBoards(int n, int m, string A, string B) {
+	  int p = 0 ;
+	  if (A[0] != B[0]) return 0 ; 
+	  dp[p][3] = 1; 
+	  memset(pos, -1, sizeof pos) ; 	
+	  pos[1][1] = 0 ; //posÊı×é¼ÇÂ¼¸Ã¸ñ×ÓÊÇµ±Ç°ÂÖÀªÏßÉÏµÄµÚ¼¸¸ö¸ñ×Ó 
+	  int now = 1 ; 
+	  seq[0] = make_pair(1, 1) ; //seqÊı×é¼ÇÂ¼µ±Ç°ÂÖÀªÏßÉÏµÄ¸ñ×Ó¡£
 
-						for (int tot = 3; tot <= n + m; tot ++) { // totè¡¨ç¤ºå½“å‰æšä¸¾çš„æ ¼å­äº(1,1)çš„è·ç¦»
-								int ca = A[tot - 2], cb = B[tot - 2] ; 
-								for (int i = 1; i <= tot;i ++) {
-										int j = tot - i ; 
-										if (i < 1 || i > n || j < 1 || j > m) continue ; 
-										memset(dp[p ^ 1], 0, sizeof dp[p ^ 1]) ; 
-										for (int S = 0; S < (1 << (now << 1)); S ++) { 
-												if (dp[p][S]) { 
-														if (ca == cb) { //å¦‚æœä¸¤ä¸ªå­—ç¬¦ä¸²çš„å½“å‰å­—ç¬¦ç›¸åŒ
-																// transè¡¨ç¤ºè½¬ç§»åˆ°çš„çŠ¶æ€ï¼Œ toæ˜¯æ±‚transçš„è¾…åŠ©å˜é‡
-																int trans = S , to = 0 ; 
-																//æšä¸¾ä¸¤ç§æƒ…å†µï¼Œ å¡«çš„å­—ç¬¦æ˜¯éœ€è¦çš„å­—ç¬¦ï¼Œ æˆ–è€…ä¸æ˜¯
-																if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 3) ; 
-																if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 3) ; 
-																if (pos[i - 1][j] >= 0) 
-																		trans = ((((S >> ((pos[i - 1][j] + 1) << 1)) << 2) | to) << (pos[i - 1][j] << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
-																else trans = (S << 2) + to ; 
-																update(dp[p ^ 1][trans] , dp[p][S]) ;
+	  for (int tot = 3; tot <= n + m; tot ++) { // tot±íÊ¾µ±Ç°Ã¶¾ÙµÄ¸ñ×ÓÓÚ(1,1)µÄ¾àÀë
+		int ca = A[tot - 2], cb = B[tot - 2] ; 
+		for (int i = 1; i <= tot;i ++) {
+		  int j = tot - i ; 
+		  if (i < 1 || i > n || j < 1 || j > m) continue ; 
+		  memset(dp[p ^ 1], 0, sizeof dp[p ^ 1]) ; 
+		  for (int S = 0; S < (1 << (now << 1)); S ++) { 
+			if (dp[p][S]) { 
+			  if (ca == cb) { //Èç¹ûÁ½¸ö×Ö·û´®µÄµ±Ç°×Ö·ûÏàÍ¬
+				// trans±íÊ¾×ªÒÆµ½µÄ×´Ì¬£¬ toÊÇÇótransµÄ¸¨Öú±äÁ¿
+				int trans = S , to = 0 ; 
+				//Ã¶¾ÙÁ½ÖÖÇé¿ö£¬ ÌîµÄ×Ö·ûÊÇĞèÒªµÄ×Ö·û£¬ »òÕß²»ÊÇ
+				if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 3) ; 
+				if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 3) ; 
+				if (pos[i - 1][j] >= 0) 
+				  trans = ((((S >> ((pos[i - 1][j] + 1) << 1)) << 2) | to) << (pos[i - 1][j] << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
+				else trans = (S << 2) + to ; 
+				update(dp[p ^ 1][trans] , dp[p][S]) ;
 
-																if (pos[i - 1][j] >= 0) trans = ((S >> (((pos[i - 1][j] + 1)) << 1)) << ((pos[i - 1][j] + 1) << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
-																else trans = S << 2 ;  
-																update(dp[p ^ 1][trans], (int) (1LL * dp[p][S] * 25 % MOD)) ;
-														}
-														else {
-																int trans = S, to = 0 ;
+				if (pos[i - 1][j] >= 0) trans = ((S >> (((pos[i - 1][j] + 1)) << 1)) << ((pos[i - 1][j] + 1) << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
+				else trans = S << 2 ;  
+				update(dp[p ^ 1][trans], (int) (1LL * dp[p][S] * 25 % MOD)) ;
+			  }
+			  else {
+				int trans = S, to = 0 ;
 
-																//åŸºæœ¬ä¸ä¸¤ä¸ªå­—ç¬¦ä¸²å½“å‰ä½ç½®å­—ç¬¦ç›¸åŒçš„æƒ…å†µä¸€æ ·ã€‚ åªä¸è¿‡éœ€è¦å¤šæšä¸¾ä¸€ç§æƒ…å†µï¼ˆå¡«çš„å­—ç¬¦åˆ°åº•æ˜¯ç¬¬ä¸€ä¸ªå­—ç¬¦ä¸²çš„è¿˜æ˜¯ç¬¬äºŒä¸ªå­—ç¬¦ä¸²çš„
-																if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 1) ; 
-																if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 1) ; 
-																if (pos[i - 1][j] >= 0) 
-																		trans = ((((S >> ((pos[i - 1][j] + 1) << 1)) << 2) | to) << (pos[i - 1][j] << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
-																else trans = (S << 2) + to ; 
-																update(dp[p ^ 1][trans] , dp[p][S]) ;
-																to = 0 ; 
-																if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 2) ; 
-																if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 2) ; 
-																if (pos[i - 1][j] >= 0) 
-																		trans = ((((S >> ((pos[i - 1][j] + 1) << 1)) << 2) | to) << (pos[i - 1][j] << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
-																else trans = (S << 2) + to ; 
-																update(dp[p ^ 1][trans] , dp[p][S]) ;
-																if (pos[i - 1][j] >= 0) trans = ((S >> ((pos[i - 1][j] + 1) << 1)) << ((pos[i - 1][j] + 1) << 1) )+ (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
-																else trans = S << 2 ;  
-																update(dp[p ^ 1][trans], (int) (1LL * dp[p][S] * 24 % MOD)) ;
-														}		
-												}
-										}
-										if (pos[i - 1][j] < 0) {
-												for (int k = now ; k ; k --) {
-														seq[k] = seq[k - 1] ; 
-														pos[seq[k].first][seq[k].second] = k ; 
-												}
-												seq[0] = make_pair(i, j) ; 
-												pos[i][j] = 0 ; 
-												now ++ ; 
-										}
-										else {
-												seq[pos[i - 1][j]] = make_pair(i, j) ;
-												pos[i][j] = pos[i - 1][j] ; 
-												pos[i - 1][j] = - 1 ; 
-										}	
-										p ^= 1 ; 
-								}
-								if (seq[now - 1].first + seq[now - 1].second < tot) { 
-										for (int S = 0; S < (1 << (now << 1)); S ++) {
-												if (S >> ((now - 1) << 1)) update(dp[p][S & ((1 << ((now - 1) << 1)) - 1)] , dp[p][S]) ; 
-										}
-										pos[seq[now - 1].first][seq[now - 1].second] = -1 ; 
-										now -- ; 
-								}
-						}
-						return dp[p][3] ; 
+				//»ù±¾ÓëÁ½¸ö×Ö·û´®µ±Ç°Î»ÖÃ×Ö·ûÏàÍ¬µÄÇé¿öÒ»Ñù¡£ Ö»²»¹ıĞèÒª¶àÃ¶¾ÙÒ»ÖÖÇé¿ö£¨ÌîµÄ×Ö·ûµ½µ×ÊÇµÚÒ»¸ö×Ö·û´®µÄ»¹ÊÇµÚ¶ş¸ö×Ö·û´®µÄ
+				if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 1) ; 
+				if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 1) ; 
+				if (pos[i - 1][j] >= 0) 
+				  trans = ((((S >> ((pos[i - 1][j] + 1) << 1)) << 2) | to) << (pos[i - 1][j] << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
+				else trans = (S << 2) + to ; 
+				update(dp[p ^ 1][trans] , dp[p][S]) ;
+				to = 0 ; 
+				if (pos[i][j - 1] >= 0) to |= ((S >> (pos[i][j - 1] << 1)) & 2) ; 
+				if (pos[i - 1][j] >= 0) to |= ((S >> (pos[i - 1][j] << 1)) & 2) ; 
+				if (pos[i - 1][j] >= 0) 
+				  trans = ((((S >> ((pos[i - 1][j] + 1) << 1)) << 2) | to) << (pos[i - 1][j] << 1)) + (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
+				else trans = (S << 2) + to ; 
+				update(dp[p ^ 1][trans] , dp[p][S]) ;
+				if (pos[i - 1][j] >= 0) trans = ((S >> ((pos[i - 1][j] + 1) << 1)) << ((pos[i - 1][j] + 1) << 1) )+ (S & ((1 << (pos[i - 1][j] << 1)) - 1 )) ; 
+				else trans = S << 2 ;  
+				update(dp[p ^ 1][trans], (int) (1LL * dp[p][S] * 24 % MOD)) ;
+			  }		
+			}
+		  }
+		  if (pos[i - 1][j] < 0) {
+			for (int k = now ; k ; k --) {
+			  seq[k] = seq[k - 1] ; 
+			  pos[seq[k].first][seq[k].second] = k ; 
+			}
+			seq[0] = make_pair(i, j) ; 
+			pos[i][j] = 0 ; 
+			now ++ ; 
+		  }
+		  else {
+			seq[pos[i - 1][j]] = make_pair(i, j) ;
+			pos[i][j] = pos[i - 1][j] ; 
+			pos[i - 1][j] = - 1 ; 
+		  }	
+		  p ^= 1 ; 
+		}
+		if (seq[now - 1].first + seq[now - 1].second < tot) { 
+		  for (int S = 0; S < (1 << (now << 1)); S ++) {
+			if (S >> ((now - 1) << 1)) update(dp[p][S & ((1 << ((now - 1) << 1)) - 1)] , dp[p][S]) ; 
+		  }
+		  pos[seq[now - 1].first][seq[now - 1].second] = -1 ; 
+		  now -- ; 
+		}
+	  }
+	  return dp[p][3] ; 
 	}
 } ;
 

@@ -33,4 +33,12 @@ class GUMIAndSongsDiv1 {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+int x[] = {3, 5, 4, 11}, y[] = {2, 1, 3, 1} ; 
+vector<int> g1 ,g2 ; 
+int main() { 
+		for (int i = 0; i < 4; i ++) g1.push_back(x[i]), g2.push_back(y[i]) ; 
+		printf("%d\n", sol.maxSongs(g1, g2, 17)) ; 
+}
+

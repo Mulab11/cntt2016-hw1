@@ -94,4 +94,11 @@ class CircusTents {
 						}
 						return tmp; 
 				}
-}; 
+} sol ;
+
+int main() { 
+		vector<int> a, b, c ; 
+		#define pb push_back 
+		a.pb(0), a.pb(3), b.pb(0), b.pb(0), c.pb(1), c.pb(1) ; 
+		printf("%.10f\n", sol.findMaximumDistance(a, b, c)) ; 
+						}

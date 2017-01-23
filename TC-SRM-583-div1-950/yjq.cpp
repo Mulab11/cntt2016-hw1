@@ -18,8 +18,10 @@ class RandomPaintingOnABoard {
 								if (n < m) a[i][j] = prob[i][j] - '0', S += a[i][j] ; 
 								else a[j][i] = prob[i][j] - '0', S += a[j][i] ; 
 						}
+						if (n > m) swap(n, m) ; 
 						for(int i = 1; i < (1 << n); i++) {
 								cnt = __builtin_popcount(i) ; 
+								memset(dp, 0, sizeof dp) ; 
 								dp[0][0][(n + m + cnt) & 1] = 1;
 								for(int j = 0; j < m; j++) {
 										int s = 0;
@@ -40,4 +42,10 @@ class RandomPaintingOnABoard {
 						}
 						return ans + 1.0;
 				}
-};
+} sol ;
+
+int main() {
+		vector<string> g ; 
+		g.push_back("10") , g.push_back("01") ; 
+		printf("%.3f\n", sol.expectedSteps(g)) ; 
+}
