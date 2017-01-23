@@ -22,10 +22,10 @@ public:
 			int t=desiredArray[i],len=0;
 			if(!t) continue;
 			while(t){
-				if(t&1) ans++;//è®¡ç®—1çš„ä¸ªæ•° 
+				if(t&1) ans++;//¼ÆËã1µÄ¸öÊý 
 				len++;t>>=1;
 			} 
-			maxx=max(maxx,len-1);//è®¡ç®—æœ€å¤§çš„é•¿åº¦ 
+			maxx=max(maxx,len-1);//¼ÆËã×î´óµÄ³¤¶È 
 		}
 		return ans+maxx;
 	}
