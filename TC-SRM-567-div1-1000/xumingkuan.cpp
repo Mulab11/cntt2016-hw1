@@ -21,7 +21,7 @@ inline void get_intersect(int &le, int &ri, int x, int y)//get intersection of t
 }
 class Mountains
 {
-	private:
+private:
 	int h[MAXN], vis[MAXN][2];
 	int n, w;
 	int mxh[MAXN][MAXN];
@@ -44,7 +44,7 @@ class Mountains
 					cnt++;
 			return (long long)search(now - 1) * cnt % MOD;
 		}
-		int le = 0, ri = w - 1;//legal places: [le, ri]
+		int le = 0, ri = w - 1;//valid places: [le, ri]
 		int tmp = h[now] - (mxh[now][vis[now][0]] + 1);
 		get_intersect(le, ri, vis[now][0] - tmp, vis[now][0] + tmp);//visible at vis[now][0]
 		if(vis[now][0] != 0)
@@ -63,9 +63,9 @@ class Mountains
 				mxh[now][i + j] = max(mxh[now][i + j], h[now] - j);
 			ret += search(now - 1);
 		}
-		return mp[str] = (int)(ret % MOD);
+		return mp[str] = (int)(ret % MOD);//memorization
 	}
-	public:
+public:
 	int countPlacements(vector<int> heights, vector<string> visibility)
 	{
 		memset(mxh, 0, sizeof(mxh));
