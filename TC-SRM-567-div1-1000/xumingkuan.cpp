@@ -22,13 +22,13 @@ inline void get_intersect(int &le, int &ri, int x, int y)//get intersection of t
 class Mountains
 {
 private:
-	int h[MAXN], vis[MAXN][2];
+	int h[MAXN], vis[MAXN][2];//h: height. vis: the two endpoints of the interval of visible columns.
 	int n, w;
-	int mxh[MAXN][MAXN];
+	int mxh[MAXN][MAXN];//mxh[now]: "maxheight" in the solution. mxh[now][i]: max height at place i of mountains now ~ n-1.
 	map <string, int> mp;
-	int search(int now)
+	int search(int now)//search the place of the now-th mountain
 	{
-		if(now < 0)
+		if(now < 0)//we've searched a valid placement of the n mountains
 			return 1;
 		memcpy(mxh[now], mxh[now + 1], sizeof(mxh[now]));
 		string str(1, now);
@@ -36,9 +36,9 @@ private:
 			str += mxh[now][i];
 		if(mp.find(str) != mp.end())//memorization
 			return mp[str];
-		if(vis[now][0] == -1)//not visible
+		if(vis[now][0] == -1)//invisible
 		{
-			int cnt = 0;
+			int cnt = 0;//count invisible places
 			for(int i = 0; i < w; i++)
 				if(mxh[now][i] >= h[now])
 					cnt++;
@@ -87,7 +87,7 @@ public:
 					vis[i][0] = j;
 					break;
 				}
-			if(vis[i][0] == -1)//not visible
+			if(vis[i][0] == -1)//invisible
 				continue;
 			for(int j = vis[i][0] + 1; j < w; j++)
 				if(visibility[i][j] == '-')
