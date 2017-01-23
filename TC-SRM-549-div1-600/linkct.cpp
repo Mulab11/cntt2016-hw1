@@ -61,25 +61,4 @@ class MagicalHats{
 				j += coins[i];
 			return j;
 		}
-}x;
-
-int main(){
-	const char *inp[] = {".............",
- ".............",
- ".............",
- ".............",
- ".............",
- ".............",
- ".....H.H.....",
- "......H......",
- ".....H.H.....",
- ".............",
- ".............",
- ".............",
- "............."};
-	int c[] = {22}, step = 3;
-	vector <string> graph(inp, inp + sizeof(inp) / sizeof(char *));
-	vector <int> coin(c, c + sizeof(c) / sizeof(int));
-	printf("%d\n", x.findMaximumReward(graph, coin, step));
-	return 0;
-}
+};
