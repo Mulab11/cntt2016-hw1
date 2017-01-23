@@ -27,8 +27,8 @@ class SweetFruits{
 			dfs(cur + 1, ed, cnt + 1, sum + val[cur], res);
 			dfs(cur + 1, ed, cnt, sum, res);
 		}
-		int solveMatrixTree(int scnt){             //scnt: number of nodes which are "really sweet"
-			int i, j, k; LL ret = 1LL, cur, inv;   //Calculate the number of trees whose "really sweet" nodes are a subset of [1, scnt] using matrix tree theorem
+		int solveMatrixTree(int scnt){             //scnt: number of nodes which are "truly sweet"
+			int i, j, k; LL ret = 1LL, cur, inv;   //Calculate the number of trees whose "truly sweet" nodes are a subset of [1, scnt], using matrix tree theorem
 			for(i = 1; i <= n; ++ i)
 				for(j = 1; j <= n; ++ j)
 					if(i == j) g[i][j] = n - 1;
@@ -38,9 +38,6 @@ class SweetFruits{
 					g[i][j] = g[j][i] = 0;
 					-- g[i][i], -- g[j][j];
 				}
-			for(i = 1; i <= n; ++ i)
-				for(j = 1; j <= n; ++ j)
-					printf("%d%c", g[i][j], j == n ? '\n' : ' ');
 			for(i = 1; i < n; ++ i){
 				for(j = i; j < n; ++ j)
 					if(g[j][i]) break;
@@ -56,7 +53,6 @@ class SweetFruits{
 			} ret = (ret + MOD) % MOD;
 			for(i = 1; i < n; ++ i)
 				(ret *= g[i][i]) %= MOD;
-			printf("ans[%d] = %d\n", scnt, int(ret));
 			return ret;
 		}
 		int countTrees(vector <int> val_, int mxSwt){
@@ -69,12 +65,9 @@ class SweetFruits{
 			dfs(n - (m >> 1), n - 1, 0, 0, st2);
 			sort(st1.begin(), st1.end());
 			sort(st2.begin(), st2.end());
-			for(j = 0; j < int(st2.size()); ++ j){
-				printf("(%d, %d)\n", st2[j].fi, st2[j].se);
+			for(j = 0; j < int(st2.size()); ++ j)
 				++ tot[st2[j].se];
-			} printf("\n");
 			for(i = 0; i < int(st1.size()); ++ i){
-				printf("(%d, %d)\n", st1[i].fi, st1[i].se);
 				while(j && st2[j - 1].fi + st1[i].fi > maxv)
 					-- tot[st2[-- j].se];
 				for(k = 0; k <= m; ++ k)
@@ -85,7 +78,6 @@ class SweetFruits{
 					if((C[i][j] = C[i - 1][j] + C[i - 1][j - 1]) >= MOD)
 						C[i][j] -= MOD;
 			for(i = 0; i <= m; ++ i){
-				printf("s%I64d\n", select[i]);
 				sweet[i] = solveMatrixTree(i);
 				for(j = 0; j < i; ++ j)
 					if((sweet[i] = (sweet[i] - LL(C[i][j]) * sweet[j]) % MOD) < 0)
@@ -93,10 +85,4 @@ class SweetFruits{
 				ans = ((select[i] % MOD) * sweet[i] + ans) % MOD;
 			} return ans;
 		}
-}p;
-
-int main(){
-	int a[] = {1078451, -1, 21580110, 8284711, -1, 4202301, 3427559, 8261270, -1, 16176713, 22915672, 24495540, 19236, 5477666, 12280316, 3305896, 17917887, 564911, 22190488, 21843923, 23389728, 14641920, 9590140, 12909561, 20405638, 100184, 23336457, 12780498, 18859535, 23180993, 10278898, 5753075, 21250919, 17563422, 10934412, 22557980, 24895749, 7593671, 10834579, 5606562}, mx = 245243285;
-	vector <int> b(a, a + sizeof(a) / sizeof(int));
-	printf("%d\n", p.countTrees(b, mx));
-}
+};
