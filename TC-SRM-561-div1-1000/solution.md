@@ -53,26 +53,35 @@
 反过来，若边 $e=(u,v)$ 在 $P$ 中经过恰 $1$ 次，那么删去 $e$ 后，$v_0$ 与 $u$ 在同一连通块，$v_{|S|-1}$ 与 $v$ 在同一连通块，而 $u,v$ 不连通，从而 $e$ 在 $v_0$ 到 $v_{|S|-1}$ 的简单路径上。
 
 根据以上性质，可以得到，对于点集 $S$，若经过 $S$ 中所有点的最短路径 $P$ 起点为 $u$，终点为 $v$，那么
+
+$$
 \begin{equation}
 \mathrm{length}(P)=2|E_S-\mathrm{path}(u,v)|+|\mathrm{path}(u,v)| \\=2|E_S|-|\mathrm{path}(u,v)|
 \label{Length}
 \end{equation}
+$$
 
 其中，$\mathrm{length}(P)$ 为路径 $P$ 的长度，$E_S$ 为删除后会导致 $S$ 中存在两点不连通的边集，即出现在某两点 $u,v\in S$ 之间的简单路径上的所有边的集合，$\mathrm{path}(u,v)$ 为 $u,v$ 之间的简单路径的边集，显然 $\mathrm{path}(u,v)\subseteq E_S$。
 
 显然要使 $\mathrm{length}(P)$ 最短，就要选择 $u,v$ 使得 $|\mathrm{path}(u,v)|$ 最大，即 $u,v$ 是 $S$ 中的最远点对。设 $a,b$ 是 $S$ 中的最远点对，由性质1，必定存在从 $a$ 到 $b$ 的合法路径，也就存在从 $a$ 到 $b$ 的最短路径，即满足 \eqref{Length} 的路径。
 
 从而，设 $D_S$ 为 $S$ 中**最远点对**（所有 $u,v\in S$ 中，$|\mathrm{path}(u,v)|$ 的最大值）的距离，则
+
+$$
 \begin{equation}
 \mathrm{length}=2|E_S|-D_S
 \label{Answer}
 \end{equation}
+$$
 
 现在我们考虑如何求 \eqref{Answer} 的期望值，即 $E(\mathrm{length})$。由期望值的性质不难得出
+
+$$
 \begin{equation}
 E(\mathrm{length})=2E(|E_S|)-E(D_S)
 \label{ExpectedValue}
 \end{equation}
+$$
 
 因此只需分开计算 $|E_S|$ 和 $D_S$ 的期望值。
 
@@ -114,15 +123,20 @@ $$d(u,v)=|\mathrm{path}(u,v)|+2^{-h(u)}+2^{-h(v)}$$
 这里 $h(v)$ 是对每个点 $v$ 分配的编号，要求所有点的 $h(v)$ 是两两不同的正整数，这样 $d(u_1,v_1)=d(u_2,v_2)$ 要求两者的小数部分相同，即 $2^{-h(u_1)}+2^{-h(v_1)}=2^{-h(u_2)}+2^{-h(v_2)}$，考虑两者的二进制表示可知仅当 $\{u_1,v_1\}=\{u_2,v_2\}$ 时等式成立。于是不同的点对距离不同，最远点对就唯一了。
 
 现在考虑计算 $a,b$ 是 $S$ 的最远点对（所有 $a,b\in S$ 中，$d(a,b)$ 的最大值）的概率，那么需要满足的条件有
+
+$$
 \begin{equation}
 \forall v\in S-\{a,b\},\max\{d(v,a),d(v,b)\}<d(a,b)
 \label{Cond1}
 \end{equation}
+$$
 
+$$
 \begin{equation}
 \forall u,v\in S-\{a,b\},d(u,v)<d(a,b)
 \label{Cond2}
 \end{equation}
+$$
 
 事实上只要满足条件 \eqref{Cond1} 就够了。为什么呢？
 

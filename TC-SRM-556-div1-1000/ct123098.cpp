@@ -9,8 +9,10 @@
 #include <cmath>
 #include <ctime>
 #include <vector>
+#include <stack>
 #include <queue>
 #include <set>
+#include <map>
 #include <typeinfo>
 
 using namespace std;
