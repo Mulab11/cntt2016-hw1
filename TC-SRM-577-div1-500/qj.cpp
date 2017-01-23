@@ -2,84 +2,43 @@
 
 using namespace std;
 
-const int N = 5000 + 10, E = 100 * N, INF = 0x3f3f3f3f;
-
-class Flow { // maximal flow
-  int adj[N], to[E], next[E], cap[E], cnt;
-  int h[N], gap[N], s, t;
-  int dfs(int a, int df) {
-    if (a == t) return df;
-    int res = 0;
-    for (int i = adj[a]; i; i = next[i]) {
-      int b = to[i];
-      if (cap[i] && h[a] == h[b] + 1) {
-        int f = dfs(b, std::min(df - res, cap[i]));
-        cap[i] -= f;
-        cap[i ^ 1] += f;
-        res += f;
+class EllysChessboard {
+  static const int N = 15, INF = 0x3f3f3f3f;
+  int mem[N][N][N][N];
+  std::vector<int> x, y;
+  int solve(int l, int r, int u, int d) {
+    int &res = mem[l][r][u][d];
+    if (res < INF) return res;
+    bool flag = true;
+    for (int i = 0; i < x.size(); ++i) {
+      if (l <= x[i] && x[i] <= r && d <= y[i] && y[i] <= u) continue;
+      // enumerate one of the new points to be added
+      flag = false;
+      int cur = std::max(std::max(abs(x[i] - l), abs(x[i] - r)), std::max(abs(y[i] - u), abs(y[i] - d)));
+      int a = std::min(l, x[i]), b = std::max(r, x[i]), p = std::min(d, y[i]), q = std::max(u, y[i]);
+      cur += solve(a, b, q, p); // new rectangle
+      for (int j = 0; j < x.size(); ++j) {
+        if (l <= x[j] && x[j] <= r && d <= y[j] && y[j] <= u) continue;
+        if (j == i) continue;
+        if (a <= x[j] && x[j] <= b && p <= y[j] && y[j] <= q)
+          cur += std::max(std::max(abs(x[j] - a), abs(x[j] - b)), std::max(abs(y[j] - p), abs(y[j] - q)));
       }
-      if (res == df) return res;
+      res = std::min(res, cur);
     }
-    if (--gap[h[a]] == 0) h[s] = t + 1;
-    ++gap[++h[a]];
+    if (flag) res = 0;
     return res;
   }
  public:
-  inline void clear(int _s, int _t) {
-    cnt = 2, s = _s, t = _t;
-    memset(adj, 0, sizeof adj);
-  }
-  inline void link(int a, int b, int c) {
-    to[cnt] = b, next[cnt] = adj[a], cap[cnt] = c, adj[a] = cnt++;
-    to[cnt] = a, next[cnt] = adj[b], cap[cnt] = 0, adj[b] = cnt++;
-  }
-  int flow() {
-    memset(h, 0, sizeof h);
-    memset(gap, 0, sizeof gap);
-    int res = 0;
-    while (h[s] < t + 1) res += dfs(s, INF);
+  int minCost(vector<string> s) {
+    for (int i = 0; i < 8; ++i)
+      for (int j = 0; j < 8; ++j)
+        if (s[i][j] == '#') x.push_back(i + j), y.push_back(i - j + 8);
+    // rotate the coordinate
+    // now the Manhattan distance become Chebyshev distance
+    if (x.empty()) return 0;
+    memset(mem, 0x3f, sizeof mem);
+    int res = INF;
+    for (int i = 0; i < x.size(); ++i) res = std::min(res, solve(x[i], x[i], y[i], y[i]));
     return res;
-  }
-};
-
-class BoardPainting {
-  Flow g;
-  int n, m;
-  inline int pos(int x, int y) { return x * m + y; }
- public:
-  int minimalSteps(vector<string> a) {
-    n = a.size();
-    m = a[0].length();
-    const int tot = n * m, s = 2 * tot + 1, t = s + 1;
-    g.clear(s, t);
-    const int dx[] = {-1, 0, 1, 0}, dy[] = {0, 1, 0, -1};
-    for (int i = 0; i < n; ++i) {
-      for (int j = 0; j < m; ++j) {
-        for (int k = 0; k < 4; ++k) {
-          int x = i + dx[k], y = j + dy[k];
-          if (!(0 <= x && x < n && 0 <= y && y < m)) continue;
-          if (k & 1)
-            g.link(pos(i, j), pos(x, y), 1); //horizon
-          else
-            g.link(pos(i, j) + tot, pos(x, y) + tot, 1); //vertical
-        }
-        if (a[i][j] == '.') {
-          g.link(s, pos(i, j), INF);
-          g.link(pos(i, j) + tot, t, INF);
-        } else {
-          g.link(pos(i, j), pos(i, j) + tot, INF);
-          g.link(pos(i, j) + tot, pos(i, j), INF);
-        }
-      }
-    }
-    for (int i = 0; i < n; ++i) {
-      if (a[i][0] == '#') g.link(s, pos(i, 0), 1);
-      if (a[i][m - 1] == '#') g.link(s, pos(i, m - 1), 1);
-    }
-    for (int i = 0; i < m; ++i) {
-      if (a[0][i] == '#') g.link(pos(0, i) + tot, t, 1);
-      if (a[n - 1][i] == '#') g.link(pos(n - 1, i) + tot, t, 1);
-    }
-    return g.flow() / 2;
   }
 };
