@@ -28,7 +28,7 @@ class MegaFactorial
 			}
 	}
 public:
-	inline int countTrailingZeros(int nn,int mm,int b)
+	int countTrailingZeros(int nn,int mm,int b)
 	{
 		int i,j;
 		n=nn;
