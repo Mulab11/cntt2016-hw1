@@ -34,7 +34,7 @@ public:
 		for(int i=0;i<n;i++)
 			for(int j=0;j<60;j++)
 				if(a[i]&(1ll<<j)) vis[j]++;
-		for(int i=0;i<60;i++) if(vis[i]>2) return empty;//åˆ¤æ–­åŸæ¥éæ³•çš„æƒ…å†µ 
+		for(int i=0;i<60;i++) if(vis[i]>2) return empty;//ÅĞ¶ÏÔ­À´·Ç·¨µÄÇé¿ö 
 		for(int i=n;i<N;i++){
 			ll t=0;bool isok=1;
 			for(int j=0;j<n;j++){
@@ -45,7 +45,7 @@ public:
 			}
 			if(!isok) return empty;
 			ans.pb(t);
-		}//å¤„ç†æ–°åŠ å’ŒåŸæ¥çš„è¦æ±‚
+		}//´¦ÀíĞÂ¼ÓºÍÔ­À´µÄÒªÇó
 		if(N-n>1){
 			int x=n,y=n+1;
 			for(int i=0;i<N;i++) printf("%lld ",ans[i]);puts("");
@@ -55,7 +55,7 @@ public:
 				y++;if(y>=N) x++,y=x+1;
 			}
 			if(y<N) return empty;
-		}//å¤„ç†æ–°åŠ ä¹‹é—´çš„è¦æ±‚ 
+		}//´¦ÀíĞÂ¼ÓÖ®¼äµÄÒªÇó 
 		sort(ans.begin(),ans.end());
 		return ans;
 	}
