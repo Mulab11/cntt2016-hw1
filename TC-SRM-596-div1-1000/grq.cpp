@@ -28,13 +28,13 @@ int get(int x){
 	int ans=0;
 	while(x) ans+=c[x],x-=x&(-x);
 	return ans;
-}//æ ‘çŠ¶æ•°ç»„ç»´æŠ¤æ»¡è¶³æ¡ä»¶æ¨¡æ•°(æ¨¡divisior)ä¸ªæ•° 
+}//Ê÷×´Êı×éÎ¬»¤Âú×ãÌõ¼şÄ£Êı(Ä£divisior)¸öÊı 
 void cov(int x,int y){
 	for(int i=y;i<k;i+=g[x]){
 		a[i]|=1<<x-1;
 		if(a[i]==u) change(i);
 	}
-}//æ›´æ–°å¯¹æ‰€æœ‰æ¨¡g[x]ä½™yçš„æ•° 
+}//¸üĞÂ¶ÔËùÓĞÄ£g[x]ÓàyµÄÊı 
 void ins(int x,int y){
 	int k=y%p[x],last=k;
 	while(~nex[x][k]){
@@ -43,7 +43,7 @@ void ins(int x,int y){
 		while(t%p[x]==0) num[x][k]++,t/=p[x];
 		if(num[x][k]>=cnt[x]) cov(x,k-p[x]),nex[x][last]=nex[x][k],k=last;
 	}
-}//æ›´æ–°(n%g[x]-y)æ˜¯p[x]çš„å€æ•°ä¸”ä¸ºæ»¡è¶³æ¡ä»¶çš„æ•° 
+}//¸üĞÂ(n%g[x]-y)ÊÇp[x]µÄ±¶ÊıÇÒÎªÂú×ãÌõ¼şµÄÊı 
 ll count(ll x,ll y){
 	return (y/k-x/k)*get(k-1)-get(x%k-1)+get(y%k);
 }
@@ -57,7 +57,7 @@ ll solve(ll n){
 		for(int j=0;j<p[i];j++)
 			for(int k=j;;k+=p[i])
 				if(k<g[i]) nex[i][k]=k+p[i]; else{nex[i][k]=-1;break;}
-	}//å»ºç«‹æ¨¡g[i]æœªæ»¡è¶³æ¡ä»¶çš„é“¾ 
+	}//½¨Á¢Ä£g[i]Î´Âú×ãÌõ¼şµÄÁ´ 
 	ll ans=0;
 	for(ll i=0;i*i<n;i++){
 		for(int j=1;j<=tot;j++)
@@ -77,7 +77,7 @@ public:
 				p[++tot]=i;cnt[tot]=0;g[tot]=1;
 				while(t%i==0) t/=i,g[tot]*=i,cnt[tot]++;
 			}
-		if(t>1) p[++tot]=t,cnt[tot]=1,g[tot]=t;//è´¨å› æ•°åˆ†è§£ 
+		if(t>1) p[++tot]=t,cnt[tot]=1,g[tot]=t;//ÖÊÒòÊı·Ö½â 
 		u=(1<<tot)-1;
 		ll ans=solve(hi)-solve(lo-1);
 		return ans;
