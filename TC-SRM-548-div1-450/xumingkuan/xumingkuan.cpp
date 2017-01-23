@@ -23,7 +23,7 @@ private:
 			f[j + k * i] = min(f[j + k * i], f[j] + k);
 	}
 public:
-	double newFairness(vector<int> firstDie, vector<int> secondDie, int X)
+	double newFairness(vector<int> firstDie, vector<int> secondDie, int X)//O(n^3logn)
 	{
 		n = firstDie.size();
 		sort(firstDie.begin(), firstDie.end());
