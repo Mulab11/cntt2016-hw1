@@ -14,7 +14,7 @@ using namespace std;
 const int ALPHA = 26, MAXN = 60;
 class Str
 {
-	public:
+public:
 	int v[ALPHA];
 	void init(const string &s)//count letters
 	{
@@ -26,11 +26,11 @@ class Str
 };
 class StringGame
 {
-	private:
+private:
 	int n;
 	Str s[MAXN];
-	bool used[ALPHA];
-	bool alive[MAXN];
+	bool used[ALPHA];//used[ch]: if letter ch is already used
+	bool alive[MAXN];//alive[i]: if string i is on the "stage"
 	bool winstr(int x)//check if string X will win
 	{
 		memset(used, false, sizeof(used));
@@ -64,12 +64,12 @@ class StringGame
 			for(int i = 0; i < n; i++)
 				if(alive[i])
 					flag = false;
-			if(flag)//only string X on "stage"
+			if(flag)//only string X is on the "stage"
 				return true;
 		}
 		return true;
 	}
-	public:
+public:
 	vector<int> getWinningStrings(vector<string> S)
 	{
 		n = S.size();
