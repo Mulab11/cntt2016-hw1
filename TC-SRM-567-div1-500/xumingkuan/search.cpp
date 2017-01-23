@@ -1,3 +1,5 @@
+//反正能过System Test，不删了
+//Challenge succeeded by myself...
 #include <cstdio>
 #include <cmath>
 #include <cstring>
@@ -9,13 +11,11 @@
 #include <sstream>
 #include <typeinfo>
 #include <fstream>
-//Author: xumingkuan
-//Challenge succeeded by myself...
 using namespace std;
 const int ALPHA = 26, MAXN = 60;
 class Str
 {
-	public:
+public:
 	int v[ALPHA];
 	void init(const string &s)//count letters
 	{
@@ -34,7 +34,7 @@ class Str
 };
 class StringGame
 {
-	private:
+private:
 	int n;
 	Str s[MAXN];
 	bool used[ALPHA];
@@ -81,7 +81,7 @@ class StringGame
 			}
 		return search(x, tmp);
 	}
-	public:
+public:
 	vector<int> getWinningStrings(vector<string> S)
 	{
 		n = S.size();
