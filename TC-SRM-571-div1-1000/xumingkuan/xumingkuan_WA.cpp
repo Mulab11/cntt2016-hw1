@@ -1,3 +1,5 @@
+//反正能过System Test，不删了
+//Challenge succeeded by wangyurzee
 #include <cmath>
 #include <cstring>
 #include <iostream>
