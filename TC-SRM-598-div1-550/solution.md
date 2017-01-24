@@ -1,4 +1,4 @@
-# FoxAndFencing2
+# FoxAndFencing
 
 作者: 徐海珂  
 关键词: 博弈,分类讨论
