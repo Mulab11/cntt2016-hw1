@@ -229,8 +229,3 @@ public:
 		return ans ? "POSSIBLE" : "IMPOSSIBLE";
 	}
 };
-
-int main()
-{
-	return 0;
-}
