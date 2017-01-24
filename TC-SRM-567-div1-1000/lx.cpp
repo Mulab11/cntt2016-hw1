@@ -16,7 +16,6 @@ const int mo = 1e9 + 9;
 class Mountains
 {
 public : 
-
 	map <string, int> G;
 	int height[55], n, m;
 	bool can[55][55];
@@ -71,8 +70,3 @@ public :
 		return ans;
 	}
 };
-
-int main()
-{
-	return 0;
-}
