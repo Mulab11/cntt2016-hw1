@@ -15,13 +15,6 @@ typedef long long LL;
 template<typename T> inline void upmax(T & x, T y) { x < y ? x = y : 0; }
 template<typename T> inline void upmin(T & x, T y) { x > y ? x = y : 0; }
 
-template<typename T>
-inline void read(T & x) {
-	char c;
-	while ((c = getchar()) < '0' || c > '9');
-	for (x = c - '0'; (c = getchar()) >= '0' && c <= '9'; x = x * 10 + c - '0');
-}
-
 const int inf = 0x3f3f3f3f;
 const int N = 14;
 
