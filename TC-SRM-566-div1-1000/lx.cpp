@@ -156,20 +156,4 @@ public:
 
 		return f[0][len - 1];
 	}
-} my;
-
-int main()
-{
-	vector<int> x;
-	vector<int> y;
-	string a = "RR";
-
-	x.push_back(2);
-	x.push_back(-2);
-	y.push_back(1);
-	y.push_back(-1);
-
-	printf("%d\n", my.countWays(4, 10, x, y, a));
-
-	return 0;
-}
+};
