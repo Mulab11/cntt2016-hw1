@@ -73,16 +73,4 @@ public :
 		}
 		return ans < inf ? ans : -1;
 	}
-} test;
-
-int main() {
-#ifdef LX_JUDGE
-	freopen("in.txt", "r", stdin);
-#endif
-	vector<string> A;
-	A.pb("WBW");
-	A.pb("BBW");
-	A.pb("WBW");
-	cout << test.minimumMoves(A) << endl;
-    return 0;
-}
+};
