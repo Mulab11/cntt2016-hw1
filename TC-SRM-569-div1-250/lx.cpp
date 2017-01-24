@@ -37,11 +37,3 @@ public:
 		return ans;
 	}
 };
-
-int main()
-{
-#ifdef LX_JUDGE
-	freopen("in.txt", "r", stdin);
-#endif
-	return 0;
-}
