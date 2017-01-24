@@ -11,7 +11,7 @@
 #define inf 1000000000000000000ll
 #define eps 1e-6
 using namespace std;
-class FindPolygonsCustom
+class FindPolygons
 {
 	int n,x[100000],y[100000],z[100000];
 	double p=1e18;
