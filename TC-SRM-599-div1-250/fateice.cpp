@@ -11,7 +11,7 @@
 #define inf 1000000000000000000ll
 #define eps 1e-9
 using namespace std;
-class BigFatIntegerCustom
+class BigFatInteger
 {
 	int p,q;
 public:
