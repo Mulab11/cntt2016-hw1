@@ -40,4 +40,15 @@ class WallGameDiv1 {
 						for (int i = 0; i < m; i ++) ans = min(ans, Dodp(0, i, i, 0));
 						return ans ; 
 				}
-};
+} sol  ;
+
+string x1[] = {"11111"
+,"90005"}; 
+
+vector<string> gx ; 
+
+int main() { 
+		gx.push_back(x1[0]), gx.push_back(x1[1]) ; 
+		printf("%d\n", sol.play(gx)) ; 
+}
+

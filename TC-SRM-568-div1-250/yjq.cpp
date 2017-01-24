@@ -14,12 +14,19 @@ class BallsSeparating {
 						dp[0][0] = 0 ; 
 						for (int i = 0; i < n; i ++) { 
 								for (int j = 0; j < 8; j ++) { 
-										dp[i + 1][j | 1] = min(dp[i + 1][j | 1], dp[i + 1][j] + g[i] + b[i]) ; 
-										dp[i + 1][j | 2] = min(dp[i + 1][j | 2], dp[i + 1][j] + r[i] + b[i]) ; 
-										dp[i + 1][j | 4] = min(dp[i + 1][j | 4], dp[i + 1][j] + r[i] + g[i]) ; 
+										dp[i + 1][j | 1] = min(dp[i + 1][j | 1], dp[i][j] + g[i] + b[i]) ; 
+										dp[i + 1][j | 2] = min(dp[i + 1][j | 2], dp[i][j] + r[i] + b[i]) ; 
+										dp[i + 1][j | 4] = min(dp[i + 1][j | 4], dp[i][j] + r[i] + g[i]) ; 
 								}
 						}
 						if (dp[n][7] > 1000000000) return -1 ;
 						return dp[n][7] ; 
 				}
-};
+} sol ;
+
+vector<int> g ; 
+int main() { 
+		for (int i = 0; i < 3; i ++) g.push_back(1) ; 
+		printf("%d\n", sol.minOperations(g, g, g)) ; 
+}
+

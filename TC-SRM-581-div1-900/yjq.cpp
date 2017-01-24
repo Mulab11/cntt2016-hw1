@@ -29,7 +29,7 @@ class YetAnotherBoardGame {
 				int minimumMoves(vector<string> b) {
 						n = b.size(), m = b[0].size(), M = (1 << m) ; 
 						for (int i = 0; i < n; i ++) for (int j = 0; j < m; j ++) if (b[i][j] == 'W') a[i] |= (1 << j) ; 
-						for (int i = 0; i < n; i ++) C[i] = C[i >> 1] + (i & 1) ; 	
+						for (int i = 0; i < M; i ++) C[i] = C[i >> 1] + (i & 1) ; 	
 						for (int i = 0; i < M; i ++) for (int j = 0; j < 2; j ++) {
 								int tb = a[0] ^ (i >> 1) ^ ((i << 1) % M) ^ (i * j) ; 
 								ans = min(ans, Calc(1, tb, i, i, j * i) + C[i]) ; 
@@ -37,4 +37,20 @@ class YetAnotherBoardGame {
 						if (ans == INF) return -1 ; 
 						return ans ; 
 				}
-};
+} sol ;
+
+	
+string x[] = {"BBBBBBBBB",
+ "BBWBBBBBB",
+ "BWWWBBBBB",
+ "BBWBBBWBB",
+ "BBBBBWBWB",
+ "BBBBBBWBB"} ; 
+
+
+vector<string> gx ; 
+
+int main() { 
+		for (int i = 0; i < 6; i ++) gx.push_back(x[i]) ; 
+		printf("%d\n", sol.minimumMoves(gx)) ; 
+}

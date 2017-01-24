@@ -50,4 +50,12 @@ class TwoConvexShapes {
 								}
 						return dfs(0,0,2,1,1);
 				}
-};
+} sol ;
+
+vector<string> gx ; 
+int main() { 
+		gx.push_back("B?") ;
+		gx.push_back("??") ; 
+		printf("%d\n", sol.countWays(gx)) ; 
+}
+

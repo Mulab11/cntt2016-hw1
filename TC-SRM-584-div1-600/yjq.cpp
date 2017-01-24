@@ -49,6 +49,7 @@ class Excavations {
 						int cur = 0 ;
 						for(int d = n + 1; ~d ; d--) {
 								for(int i = 0; i < n; i ++) if(dep[i] == d && !fg[K[i]]) cur ++ ; 
+								memset(dp, 0, sizeof dp) ; 
 								dp[0][0] = 1;
 								for(int i = 0; i < tp; i ++) {
 										for(int j = 0; j <= tp; j ++) {
@@ -67,3 +68,13 @@ class Excavations {
 				}
 } sol ; 
 
+vector<int> g[3]  ;
+
+#define pb(_x_) push_back(_x_) 
+
+int main() { 
+		g[0].pb(1), g[0].pb(1), g[0].pb(2), g[0].pb(2) ; 
+		g[1].pb(10), g[1].pb(15), g[1].pb(10), g[1].pb(20) ; 
+		g[2].pb(1); 
+		cout << sol.count(g[0], g[1], g[2], 2) << endl ; 
+}

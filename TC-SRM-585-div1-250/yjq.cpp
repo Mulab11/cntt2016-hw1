@@ -16,4 +16,8 @@ class TrafficCongestion {
 						for(int i = 2, j = 0; i <= x; i ++) i[f] = ((j << 1) | 1) % MOD, (j += (i - 1)[f]) %= MOD ;
 						return x[f] ; 
 				}
-};
+} sol ;
+
+int main() {
+		printf("%d\n", sol.theMinCars(585858)) ; 
+}

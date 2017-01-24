@@ -22,4 +22,15 @@ class Egalitarianism {
 						if (mx < 111111) return mx * d ; 
 						return -1 ; 
 				}
-};
+} sol ;
+
+string x[] = {"NYN",
+ "YNY",
+ "NYN"} ; 
+
+vector<string> gx ; 
+
+int main() { 
+		for (int i = 0; i < 3; i ++) gx.push_back(x[i]) ; 
+		printf("%d\n", sol.maxDifference(gx, 10)) ; 
+}

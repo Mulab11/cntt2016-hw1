@@ -22,5 +22,16 @@ class EelAndRabbit {
 						}
 						return ans ; 
 				}
-};
+} sol ; 
 
+
+
+int x1[] = {2, 4, 3, 2, 2, 1, 10} ; 
+int x2[] = {2, 6, 3, 7, 0, 2, 0} ; 
+
+vector<int> g1, g2 ; 
+int main() { 
+
+		for (int i = 0; i < 7; i ++) g1.push_back(x1[i]), g2.push_back(x2[i]) ; 
+		printf("%d\n", sol.getmax(g1, g2)) ; 
+}

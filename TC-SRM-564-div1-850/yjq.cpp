@@ -40,4 +40,10 @@ class DefectiveAddition {
 						ans = (ans + count(a,n)) % Mp; 
 						return ans; 
 				}
-}; 
+} sol ;
+
+vector<int> gx ; 
+int main() { 
+		gx.push_back(1), gx.push_back(2), gx.push_back(3) ; 
+		printf("%d\n", sol.count(gx, 1)) ; 
+}

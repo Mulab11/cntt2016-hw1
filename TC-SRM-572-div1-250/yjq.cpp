@@ -21,4 +21,8 @@ class NewArenaPassword {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+int main() { 
+		printf("%d\n", sol.minChange("topcoderopen", 5)) ; 
+}

@@ -32,4 +32,21 @@ class SpaceWarDiv1 {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+vector<int> g[2] ; 
+
+vector<LL> gc ; 
+
+int a[3][3] = {
+		{2, 3, 5} ,
+		{1, 3, 4} ,
+		{2, 9, 4} } ;
+
+int main() { 
+		for (int i = 0; i < 2; i ++) for (int j = 0; j < 3; j ++) g[i].push_back(a[i][j]) ; 
+		for (int i = 0; i < 3; i ++) gc.push_back(a[2][i]) ; 
+		cout <<sol. minimalFatigue(g[0], g[1], gc) << endl ; 
+}
+
+

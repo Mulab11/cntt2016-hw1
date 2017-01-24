@@ -56,4 +56,6 @@ class HatRack {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+		

@@ -22,4 +22,9 @@ public:
         if(leftB + leftG + leftR>= ans)  return ans;
         return ans-(ans-(leftB + leftG + leftR) + n * (n + 1) / 2-1) / (n * (n + 1) / 2);
     }
-};
+} sol ;
+
+int main() { 
+		cout << sol.theMax(	
+19330428391852493LL, 48815737582834113LL,11451481019198930LL, 3456) ; 
+}

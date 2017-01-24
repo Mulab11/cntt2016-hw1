@@ -37,4 +37,9 @@ class FoxAndHandle {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+int main() { 
+		cout << sol.lexSmallestName("ccieliel") << endl ; 
+
+}

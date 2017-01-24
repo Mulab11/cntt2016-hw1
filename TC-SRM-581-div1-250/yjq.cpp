@@ -44,4 +44,11 @@ class SurveillanceSystem {
 						for(int i = 0; i < n; i ++) res += get(ans[i]) ; 
 						return res;
 				}
-};
+} sol ; 
+
+
+int main() { 
+		vector<int> gx ;  
+		for (int i = 0; i < 13; i ++) gx.push_back(3) ; 
+		cout << sol.getContainerInfo("-XX--X-XX-X-X--X---XX-X---XXXX-----X", gx, 7) << endl ; 
+}

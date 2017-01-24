@@ -90,7 +90,18 @@ class CharacterBoard {
 						}
 						return ans ; 	
 				}
-} ; 
+} sol ;
+
+vector<string> gx ; 
+
+
+int main() {
+		gx.push_back("dea") ;
+		gx.push_back("abc") ; 
+		printf("%d\n", sol.countGenerators(gx, 7, 1, 1)) ;
+}
+
+
 
 
 

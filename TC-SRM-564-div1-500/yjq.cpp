@@ -21,4 +21,8 @@ class AlternateColors2 {
 						ans += k - k / 3 - 1 ;
 						return ans;
 				}
-};
+} sol ;
+
+int main() { 
+		cout << sol.countWays(6, 4) << endl ; 
+}

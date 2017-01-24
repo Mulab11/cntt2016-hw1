@@ -56,4 +56,6 @@ class EnclosingTriangle {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+

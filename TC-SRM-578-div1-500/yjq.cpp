@@ -33,7 +33,7 @@ class WolfInZooDivOne {
 				int count(int n, vector<string> _l, vector<string> _r) {
 						vector<int> ll = Parse(_l), rr = Parse(_r);
 						m = ll.size();
-						for (int i = 0; i < m; i ++) L[i] = ll[i], R[i] = rr[i] ; 
+						for (int i = 0; i < m; i ++) L[i] = ll[i] + 1, R[i] = rr[i] + 1 ; 
 						for (int i = 0; i < m; i ++) for (int j = 0; j < m; j ++) { 
 								if (i == j) continue ; 
 								if (L[j] <= L[i] && R[j] >= R[i] && R[j] - L[j] > R[i] - L[i]) vis[i] = 1 ; 
@@ -54,4 +54,13 @@ class WolfInZooDivOne {
 						}
 						return ans;
 				}
-};
+} sol ;
+
+vector<string> g[2] ; 
+
+int main() { 
+		g[0].push_back("0") ; 
+		g[1].push_back("4") ; 
+		printf("%d\n", sol.count(5, g[0], g[1])) ; 
+}
+
