@@ -45,21 +45,3 @@ public:
 		return ans<0?-1:ans;
 	}
 };
-x2-1,k-y) 的图个数
-		}
-		else{ // 只有1-连通块
-			s=C[C[n][2]][k]; // 图的总个数
-			for(int x=0;x<n;x++) // 减去不连通图个数
-				for(int y=0;y<=k;y++)
-					(s-=C[n-1][x]*F(x+1,0,0,0,y)%MOD*C[C[n-x-1][2]][k-y])%=MOD; // (x+1,y)\(n-x-1,k-y) 的图个数
-		}
-		if(s<0)s+=MOD;
-		return s++;
-	}
-	int howMany(int N, int M, int K){
-		for(int i=0;i<=N*N;i++)
-			for(int j=*C[i]=1;j<=i&&j<=K;j++)
-				C[i][j]=(C[i-1][j-1]+C[i-1][j])%MOD;
-		return F(N-M,0,0,M,K);
-	}
-};

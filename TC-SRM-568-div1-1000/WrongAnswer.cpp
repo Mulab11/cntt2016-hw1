@@ -63,36 +63,3 @@ public:
 		return dfs2(0)?"POSSIBLE":"IMPOSSIBLE"; // 搜索2
 	}
 };
-1ll*P*(p-l)%MOD;
-				}
-			}
-			ans=(ans+P)%MOD;
-		}
-		return ans; 
-	}
-};
-
-			for(edge*e=first[i];e;e=e->next){
-				if(siz[e->to]==n-k)dfs2(e->to,i,dep+1,ff*fv[e->to]%MOD);
-			}
-		}
-		else for(edge*e=first[i];e;e=e->next)
-			if(e->to!=fa)dfs2(e->to,i,dep+1,ff);
-	}
-	int getCount(vector <int> edge1, vector <int> edge2, int k){
-		this->n=edge1.size()+1;this->k=k;ne=E;ans=0;
-		for(int i=0;i<edge1.size();i++)link(edge1[i],edge2[i]),link(edge2[i],edge1[i]);
-		init();
-		if(k==1)return fac[n];
-		if(2*k>n){
-			init(0,-1);
-			dfs1(0,-1,1);
-			return ans*fac[2*k-n]%MOD*fac[n-k]%MOD*fac[n-k]%MOD;
-		}
-		for(int i=0;i<n;i++){
-			init(i,-1);
-			dfs2(i,-1,0,inv[k]);
-		}
-		return ans*fac[k]%MOD*fac[k]%MOD;
-	}
-};

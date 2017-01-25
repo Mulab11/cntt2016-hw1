@@ -54,33 +54,3 @@ public:
 		return ans;
 	}
 };
-if(!rest){ // 枚举完所有点，判断是否可行
-			init_ways();
-			int w=ways((1<<N)-1);
-			return w>=Min&&w<=Max;
-		}
-		int cnt=0;
-		// i放新的一层
-		if(cur!=-1)for(int i=0;i<N;i++)if(rest>>i&1){
-			L[++top]=1<<i;
-			for(G[i]=L[top-1];G[i];G[i]=(G[i]-1)&L[top-1]) // 枚举上一层向i连的边
-				cnt+=count_graph(i,rest-(1<<i));
-			top--;
-		}
-		// i放同一层
-		for(int i=cur+1;i<N;i++)if(rest>>i&1){
-			L[top]|=1<<i;
-			if(top)for(G[i]=L[top-1];G[i];G[i]=(G[i]-1)&L[top-1]) // 枚举上一层向i连的边
-				cnt+=count_graph(i,rest-(1<<i));
-			else G[i]=0,cnt+=count_graph(i,rest-(1<<i));
-			L[top]-=1<<i;
-		}
-		return cnt;
-	}
-	int getNumOrders(vector <int> blockTypes, int minWays, int maxWays){
-		N=blockTypes.size();Min=minWays;Max=maxWays;
-		for(int i=0;i<N;i++)cnt[i]=blockTypes[i],G[i]=0;
-		*L=top=0;
-		return count_graph(-1,(1<<N)-1);
-	}
-};
