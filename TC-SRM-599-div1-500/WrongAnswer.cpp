@@ -7,6 +7,3 @@ public:
 		return read(s[L-3])<<6|read(s[L-4]);
 	}
 };
-
-	}
-};
